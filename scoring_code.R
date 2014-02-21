@@ -21,7 +21,7 @@ log.loss <- function(outcome,pred){
 }
 
 Score.NCAA <- function(tourney_results,predict.years,sample.submission){
-  tourney_results.tmp <- tourney_results[!(tourney_results$daynum %in% c(134,135)),] # exclude play in
+  tourney_results <- tourney_results[!(tourney_results$daynum %in% c(134,135)),] # exclude play in
   tourney_results_predyears <- tourney_results[tourney_results$season %in% predict.years,]
   
   ###############################################
@@ -37,7 +37,7 @@ Score.NCAA <- function(tourney_results,predict.years,sample.submission){
   ###############################################
   keep.games <- sample.submission[sample.submission$id %in% actual.games$id,]
   game.info <- merge(keep.games,actual.games)
-  loss <-mapply(log.loss2,outcome=game.info$outcome,pred=game.info$pred)
+  loss <-mapply(log.loss,outcome=as.character(game.info$outcome),pred=game.info$pred)
   return(mean(-loss))
 }
 
@@ -58,13 +58,15 @@ tourney_results_predyears <- tourney_results[tourney_results$season %in% predict
 all_matchups <- NULL
 for (k in 1:length(predict.years)){
   active.year <- tourney_results_predyears[tourney_results_predyears$season == predict.years[k] ,]
-  teams <- sort(unique(c(tourney_results_yearR$wteam,tourney_results_yearR$lteam)))
+  teams <- sort(unique(c(tourney_results_predyears$wteam,tourney_results_predyears$lteam)))
   for (i in 1:(length(teams)-1)){
     for (j in (i+1):length(teams)){
       all_matchups <- c(all_matchups, paste(predict.years[k],teams[i],teams[j],sep='_'))
     }
   }  
 }
+
+head(all_matchups)
 ###############################################
 # Input Predictions Here currently using naive
 ###############################################
@@ -75,4 +77,8 @@ colnames(sample.submission) = c('id','pred')
 ###############################################
 # Score Predictions Here currently using naive
 ###############################################
-Score.NCAA(tourney_results,predict.years,sample.submission)
+Score.NCAA(tourney_results,predict.years,submission)
+submission <- read.csv('HokieStat_submission1.csv')
+
+submission$pred <- 1-submission$pred
+head(submission)

@@ -36,6 +36,11 @@ flip.prob <- function(prob,indicator){
 }
 
 ################################################################
+# Create a File with Static Team Level Characteristics
+################################################################
+
+
+################################################################
 # Working on simple models to predict Score Diff
 ################################################################
 bball <- read.csv('~/NCAA/regular_season_results.csv')

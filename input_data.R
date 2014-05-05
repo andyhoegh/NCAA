@@ -9,6 +9,8 @@ library(pscl) # rigamma
 ################################################################
 # FUNCTIONS
 ################################################################
+dat.sag <- read.csv('sagp_weekly_ratings.csv')
+dat.sag <- dat.sag.S
 get.sag <- function(team, daynum, season){
   ranks <- dat.sag[dat.sag$season == season & dat.sag$rating_day_num <= daynum & dat.sag$team == team,]
   if (nrow(ranks) > 1) {
@@ -45,7 +47,7 @@ flip.prob <- function(prob,indicator){
 ################################################################
 bball <- read.csv('~/NCAA/regular_season_results.csv')
 bball$score_diff <- bball$wscore - bball$lscore
-keep.seasons <- c('N','O','P','Q','R')
+keep.seasons <- c('L','M','N','O','P','Q','R')
 bball.small <- bball[bball$season %in% keep.seasons,]
 
 # ONLY INCLUDE GAMES AFTER INITIAL RANKINGS RELEASED 
@@ -65,6 +67,7 @@ mult[mult==0] <- -1
 comb$score_diff <- comb$score_diff * mult
 comb <- comb[!is.na(comb$wrank),]
 
+write.csv(comb,'sagarin_last7.csv')
 
 # Gibbs Sampler 
 #p(\beta) = 1 & p(\sigma2) = 1/sigma2
@@ -140,4 +143,32 @@ Score.NCAA(tourney_results,predict.years,submission)
 
 #write.csv(submission,'HokieStat_submission1.csv')
 
+
+
+
+
+################################################################
+bball <- read.csv('~/Dropbox/NCAA/dat/updated_filesMAR_17/regular_season_results.csv')
+bball$score_diff <- bball$wscore - bball$lscore
+keep.seasons <- c('S')
+bball.small <- bball[bball$season %in% keep.seasons,]
+
+# ONLY INCLUDE GAMES AFTER INITIAL RANKINGS RELEASED 
+win.sag <- t(mapply(get.sag, team = bball.small$wteam,daynum = bball.small$daynum,season=as.character(bball.small$season)))
+lose.sag <- t(mapply(get.sag, team = bball.small$lteam,daynum = bball.small$daynum,season=as.character(bball.small$season)))
+colnames(win.sag) <-c('wrank','wrating') 
+colnames(lose.sag) <-c('lrank','lrating')
+comb <- data.frame(bball.small,(win.sag),(lose.sag))
+comb$rating_diff <- abs(comb$wrating - comb$lrating)
+comb$rank_diff <- abs(comb$wrank - comb$lrank)
+comb$home <- as.numeric(comb$wrank < comb$lrank & comb$wloc == 'H' | comb$lrank < comb$wrank & comb$wloc=='A') # to know if higher rated team is at home
+comb$away <- as.numeric(comb$wrank < comb$lrank & comb$wloc == 'A' | comb$lrank < comb$wrank & comb$wloc=='H') # to know if higher rated team is at home
+comb$neutral <- as.numeric(comb$wloc == 'N') 
+
+mult <- as.numeric(comb$wrank < comb$lrank) # does higher rated team win?
+mult[mult==0] <- -1
+comb$score_diff <- comb$score_diff * mult
+comb <- comb[!is.na(comb$wrank),]
+
+write.csv(comb,'sagarin_thisyear.csv')
 

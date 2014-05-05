@@ -20,4 +20,4 @@ p(Y_{ij}|X_{ij}, \beta,\sigma^2,\mathcal{N}_i^k(j),\mathcal{N}_j^k(i), \rho) \si
 \end{eqnarray}
 where $\mathcal{N}_j^k(i)$ is the average residual for the team $i's$ $k$ past opponents most similar to team $j$ and $\rho$ is a tuning parameter $\in [0,1]$ that controls the amount of information passed from similar neighbors. 
 \subsection{Tuning $\rho$}
-The natural support of $\rho$ would be between zero and one.  The interpretation of the extreme points is rather intuitive - with $\rho = 0$ Equation~\ref{eq:ME} reverts to Equation~\ref{eq:generic} and with $\rho = 1$ the entire residual for similar teams is retained.
+The natural support of $\rho$ would be between zero and one.  The interpretation of the extreme points is rather intuitive - with $\rho = 0$ Equation~\ref{eq:ME} reverts to Equation~\ref{eq:generic} and with $\rho = 1$ the entire residual for similar teams is retained.  For our analysis, we choose the $\rho$ value that optimized the mean risk in previous years.  Comprehensive team level characteristics are available going back seven years, so for the 2014 tournament we chose $\rho=0.2$.

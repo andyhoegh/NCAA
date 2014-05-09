@@ -1,10 +1,38 @@
 \section{Modeling}
-One interesting dilemma involves whether the outcomes should be modeled in a binary sense (win or loss) or rather should a continuous metric such as the point spread be used.  In theory, point spread provides a means for eliciting the relative strength of one team, although as any basketball fan can attest to the final score is often not indicative of how close the game was.  A common strategy is for the trailing team to foul in the closing moments of the game, which can often result in a two point deficit turning into a ten point loss.  For this reason, we scrape scores with 2 minutes left in the game \andyc{I think this can be done}.  A comparison of these three data aggregation methods is used on cross-validated data from... \andyc{hmm... I wonder if there is a way to tune/transform point spread to control for blowouts...}
-\subsection{Model Specification}
-The general form for a linear model for point spread follows below:
+Sports broadcasters often make claims similar to \emph{Team X is a tough matchup for team Y due to their ... }.  There are two ways to consider this statement: (i) the overall team strength of Team X will be problematic for Team Y or (ii) Team X has certain tendencies above and beyond their team strength that will pose difficulties for Team Y.  We outline a general framework for the first case, specifying models that account for differences in team strength.  However, for the second case a different approach is needed to analytically quantify characteristics that pose difficulties for a given team.  We introduce the Nearest-Neighbor Matchup Effect which captures characteristics of specific match ups.  
+
+\subsection{Data Treatment}
+
+-When comparing models: modeling point spread vs explicit prediction models: logistic vs cart vs linear models.
+CART is maybe not effective here because there isn't any obvious heterogeneity in the space. Linear models seem to work well.
+
+One interesting dilemma involves whether the outcomes should be modeled in a binary sense (win or loss) or rather should a continuous metric such as the point spread be used.  In theory, point spread provides a means for eliciting the relative strength of one team, although as any basketball fan can attest to the final score is often not indicative of how close the game was.  A common strategy is for the trailing team to foul in the closing moments of the game, which can often result in a two point deficit turning into a ten point loss.  For this reason, perhaps obtaining scores with 2 minutes left in the game would provide a better indication of how close a game was.
+
+\subsection{Relative Strength Models}
+The general form for the relative strength models follows below:
 \begin{eqnarray}
 Y_{ij} = X_{ij} \beta + \epsilon_{ijk}
-\label{eq:generic}
+\label{eq:RS}
 \end{eqnarray}
-where $X_{ij}$ corresponds to the difference in predictors for teams $i$ and $j$ and $\epsilon_{ijk} \sim N(0,\sigma^2).$ 
+where $X_{ij}$ coresponds to the difference in predictors for teams $i$ and $j$ and $\epsilon_{ijk} \sim N(0,\sigma^2)$ corresponds to the $kth$ matchup between teams $i$ and $j$.  Most commonly $X_{ij}$ will consist of differences in rankings and seeds between the two teams.
+
 \subsection{Calibrating Predictions via predictive intervals} Discuss tuning the tails for predictions
+
+
+\subsection{Nearest-Neighbor Matchup Effects}
+The nearest-neighbor matchup effects are tailored for the second scenario posed in the introduction to this section in which there exist team level characteristics - above and beyond team strength - that contribute to winning probability.  For instance, maybe a certain team struggles with taller teams that rebound well.  When facing an opponent with these attributes the team would expect to perform worse than the difference in team strengths would suggest.  Our procedure is a three step process: (i) fit a relative strength model of the form specified in Equation~\ref{eq:RS}, (ii) identify neighbors, by finding similarities between the current opponent and past opponents, and (iii) calibrating the matchup adjustment.  Fitting of the relative strength model follows the same form as previously described and will not be rehashed in this segment.
+\subsubsection{Choosing Neighbors}
+When choosing neighbors for a matchup between team $X$ and team $Y$, we need to identify past opponents of team $X$ with similar attributes to team $Y$ and past opponents of team $Y$ with similar attributes to team $X.$  The idea is to identify how the performance changes against that subset of opponents.
+
+There are a multitude of ways to select the neighbors.  In particular one needs to consider what variables to consider for selecting neighbors, how should those variables be weighted if at all, and how many neighbors should be selected.  We consider a large set of team and player level data from which a k-nearest neighbor approach is calculated.
+
+Typically this procedure would be done analytically, however, user input can also be solicited.  For instance, suppose that a user decided Mercer was similar to Wake Forest and Clemson.  In this case, Bayesian Visual Analytics (BAVA) provides a principled routine for visualizing teams and taking user input of similarities to create a method for computing distance between teams.
+\subsubsection{Matchup Adjustment}
+The idea of the matchup adjustment is to quantify how much a team underperformed (or over performed) relative the expected level for a subset of teams similar to the current opponent.  So if team $i$ was two points better than expected against teams similar to $j$, then it would be reasonable to assume that team $i$ would perform better against team $j$ as well.  Then the predictive distribution for a matchup between team $i$ and team $j$ now becomes
+\begin{eqnarray}
+p(Y_{ij}|X_{ij}, \beta,\sigma^2,\mathcal{N}_i^k(j),\mathcal{N}_j^k(i), \rho) \sim N(X_{ij} \beta + \rho(\mathcal{N}_i^k(j) -\mathcal{N}_j^k(i)), \sigma^2),
+\label{eq:ME}
+\end{eqnarray}
+where $\mathcal{N}_j^k(i)$ is the average residual for the team $i's$ $k$ past opponents most similar to team $j$ and $\rho$ is a tuning parameter $\in [0,1]$ that controls the amount of information passed from similar neighbors. 
+
+The natural support of $\rho$ would be between zero and one.  The interpretation of the extreme points is rather intuitive - with $\rho = 0$ Equation~\ref{eq:ME} reverts to Equation~\ref{eq:RS} and with $\rho = 1$ the entire residual for similar teams is retained. 

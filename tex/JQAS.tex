@@ -1,0 +1,58 @@
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage{graphicx,amsmath} % support the \includegraphics command and options
+\usepackage{color}
+
+\newcommand{\andyc}[1]{[{\color{red}\sc Andy says: {\tt #1}}]}
+\newcommand{\scotlandc}[1]{[{\color{red}\sc Scotland says: {\tt #1}}]}
+\newcommand{\lucasc}[1]{[{\color{red}\sc Lucas says: {\tt #1}}]}
+\newcommand{\xinranc}[1]{[{\color{red}\sc Xinran says: {\tt #1}}]}
+\newcommand{\yuhyunc}[1]{[{\color{red}\sc Yuhyun says: {\tt #1}}]}
+\newcommand{\ianc}[1]{[{\color{red}\sc Ian says: {\tt #1}}]}
+\newcommand{\marcosc}[1]{[{\color{red}\sc Marcos is confused and says: {\tt #1}}]}
+
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+\textwidth=6in
+\textheight=8.75in
+\topmargin=-.5in
+\footskip=0.5in
+
+\title{JQAS Working Manuscript}
+ \author{The Lemanski Sports Analytics Group}        
+\begin{document}
+\maketitle
+\input{Task}
+
+\newpage
+
+\input{Intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Popular_Methods}
+\input{Data}
+\input{Modeling}
+\input{Decision_Theory}
+\input{Matchup_Effects}
+\input{Evaluation}
+\input{Luck}
+\input{Transitivity}
+\input{Recommendations}
+\input{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\andyc{reference place holder}
+\cite{Gelman}
+
+\bibliographystyle{asa}
+\bibliography{refsJQAS}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

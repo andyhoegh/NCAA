@@ -1,0 +1,14 @@
+\section{Model: Nearest-Neighbor Matchup Effects}
+When listening to sports broadcasters, claims of the following type are often made \emph{Team X is a tough matchup for team Y due to their ... }.  There are two ways to consider this statement: (1) the overall team strength of Team X will be problematic for Team Y or (2) Team X has certain tendencies above and beyond their team strength that will pose difficulties for Team Y.  For the first case models of the type Equation \ref{eq:generic} will account for the matchup.  However, if the second case is present we need a different approach to analytically quantify whatever characteristics may pose difficulties for a given team.  This approach is called the Nearest-Neighbor Matchup Effect and provides a means for capturing team level characteristics.  For instance, a glance inside the crystal ball would have revealed that Duke might struggle with a team like Mercer due to...  The matchup effects is a three step procedure: (1)  the typical model as in Equation~\ref{eq:generic} is fit, (2) for each matchup, past opponents most similar to the current matchup are identified, and (3) an adjustment is introduced that accounts for past performance against similar teams. 
+\subsection{Matchup Effects}
+The general form for the matchup effects model follows below:
+\begin{eqnarray}
+Y_{ij} = X_{ij} \beta + \rho( N_i(j)_k-N_j(i)_k) + \epsilon
+\label{eq:ME}
+\end{eqnarray}
+where $X_{ij}$ coresponds to the difference in predictors for teams $i$ and $j$ and $ N_i(j)_k$ corresponds to the residual for the k nearest neighbors of $i's$ opponents to team $j$.  In other words, the second term adjusts the expected outcome based on match ups with similar teams.
+\andyc{clean up notation}
+\subsection{Choosing Neighbors}
+There are a multitude of ways to select the neighbors.  In particular one needs to consider what variables to consider for selecting neighbors, how should those variables be weighted if at all, and how many neighbors should be selected. \andyc{Great Application for BAVA: given a set of information the users can identify similar teams which can then important variables can then be identified}  
+\subsection{Tuning $\rho$}
+The natural support of $\rho$ would be between zero and one.  The interpretation of the extreme points is rather intuitive - with $\rho = 0$ Equation~\ref{eq:ME} reverts to Equation~\ref{eq:generic} and with $rho = 1$ the entire residual for similar teams is retained.

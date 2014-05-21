@@ -11,10 +11,10 @@ One interesting dilemma involves whether the outcomes should be modeled in a bin
 \subsection{Relative Strength Models}
 The general form for the relative strength models follows below:
 \begin{eqnarray}
-Y_{ij} = X_{ij} \beta + \epsilon_{ijk}
+Y_{ijk} = g_1(X_{ij}) + g_2(X_i) + g_3(X_j) +  \epsilon_{ijk}
 \label{eq:RS}
 \end{eqnarray}
-where $X_{ij}$ coresponds to the difference in predictors for teams $i$ and $j$ and $\epsilon_{ijk} \sim N(0,\sigma^2)$ corresponds to the $kth$ matchup between teams $i$ and $j$.  Most commonly $X_{ij}$ will consist of differences in rankings and seeds between the two teams.
+where $X_{ij}$ corresponds to the difference in predictors for teams $i$ and $j$, $X_l$ contains predictors for team $l$, and $\epsilon_{ijk} \sim N(0,\sigma^2)$ corresponds to the $kth$ matchup between teams $i$ and $j$.  Most commonly $X_{ij}$ will consist of differences in rankings and seeds between the two teams.
 
 \subsection{Calibrating Predictions via predictive intervals} Discuss tuning the tails for predictions
 

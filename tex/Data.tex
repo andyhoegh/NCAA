@@ -1,6 +1,12 @@
 \section{Data}
-For many traditional bracket competitions predictions only need to be a binary result (i.e. win or lose); however, there are competitions for which probabilistic predictions  are required.  Furthermore, this provides a sensible framework for evaluating various loss functions and computing risk for various prediction schemes.  Hence, we restrict our focus to methods that return a probability of a team winning any matchup.
-\subsection{Common Ratings Components} wins, losses, strength of schedule...
+There is a plethora of data available for constructing predictive models for NCAA tournament basketball games.  Some such as wins, losses, as well as many common rating systems can readily be obtained, others such as strength of schedule and free throw percentage will require more sophisticated scraping algorithms and computations or paid subscriptions to sites containing the aggregated data.
+\subsection{Influential factors} home court, height, experience, wins, losses, strength of schedule, ect...
+\subsection{Common Ratings Components} Given the huge number of ratings systems available on the web, it may be worth using some of these ranking systems rather than simply trying to recreate (a better) wheel.  We have found it difficult to make major improvements over these ranking systems.  Otherwise, we might use the arbitrage situation for financial gain rather than publish this paper.  While many of the algorithms are proprietary, we provide an overview of the main points for notable algorithms.
 
-\subsection{Other influential factors} home court, height, ect...
+\subsubsection{RPI}
+\subsubsection{Sagarin}
+\subsubsection{Pomeroy}
+\subsubsection{Vegas Point Spreads??}
+
 \subsection{team level data vs. player level data}
+An untapped section would be looking at player level data and potentially player level match ups.  \andyc{Maybe this goes in discussion -could player performance be computed and shaped into the matchup effects framework?}

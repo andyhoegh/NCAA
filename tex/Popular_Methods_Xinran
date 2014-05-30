@@ -1,0 +1,22 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\begin{document}
+\section{Popular Methods}
+March Madness prediction also drew attentions of many high-profile sport analysts and sports medias. We selected three popular predictions among all to test their performances. These three models are: Nate Silver's from 538.com, Ken Pomeroy's from kenpom.com and the Power Rating model from ESPN Insider. We will use the loss function from Kaggle competition to score these models. Since Nate Silver and Ken Pomeroy only published probabilities of each team advancing to a certain round, Our comparison only considered the first round games (round of 64). It is also worth mentioning that the probabilities of the four teams who won their first-four games winning the first round is computed as \(a/(a+b)\) where \(a\) and \(b\) are the probabilities of the team and its opponent wins. 
+
+The first thing to notice is that all three models concurred in win-loss predictions of all games except one (Gonzaga vs OKST, 8 vs 9 in West). All three models also have a similar pattern of confidence. By confidence, we meant how far away predictions are from 0.5, e.g., predictions of 0.95 and 0.48 have confidence of 0.45 and 0.02, respectively. In all three models, most predictions either have high confidence (close to 0.5) or low confidence (close to 0 ), while moderate confidence are relatively rare. The reason may be a strategical adjustment for easy games. We may find this idea useful in Kaggle competitions to score as much as possible for sure games.
+
+In terms of level of confidence, Silver adapted a more aggressive style than the other two. His predictions, on average, have an 0.2818 confidence while Pomeroy averages the lowest, 0.2388. However, it is showed that confidence doesn't affect the result much. For the first around games, Pomeroy has the best score of 0.4632, Silver scored 0.4664 and ESPN, 0.4709. 
+
+We also examined the luck factor with these popular models and have some interesting findings. After flipping the results of five games that went overtime, we found a completely reverse of the rankings. The ESPN model now ranks first with 0.4631 and Pomeroy ranks third with 0.5027, Silver remains second with 0.5025. This result supported our previous conclusion that luck is a substantial factor in Kaggle. 
+
+A further comparison shows us that the two analyst predictions are quite similarly and both outperforms the ESPN model. One contributing factor may be the transitivity of ESPN model. Transitivity is usually undesirable and unrealistic in sport predictions. Human analysts' capability of capturing intangible information regards the teams, such as morale or playing style, could have played a vital role in avoiding transitivity and obtaining more reliable predictions.         
+
+ 
+
+ 
+
+\end{document}

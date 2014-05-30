@@ -1,5 +1,8 @@
 \section{Decision Theory - Optimal Strategies}
 \subsection{Probabilistic Forecasting}
+For many traditional bracket competitions predictions only need to be a binary result (i.e. win or lose); however, there are competitions for which probabilistic predictions  are required.  Furthermore, this provides a sensible framework for evaluating various loss functions and computing risk for various prediction schemes.  Hence, we restrict our focus to methods that return a probability of a team winning any matchup.
+
 \subsection{proper scoring rules}
+\subsection{Kaggle Loss function}
 \subsection{Strategy: Min Risk or Max Expected Earnings?}
-\andyc{ The entire process could be simulated using the historical probs of seed X vs. seed Y, this would give some range on the ideal (oracle) solution in which the probs are known}
+As an aside, it may behoove a contest to \emph{gamble} by not submitting the exact estimated probabilities.  A simple example would be to push probabilities near zero and one all the way to zero and one.  This would lower the expected risk of the estimator, but might actually improve the expected return for the contestant.  An elaborate discussion of strategy will not be discussed here, but it is important to discern the difference between minimizing the expected risk and maximizing the expected return.

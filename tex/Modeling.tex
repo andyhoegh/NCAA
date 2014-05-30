@@ -1,9 +1,8 @@
 \section{Modeling}
-Sports broadcasters often make claims similar to \emph{Team X is a tough matchup for team Y due to their ... }.  There are two ways to consider this statement: (i) the overall team strength of Team X will be problematic for Team Y or (ii) Team X has certain tendencies above and beyond their team strength that will pose difficulties for Team Y.  We outline a general framework for the first case, specifying models that account for differences in team strength.  However, for the second case a different approach is needed to analytically quantify characteristics that pose difficulties for a given team.  We introduce the Nearest-Neighbor Matchup Effect which captures characteristics of specific match ups.  
+Having outlined common prediction methods, we next move to our novel methodology.  As a means for motivation, consider claims of the type \emph{Team X is a tough matchup for team Y due to their ...} often made by sports broadcasters.  There are two ways to consider this statement: (i) the overall team strength of Team X will be problematic for Team Y or (ii) Team X has certain tendencies above and beyond their team strength that will pose difficulties for Team Y.  We build on the previous sections to outline a general framework for the first case, specifying models that account for differences in team strength.  However, for the second case a different approach is needed to analytically quantify characteristics that pose difficulties for a given team.  We introduce the Nearest-Neighbor Matchup Effect which captures characteristics of specific match ups.  
 
 \subsection{Data Treatment}
-
--When comparing models: modeling point spread vs explicit prediction models: logistic vs cart vs linear models.
+When comparing models: modeling point spread vs explicit prediction models: logistic vs cart vs linear models.
 CART is maybe not effective here because there isn't any obvious heterogeneity in the space. Linear models seem to work well.
 
 One interesting dilemma involves whether the outcomes should be modeled in a binary sense (win or loss) or rather should a continuous metric such as the point spread be used.  In theory, point spread provides a means for eliciting the relative strength of one team, although as any basketball fan can attest to the final score is often not indicative of how close the game was.  A common strategy is for the trailing team to foul in the closing moments of the game, which can often result in a two point deficit turning into a ten point loss.  For this reason, perhaps obtaining scores with 2 minutes left in the game would provide a better indication of how close a game was.
@@ -11,10 +10,10 @@ One interesting dilemma involves whether the outcomes should be modeled in a bin
 \subsection{Relative Strength Models}
 The general form for the relative strength models follows below:
 \begin{eqnarray}
-Y_{ij} = X_{ij} \beta + \epsilon_{ijk}
+Y_{ijk} = g_1(X_{ij}) + g_2(X_i) + g_3(X_j) +  \epsilon_{ijk}
 \label{eq:RS}
 \end{eqnarray}
-where $X_{ij}$ coresponds to the difference in predictors for teams $i$ and $j$ and $\epsilon_{ijk} \sim N(0,\sigma^2)$ corresponds to the $kth$ matchup between teams $i$ and $j$.  Most commonly $X_{ij}$ will consist of differences in rankings and seeds between the two teams.
+where $X_{ij}$ corresponds to the difference in predictors for teams $i$ and $j$, $X_l$ contains predictors for team $l$, and $\epsilon_{ijk} \sim N(0,\sigma^2)$ corresponds to the $kth$ matchup between teams $i$ and $j$.  Most commonly $X_{ij}$ will consist of differences in rankings and seeds between the two teams.  A simple example for Equation~\ref{eq:RS} would be a simple linear model.
 
 \subsection{Calibrating Predictions via predictive intervals} Discuss tuning the tails for predictions
 
@@ -36,3 +35,11 @@ p(Y_{ij}|X_{ij}, \beta,\sigma^2,\mathcal{N}_i^k(j),\mathcal{N}_j^k(i), \rho) \si
 where $\mathcal{N}_j^k(i)$ is the average residual for the team $i's$ $k$ past opponents most similar to team $j$ and $\rho$ is a tuning parameter $\in [0,1]$ that controls the amount of information passed from similar neighbors. 
 
 The natural support of $\rho$ would be between zero and one.  The interpretation of the extreme points is rather intuitive - with $\rho = 0$ Equation~\ref{eq:ME} reverts to Equation~\ref{eq:RS} and with $\rho = 1$ the entire residual for similar teams is retained. 
+\subsection{A note about Transitivity}
+\andyc{This may get cut}
+The transitive property states if $A>B$ and $B>C$ then $A>C$.   In terms of basketball consider:
+\begin{eqnarray}
+P_{A,B} > 0.5 \quad \& \quad P_{B,C} > 0.5 \rightarrow P_{A,C} > 0.5
+\label{eq:trans}
+\end{eqnarray}
+, where $P_{I,J}$ is the probability of team I defeating team J.  Then Equation \ref{eq:trans} can be considered a transitive property on basketball match ups.  That is if team A is expected to beat team B and team B is expected to beat team C, then team A should also defeat team C.  Any sort of rank based approaches would assume this transitive ordering, home court effects non-withstanding.  Note these are probabilities not true outcomes, due to the parity in basketball inferior teams can and often do defeat stronger teams.  Nevertheless, our modeling approach can determine if the strengths of a given team present difficulties for a specific team resulting in the transitive property not necessarily holding.

@@ -27,7 +27,7 @@ There are a multitude of ways to select the neighbors.  In particular one needs 
 
 Typically this procedure would be done analytically, however, user input can also be solicited.  For instance, suppose that a user decided Mercer was similar to Wake Forest and Clemson.  In this case, Bayesian Visual Analytics (BAVA) provides a principled routine for visualizing teams and taking user input of similarities to create a method for computing distance between teams.
 \subsubsection{Matchup Adjustment}
-The idea of the matchup adjustment is to quantify how much a team underperformed (or over performed) relative the expected level for a subset of teams similar to the current opponent.  So if team $i$ was two points better than expected against teams similar to $j$, then it would be reasonable to assume that team $i$ would perform better against team $j$ as well.  Then the predictive distribution for a matchup between team $i$ and team $j$ now becomes
+The idea of the matchup adjustment is to quantify how much a team underperformed (or over performed) relative the expected level for a subset of teams similar to the current opponent.  So if team $i$ was two points better than expected against teams similar to $j$, then it would be reasonable to assume that team $i$ would perform better against team $j$ as well.  Then the predictive distribution for a matchup between team $i$ and team $j$ now becomes \andyc{Make this formula general to match Equation \ref{eq:RS}}
 \begin{eqnarray}
 p(Y_{ij}|X_{ij}, \beta,\sigma^2,\mathcal{N}_i^k(j),\mathcal{N}_j^k(i), \rho) \sim N(X_{ij} \beta + \rho(\mathcal{N}_i^k(j) -\mathcal{N}_j^k(i)), \sigma^2),
 \label{eq:ME}

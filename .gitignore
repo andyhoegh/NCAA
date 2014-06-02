@@ -17,7 +17,7 @@ JQAS.pdf
 # *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
-#*.bbl # I think we want to track changes to the biblio, right? 
+*.bbl # I think we want to track changes to the biblio, right? 
 *.bcf
 *.blg
 *-blx.aux

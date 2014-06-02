@@ -1,9 +1,20 @@
 \section{Data}
-The key component to any successful analytic approach is data.  Luckily for those interested in predicting NCAA basketball games, a plethora of data is available.  Some data components such as wins, losses, NCAA tournament seedings as well as many common rating systems can readily be obtained, others such as strength of schedule, free throw percentage, or team tempo will require more sophisticated scraping algorithms and computations or paid subscriptions to sites containing the aggregated data.  Given the multitude of ways the data can be aggregated and used, we will touch on some key components.  Then an overview of common ratings metrics will be displayed.  Our experience shows that, unsurprisingly, many of these rating systems perform quite well.
-\subsection{Influential factors} 
-There are many influential factors when considering 
-\subsection{Common Ratings Components} Given the huge number of ratings systems available on the web, it may be worth using some of these ranking systems rather than simply trying to recreate (a better) wheel.   We have found it difficult to make major improvements over these ranking systems.  Otherwise, we might use the arbitrage situation for financial gain rather than publish this paper.  While many of the algorithms are proprietary, we provide an overview of the main points for notable algorithms.  Some aspects of these equations are proprietary so complete details are not possible in each case.  It should be noted that this is but a small sample of the possible ratings systems.  Ken Massey's website www.masseyratings.com contains 45 different rankings.
+The key component to any successful analytic approach is quality data.  Luckily for those interested in predicting NCAA basketball games, a plethora of data is available.  Some aspects such as wins, losses, NCAA tournament seedings as well as many common rating systems can easily be obtained, others such as strength of schedule, free throw percentage, or team tempo will require more sophisticated scraping algorithms and computations or paid subscriptions to sites containing the aggregated data.  Given the multitude of ways the data can be aggregated and used, the question remains what aspects are high quality predictors of tournament outcomes?  First an explanation of influential factors will be provided.  Then an overview of common ratings metrics will be displayed.  In our experience, unsurprisingly, these rating systems perform quite well.
 
+\subsection{Influential factors} 
+There are many influential factors for predicting college basketball games and NCAA tournament game in particular.
+\begin{itemize}
+\item Home court
+\item Tournament Seed
+\item Wins/Losses (winning percentage)
+\item Strength of Schedule
+\item Free throw percentage
+\item Field goal percentage
+\item effective field goal percentage
+\item rebounding precentage
+\end{itemize}
+\andyc{How to best present this section?  Maybe use it as an opportunity to talk about some modern stats(tempo adjusted): e.g. rebound percentage vs. rebounds}
+\subsection{Common Ratings Components} Another data source is the huge number of rating systems available on the web. These use the factors mentioned in the previous section in various ways and using these is an alternative to trying to recreate the wheel with your own ranking.  With the large number of people working in this area, Ken Massey's website www.masseyratings.com contains nearly 70 different systems, it is no surprise that these rankings work quite well and we have found it difficult to make major improvements over these ranking systems.  Otherwise, we might use the arbitrage situation for financial gain rather than publish this paper.  While many of the algorithms are proprietary, we provide an overview of the main points for select notable algorithms.  Some aspects of these equations are proprietary so complete details are not possible in each case. 
 \subsubsection{RPI}
 The most well known rating system may very well be the Ratings Percentage Index (RPI).  The RPI was created in 1981 as a tool for evaluating teams for admission and seeding to the NCAA basketball tournament.  The RPI calculation uses three components, winning percentage (WP), opponents winning percentage (OWP), and opponents opponents winning percentage (OOWP), with weights specified as:
 \begin{eqnarray*}
@@ -13,6 +24,7 @@ The RPI is often criticized for heavy reliance on winning percentage and failure
 
 \subsubsection{Sagarin}
 Another well known ratings system is Jeff Sagarin's computer ranking system, known simply as the Sagarin rankings.  Sagarin rankings are a staple, because of both the history  - they have been used since 1985 - and the quality.  The actual methodology is unknown, but the Sagaring rating is actually a composition of three separate models.  One model uses only wins or losses without regard to point differential, while the other two focus primarily on point spreads.  The Sagarin rankings are unique in that difference in the team ratings represents the expected point spread for that matchup on a neutral court.  There is also a home court advantage of 3.38 points built into Sagarin's system.
+
 \subsubsection{Pomeroy}
 The Pomeroy rankings are issued by Ken Pomeroy and largely driven by the Pythagorean Expectation a formula developed by Bill James for baseball prediction.  The Pythogorean expectation is
 \begin{eqnarray}
@@ -22,7 +34,7 @@ where $c$ is a constant, Pomeroy uses 10.25.  Rather than actual points scored P
 \begin{quotation}\noindent I don’t think you can’t come up with a prediction method that will have an error of less than eight points. And if you can, don’t tell anyone! Because that would be a really good system. That should also tell you a lot about why it’s difficult to anticipate what will happen in a single contest between teams. It’s also a good illustration of the large role randomness in any single game. So even if you know it all, you can’t possibly know it ALL.
 \end{quotation}
 \subsubsection{Logistic Regression - Monte Carlo}
-The logistic regression Monte Carlo (LRMC) method is...
+The logistic regression Monte Carlo (LRMC) method is detailed in \cite{Kvam2006}. 
 \subsubsection{Rating Comparison}
 Table \ref{tab:ranks} contains pre-tournament rankings from common sources.  The table includes any team ranked in the top-10 by either of the four previously discussed rankings systems as well as the eventual national champion Connecticut, who didn't make any of these top 10 lists.
 \begin{table}[ht]

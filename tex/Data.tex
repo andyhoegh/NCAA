@@ -1,8 +1,10 @@
 \section{Data}
-The key component to any successful analytic approach is quality data.  Luckily for those interested in predicting NCAA basketball games, a plethora of data is available.  Some aspects such as wins, losses, NCAA tournament seedings as well as many common rating systems can easily be obtained, others such as strength of schedule, free throw percentage, or team tempo will require more sophisticated scraping algorithms and computations or paid subscriptions to sites containing the aggregated data.  Given the multitude of ways the data can be aggregated and used, the question remains what aspects are high quality predictors of tournament outcomes?  First an explanation of influential factors will be provided.  Then an overview of common ratings metrics will be displayed.  In our experience, unsurprisingly, these rating systems perform quite well.
+The key component to any successful analytic approach is quality data.  Luckily for those interested in predicting NCAA basketball games, a plethora of data is available.  Some aspects such as wins, losses, NCAA tournament seedings as well as many common rating systems can easily be obtained, others such as strength of schedule, free throw percentage, or team tempo will require more sophisticated scraping algorithms and computations or paid subscriptions to sites containing the aggregated data.  Given the multitude of ways the data can be aggregated and used, the question remains what aspects are high quality predictors of tournament outcomes?  First an explanation of influential factors will be provided.  Then an overview of common ratings metrics which incorporate many of the influential factors will be displayed.  In our experience, unsurprisingly, these rating systems perform quite well.
 
 \subsection{Influential factors} 
-There are many influential factors for predicting college basketball games and NCAA tournament game in particular.
+There are many influential factors for predicting college basketball games and NCAA tournament game in particular.  A few of these are self explanatory, such as: tournament seed, winning percentage, and home court advantage.  Winning percentage is largely a function of opponents played, but still provides a nice description of overall team strength.  Home court advantage is consistently shown to be worth about 4 points \andyc{cite here}.
+
+Many other traditional stats such as points scored, rebounds, turnovers would appear to be useful, but are quite tempo dependent.  These can be `standardized' by using adjusted metrics.  For instance, a team with a very quick pace will tend to have more rebounds than one that plays slower.  This doesn't mean that the quicker pace team is a better rebounding team, given the larger number of rebounds available to be had.  A simple adjustment would be to use offensive and defensive rebound percentage - that is the percent of available offensive and defensive rebounds a team collects.
 \begin{itemize}
 \item Home court
 \item Tournament Seed
@@ -11,7 +13,8 @@ There are many influential factors for predicting college basketball games and N
 \item Free throw percentage
 \item Field goal percentage
 \item effective field goal percentage
-\item rebounding precentage
+\item rebounding percentage
+\item scoring percentage
 \end{itemize}
 \andyc{How to best present this section?  Maybe use it as an opportunity to talk about some modern stats(tempo adjusted): e.g. rebound percentage vs. rebounds}
 \subsection{Common Ratings Components} Another data source is the huge number of rating systems available on the web. These use the factors mentioned in the previous section in various ways and using these is an alternative to trying to recreate the wheel with your own ranking.  With the large number of people working in this area, Ken Massey's website www.masseyratings.com contains nearly 70 different systems, it is no surprise that these rankings work quite well and we have found it difficult to make major improvements over these ranking systems.  Otherwise, we might use the arbitrage situation for financial gain rather than publish this paper.  While many of the algorithms are proprietary, we provide an overview of the main points for select notable algorithms.  Some aspects of these equations are proprietary so complete details are not possible in each case. 
@@ -33,8 +36,9 @@ E[P(Win)] = \frac{\text{points scored}^c}{\text{points scored}^c + \text{points 
 where $c$ is a constant, Pomeroy uses 10.25.  Rather than actual points scored Pomeroy uses adjusted and defensive efficiencies as inputs to the Pythogorean expectation.  Pomeroy cites that this method gives an average error of 8.25 based on backtesting and states
 \begin{quotation}\noindent I don’t think you can’t come up with a prediction method that will have an error of less than eight points. And if you can, don’t tell anyone! Because that would be a really good system. That should also tell you a lot about why it’s difficult to anticipate what will happen in a single contest between teams. It’s also a good illustration of the large role randomness in any single game. So even if you know it all, you can’t possibly know it ALL.
 \end{quotation}
+This quote illustrates the difficulties inherent in basketball prediction.  \andyc{move quote elsewhere?}
 \subsubsection{Logistic Regression - Monte Carlo}
-The logistic regression Monte Carlo (LRMC) method is detailed in \cite{Kvam2006}. 
+The logistic regression Monte Carlo (LRMC) method detailed in \cite{Kvam2006}, \cite{mark2010} is a two step procedure used to produce ordinal rankings of each team.  The first step evaluates every game played during the season to compute the probability that the winning team is better than the losing factor.  This step uses the score at the end of regulation (e.g. overtime results are not included) and the home team in a logistic regression setting.  The second step uses these probabilities in a Markov chain to produce the ordinal rankings.  Specifically, each team is given a state in the chain based on the head-to-head probabilities and the ordinal ranking is a result of the ordering for the steady state probabilities of the chain.
 \subsubsection{Rating Comparison}
 Table \ref{tab:ranks} contains pre-tournament rankings from common sources.  The table includes any team ranked in the top-10 by either of the four previously discussed rankings systems as well as the eventual national champion Connecticut, who didn't make any of these top 10 lists.
 \begin{table}[ht]

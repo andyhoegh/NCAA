@@ -1,0 +1,54 @@
+\begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Carlin(1996)}]{carlin1996}
+Carlin, B.~P. (1996), \enquote{Improved NCAA basketball tournament modeling via
+  point spread and team strength information,} \textit{The American
+  Statistician}, 50, 39--43.
+
+\bibitem[{Cattelan et~al.(2013)Cattelan, Varin, and Firth}]{cattelan2013}
+Cattelan, M., Varin, C., and Firth, D. (2013), \enquote{Dynamic Bradley--Terry
+  modelling of sports tournaments,} \textit{Journal of the Royal Statistical
+  Society: Series C (Applied Statistics)}, 62, 135--150.
+
+\bibitem[{Glickman and Stern(1998)}]{glickman1998}
+Glickman, M.~E. and Stern, H.~S. (1998), \enquote{A state-space model for
+  National Football League scores,} \textit{Journal of the American Statistical
+  Association}, 93, 25--35.
+
+\bibitem[{Harville and Smith(1994)}]{harville1994}
+Harville, D.~A. and Smith, M.~H. (1994), \enquote{The home-court advantage: how
+  large is it, and does it vary from team to team?} \textit{The American
+  Statistician}, 48, 22--28.
+
+\bibitem[{House et~al.(2010)House, Leman, and Han}]{house2010}
+House, L., Leman, S., and Han, C. (2010), \enquote{Bayesian visual analytics
+  (bava),} \textit{FODAVA Technical Report2010}.
+
+\bibitem[{Kvam and Sokol(2006)}]{Kvam2006}
+Kvam, P. and Sokol, J.~S. (2006), \enquote{A logistic regression/Markov chain
+  model for NCAA basketball,} \textit{Naval research Logistics (NrL)}, 53,
+  788--803.
+
+\bibitem[{Mark and Joel(2010)}]{mark2010}
+Mark, B. and Joel, S. (2010), \enquote{An Improved LRMC Method for NCAA
+  Basketball Prediction,} \textit{Journal of Quantitative Analysis in Sports},
+  6, 1--23.
+
+\bibitem[{Schutt and O'Neil(2013)}]{schutt2013doing}
+Schutt, R. and O'Neil, C. (2013), \textit{Doing Data Science: Straight Talk
+  from the Frontline}, " O'Reilly Media, Inc.".
+
+\bibitem[{Schwertman et~al.(1996)Schwertman, Schenk, and
+  Holbrook}]{schwertman1996}
+Schwertman, N.~C., Schenk, K.~L., and Holbrook, B.~C. (1996), \enquote{More
+  probability models for the NCAA regional basketball tournaments,} \textit{The
+  American Statistician}, 50, 34--38.
+
+\bibitem[{{\v{S}}trumbelj and Vra{\v{c}}ar(2012)}]{vstrumbelj2012}
+{\v{S}}trumbelj, E. and Vra{\v{c}}ar, P. (2012), \enquote{Simulating a
+  basketball match with a homogeneous Markov model and forecasting the
+  outcome,} \textit{International Journal of Forecasting}, 28, 532--542.
+
+\end{thebibliography}

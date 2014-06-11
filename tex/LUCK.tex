@@ -1,8 +1,9 @@
 
 \section{Luck}
 \andyc{Lucas's section}
-
-No change. It's not about the prize, it's the element of luck involved that makes it 50\%. William Cukierski ,Kaggle Competition Admin \\
+\lucasc{I like this Quote from Will C. I found while searching the forum for the basketball tourney. I think it fits too. }
+\noindent No change. It's not about the prize, it's the element of luck involved that makes it 50\%.\\
+\noindent  William Cukierski ,Kaggle Competition Admin \\
 
 Having detailed popular methods for prediction and outlined our new methodology that accounts for specific match ups, the final component of this paper addresses the high degree of chance present in NCAA tournaments and consequently prediction for NCAA tournaments.  Specifically we address how sensitivity in a Kaggle style leader board . It's natural to think 2nd place almost won, but how close was 20th place to winning? 
 
@@ -19,13 +20,11 @@ We ask the question how dependent on the characteristics of this particular loss
 
 To answer this question we studied a couple of possible alternate scoring functions. We consider the following scoring functions: 
  
- \lucasc{Here will be the three eqns here}
-
-\begin{equation}
+\begin{equation}\label{eqn:first_score_function}
 -log(1-2|.5-p_i|)
 \end{equation} 
 
-\begin{equation}
+\begin{equation}\label{eqn:second_score_function}
 -log(1-|.5-p_i|)
 \end{equation} 
 
@@ -41,3 +40,17 @@ Here, for brevity, we only write the part of the loss function multiplied by the
 \label{fig:scoring_functions}
 \end{figure}
 
+It is clear from looking at Figure \ref{fig:scoring_functions} that the different scoring functions treat the contestants confidence differently. Both the first and the second score function are symmetric about 0.5 which is aesthetically pleasing. Moreover, the first score function penalizes much more for confident predictions than the second. 
+
+One might wonder, given the plethora of choices one might use to rank contestants, how much is a result of a specific function and how much hold sir we move from one scoring function to another? To examine this we made a plot of the contestant predictions scored under the various loss functions described above. The results of this plot are shown in Figure \ref{fig:score_rank_plot}. 
+
+  \begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{prelim_rank_plot.pdf}
+\caption{The scores of each contestant under the different loss functions. A smaller score is better.  }
+\label{fig:score_rank_plot}
+\end{figure}
+
+\lucasc{Now the concluding paragraph for section}
+
+While much has been made in contest forums and in books \cite{schutt2013doing} about leakage and how leakage is often exploited to win competitions it is somewhat refreshing to see that other choices play little, if any, into the ultimate results from a competition. While luck ultimately plays a role in the basketball games themselves and the results of prediction tournaments, some players are able to consistently outperform. These consistent performs are lucky, but lucky in the sense they are endowed with particular gifts that the rest of us mortals only dream of, and practice in hopes of achieving some semblance of success.  

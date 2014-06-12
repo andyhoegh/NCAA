@@ -31,9 +31,9 @@ To answer this question we studied a couple of possible alternate scoring functi
 \begin{equation}\label{eqn:third_score_function}
 -log(1-|y_i-p_i|)
 \end{equation} 
-Here, for brevity, we only write the part of the loss function multiplied by the $(1-y_i)$ term in the loss function above. Moreover, in Function \ref{eqn:third_score_function}, $y_i \in \{0,.5,1\}$, where now the $0.5$ is the realized value when teams go into overtime. A plot of the different score functions for values $0\leq p_i \leq 1$ is shown in Figure \ref{fig:scoring_functions}.  
+Another scoring function namely, $|.5-p_i|\times log(|.5-p_i|)$ might also be considered. We excluded this function because it highly discourages values near 0.5 while penalizing nothing for the value 0.5. Here, for brevity, we only write the part of the loss function multiplied by the $(1-y_i)$ term in the loss function above. Moreover, in Function \ref{eqn:third_score_function}, $y_i \in \{0,.5,1\}$, where now the $0.5$ is the realized value when teams go into overtime. Additionally, this scoring function encourages prediction values in the range $[0,0.3]$ or $[.7,1]$ which seems to be an undesirable effect for a scoring function. A plot of the different score functions for values $0\leq p_i \leq 1$ is shown in Figure \ref{fig:scoring_functions}.  
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.7\textwidth]{loss_function_plot.pdf}
 \caption{A plot of the various loss functions as a function of the prediction $p_i$.  }
@@ -44,11 +44,23 @@ It is clear from looking at Figure \ref{fig:scoring_functions} that the differen
 
 One might wonder, given the plethora of choices one might use to rank contestants, how much is a result of a specific function and how much hold sir we move from one scoring function to another? To examine this we made a plot of the contestant predictions scored under the various loss functions described above. The results of this plot are shown in Figure \ref{fig:score_rank_plot}. 
 
-  \begin{figure}[h]
+\lucasc{I just got a table from Will C. that has match ups of userID with teamID so I can match these scores to the team and plot by team.}
+
+  \begin{figure}[H]
 \centering
-\includegraphics[width=.7\textwidth]{prelim_rank_plot.pdf}
+\includegraphics[width=0.7\textwidth]{prelim_rank_plot.pdf}
 \caption{The scores of each contestant under the different loss functions. A smaller score is better.  }
 \label{fig:score_rank_plot}
+\end{figure}
+
+Now these are the scores for various players and we know a leaderboard consists of teams. Some teams might include multiple players and some teams consist of only a single player. To compare our results directly to the leaderboard we merged the best predictions into team level data. The results can be seen in Figure \ref{fig:team_rank_plot}. 
+Not surprisingly, the results seem somewhat similar, teams generally do not change there score, and therefore their ranking very much. 
+
+ \begin{figure}[H]
+\centering
+\includegraphics[width=1.1\textwidth]{ranksScreenShot.png}
+\caption{The scores of each teamunder the different loss functions. A smaller score is better.  }
+\label{fig:team_rank_plot}
 \end{figure}
 
 \lucasc{Now the concluding paragraph for section}

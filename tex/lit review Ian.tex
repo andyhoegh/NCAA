@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\title{Lit review}
+\author{Ian Crandell}
+
+\begin{document}
+\maketitle
+
+\section{Rosenthal}
+
+\paragraph{} In his paper The Rosenthal Fit: A Statistical Ranking of NCAA Men’s Basketball Teams, Jeffrey Rosenthal considered multiple regression models, along with constrained versions thereof and a Monte Carlo search algorithm to predict team performance. In the end, he used a regression model including regular season win percentage, final three game win percentages, offensive and defensive efficiency ratings, strength of schedule, and out-of-conference win rates. The fitted value for the regression model he called the "Rosenthal fit." The final win prediction for a match up was simple the team with the higher Rosenthal fit. His model achieved a correct prediction rate of about 72\% for regular season games, which is about what one would have gotten based on choosing the higher seeded team to win.
+
+\section{Ezekowitz}
+
+\paragraph{} In Survival of the Fittest: A New Model for NCAA Tournament Prediction, John Ezekowitz developed a proportional hazards model based on network analysis. He used offensive and defensive ratings, schedule strength, tournament experience, consistency (defined as the variance of a team's point spreads), and the number of tournament teams a team defeated during the regular season. He also included an interaction term between experience and tournament teams defeated. The model fit is a team's time-to-defeat in the NCAA tournament, higher times indicating more games played until a loss and thus elimination. Predictions for a match up were the team with the higher time-to-defeat. In out-of-sample testing his algorithm achieved a 70\% correct prediction rate.
+
+\section{Kvam}
+
+\paragraph{} Kvam and Sokol consider a logistic regression/Markov chain model to determine tournament team rankings. Higher steady state winning probabilities correspond to higher rankings. These probabilities are computed using a logistic regression using win percentages and the predicted winner is the one with the higher ranking. Their predictive performance is 73\%.
+
+
+
+
+\end{document}
+
+

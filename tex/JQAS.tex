@@ -1,7 +1,10 @@
-\documentclass[11pt]{article} % use larger type; default would be 10pt
+\documentclass[letterpaper,12pt]{article}
 \usepackage{graphicx,amsmath} % support the \includegraphics command and options
 \usepackage{color}
 \usepackage{hyperref,float}
+\usepackage{dgjournal} 
+%\usepackage{mathptmx}
+\usepackage[authoryear,comma,longnamesfirst,sectionbib]{natbib} 
 
 \newcommand{\andyc}[1]{[{\color{red}\sc Andy says: {\tt #1}}]}
 \newcommand{\scotlandc}[1]{[{\color{red}\sc Scotland says: {\tt #1}}]}
@@ -23,7 +26,13 @@
 \title{Nearest-Neighbor Matchup Effects:  Accounting for team match ups in the NCAA tournament}
  \author{The Lemanski Sports Analytics Group}        
 \begin{document}
-\maketitle
+%% Do NOT include any fronmatter information; including the title, author names,
+%% institutes, acknowledgments and title footnotes (author information, funding
+%% sources, etc.). Start the document with the first section or paragraph of
+%% the article.
+
+
+\originalmaketitle
 \input{Task}
 
 \input{Intro}
@@ -42,7 +51,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\bibliographystyle{asa}
+\bibliographystyle{DeGruyter}
 \bibliography{refsJQAS}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

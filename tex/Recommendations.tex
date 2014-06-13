@@ -1,5 +1,5 @@
 \section{Recommendations}
-Our takeaway from this competition is that high quality data, reasonable models, and a little luck are the components for a successful modeling competition.  This is echoed by Gregory Matthews and Michael Lopez, the winning team.
+In general NCAA bracket competitions, \cite{niemi2008} and \cite{breiter1997} provide a good overview of optimal strategies.  As probabilistic predictions are a bit different we highlight some high level ideas and then provide more detailed recommendations. Our takeaway from this competition is that high quality data, reasonable models, and a little luck are the components for a successful modeling competition.  This is echoed by Gregory Matthews and Michael Lopez, the winning team.
 \begin{quote}
 Q: Were you surprised by any of your insights?
 
@@ -7,14 +7,12 @@ Greg: I was surprised by how well our simple models performed. Using the right d
 
 Mike: I think we gave ourselves a chance with a good model, but there was probably a decent amount of luck involved, too. Also, identifying the specific loss function for this Kaggle contest, and where it comes from, seemed to help our model.
 \end{quote}
-
-There seemed to be little advantage in using complex models.  In agreement with statements on Andrew Gelman's blog we found using score differential to be superior to win/loss:
+We also found that there seemed to be little advantage in using complex models.  Something that was beneficial was modeling point spread rather than treating wins and losses in a binary sense, this agrees with statements on Andrew Gelman's blog:
 \begin{quote}
 Don’t model the probability of win, model the expected score differential. Yeah, I know, I know, what you really want to know is who wins. But the most efficient way to get there is to model the score differential and then map that back to win probabilities. The exact same issue comes up in election modeling: it makes sense to predict vote differential and then map that to Pr(win), rather than predicting Pr(win) directly. This is most obvious in very close games (or elections) or blowouts; in either of these settings the win/loss outcome provides essentially zero information. But it’s true more generally that there’s a lot of information in the score (or vote) differential that’s thrown away if you just look at win/loss.
 \end{quote}
-\andyc{citations for these blog/web interviews \& need to cleanly integrate these arguments with our thoughts.}
-
+\andyc{citations for these blog/web interviews}
+Next we provide more detailed strategies for probabilistic modeling competitions.
 \subsection{Optimal Strategies}
 \andyc{Marcos's piece here}
--subsection in recommendations: How should a typical user use this to figure out their bracket?
- (Marcos)
+How should a typical user use this to figure out their bracket/Kaggle competition?

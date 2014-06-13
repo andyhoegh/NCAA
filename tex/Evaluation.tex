@@ -14,7 +14,7 @@ A further comparison showed us that the two analyst predictions are quite simila
 
 \subsection{Nearest Neighbor Matchup Effects}
 To demonstrate the efficacy of our method, we first fit Equation~\ref{eq:RS} using a well known rating system, the Sagarin ratings.  Then, $\rho$ is calibrated based on historical results from the previous seven years NCAA tournaments.  Note seven years was chosen as this is the complete history of the team and player level characterstics used to find neighbors of teams.   The log loss for 2014 for the entire range of $\rho$ can be seen in Figure~\ref{fig:result} and the value that was selected based on historical results $0.2$.
-\begin{figure}[h]
+\begin{figure}[h!]
 \centering
 \includegraphics[width=.7\textwidth]{results_2014.png}
 \caption{Log loss for no matchup effect = red, log loss for optimized $\rho$ = blue}
@@ -24,7 +24,7 @@ To demonstrate the efficacy of our method, we first fit Equation~\ref{eq:RS} usi
 The selected $\rho$ value results in a reduction in loss.  A modest gain is also seen in classification error from (0.365 to 0.350) although this is only a single game difference.  The matchup effect, particularly with smaller $\rho$ values, will have a lesser effect on classification error than that off the loss functions like the log loss.  This is because it will only shift the expected point differential a fairly small margin, so the only games in which classification error would change are those that are nearly dead heat games to begin with.
 
 To illustrate the matchup effects, consider Table~\ref{tab:change} which contains the ten games that saw the largest shift in expected point differential.  This table contains expected point differentials (team1 - team2) and probabilities of team 1 winning under a standard relative strength model using the Sagarin ratings as well as the adjusted results using the Nearest Neighbor Matchup Effects.  The table also contains the realized loss for the each resulting game.
-\begin{table}[ht]
+\begin{table}[h!]
 \caption{Ten games with largest point differential change}
 \footnotesize
 \centering

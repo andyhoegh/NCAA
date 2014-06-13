@@ -1,18 +1,34 @@
 \section*{Task Summary: First round of composition Due June 13\\
 Final Manuscript Due July 15}
 
-Current Assignments:
+\subsubsection*{Writing Assignments:}
 \begin{itemize}
-\item Lucas - Luck
-\item Xinran - Popular Methods
-\item Marcos - Recommendations, Decision Theory
-\item Ian/Yuhyun - Lit Review - Introduction
-\item Andy : Modeling, Evaluation, Data, Discussion
+\item Andy: Data, Modeling, Evaluation, Recommendations, Discussion
+\item Ian: Introduction, including Lit Review
+\item Lucas: Luck
+\item Marcos: Recommendations, Decision Theory
+\item Scotland \yuhyunc{is a freeloader}
+\item Xinran: Evaluation, maybe modeling
+\item Yuhyun: Introduction, including Lit Review
 \end{itemize}
 
-\andyc{I thought it might be worthwhile to put a list of papers to incorporate as reference.  Ian and Yuhyun are likely working on something similar.}\\
-Articles to incorporate (likely include solid list of references themselves):
+\subsubsection*{Review Assignments:}
+\begin{itemize}
+\item Andy: all
+\item Ian: Data, Luck
+\item Lucas: Modeling, Evaluation
+\item Marcos: Modeling, Evaluation
+\item Scotland: all
+\item Xinran: Introduction, Luck
+\item Yuhyun: Recommendations, Discussion
+\end{itemize}
+
+\newpage
+\section*{Annotated Lit Review}
 \begin{itemize}
 \item \cite{cattelan2013}: An application of dynamic Bradley-Terry model that allows team strength to vary of course of tournament.  Also has a fruitful list of references.
-\item \cite{Kvam2006}: An overview of the logistic regression Markov Chain (LRMC) method for prediction.  A good read, which also contain useful citations.
+\item \cite{Kvam2006}: An overview of the logistic regression Markov Chain (LRMC) method for prediction.  A good read, which also contain useful citations. Kvam and Sokol consider a logistic regression/Markov chain model to determine tournament team rankings. Higher steady state winning probabilities correspond to higher rankings. These probabilities are computed using a logistic regression using win percentages and the predicted winner is the one with the higher ranking. Their predictive performance is 73\%.
+\item The Rosenthal Fit: A Statistical Ranking of NCAA Men’s Basketball Teams, Jeffrey Rosenthal considered multiple regression models, along with constrained versions thereof and a Monte Carlo search algorithm to predict team performance. In the end, he used a regression model including regular season win percentage, final three game win percentages, offensive and defensive efficiency ratings, strength of schedule, and out-of-conference win rates. The fitted value for the regression model he called the "Rosenthal fit." The final win prediction for a match up was simple the team with the higher Rosenthal fit. His model achieved a correct prediction rate of about 72\% for regular season games, which is about what one would have gotten based on choosing the higher seeded team to win.
+\item In Survival of the Fittest: A New Model for NCAA Tournament Prediction, John Ezekowitz developed a proportional hazards model based on network analysis. He used offensive and defensive ratings, schedule strength, tournament experience, consistency (defined as the variance of a team's point spreads), and the number of tournament teams a team defeated during the regular season. He also included an interaction term between experience and tournament teams defeated. The model fit is a team's time-to-defeat in the NCAA tournament, higher times indicating more games played until a loss and thus elimination. Predictions for a match up were the team with the higher time-to-defeat. In out-of-sample testing his algorithm achieved a 70\% correct prediction rate.
 \end{itemize}
+\newpage

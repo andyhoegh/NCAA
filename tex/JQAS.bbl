@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{26}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -33,6 +33,12 @@ Caudill, S.~B. (2003): \enquote{Predicting discrete outcomes with the maximum
   score estimator: The case of the ncaa men’s basketball tournament,}
   \emph{International Journal of Forecasting}, 19, 313--317.
 
+\bibitem[{Gelman(2014)}]{gelman}
+Gelman, A. (2014): \enquote{Basketball stats: Don't model the probability of
+  win, model the expected score differential,}
+  \url{http://andrewgelman.com/2014/02/25/basketball-stats-dont-model-probability-win-model-expected-score-differential/},
+  accessed June 18, 2014.
+
 \bibitem[{Glickman and Stern(1998)}]{glickman1998}
 Glickman, M.~E. and H.~S. Stern (1998): \enquote{A state-space model for
   national football league scores,} \emph{Journal of the American Statistical
@@ -59,6 +65,12 @@ James, B. (1983): \emph{Baseball Abstract}, New York: Ballantine.
 Kvam, P. and J.~S. Sokol (2006): \enquote{A logistic regression/markov chain
   model for ncaa basketball,} \emph{Naval research Logistics (NrL)}, 53,
   788--803.
+
+\bibitem[{Matthews and Lopez(2014)}]{kaggle}
+Matthews, G. and M.~Lopez (2014): \enquote{Q\&a with gregory matthews and
+  michael lopez, 1st place in march ml mania,}
+  \url{http://blog.kaggle.com/2014/04/21/qa-with-gregory-and-michael-1st-place-in-march-ml-mania/},
+  accessed June 18, 2014.
 
 \bibitem[{Miller(2007)}]{miller2007}
 Miller, S.~J. (2007): \enquote{A derivation of the pythagorean won-loss formula

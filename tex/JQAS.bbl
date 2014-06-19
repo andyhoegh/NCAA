@@ -1,8 +1,13 @@
-\begin{thebibliography}{12}
+\begin{thebibliography}{22}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
+
+\bibitem[{Boulier and Stekler(1999)}]{boulier1999sports}
+Boulier, B.~L. and H.~O. Stekler (1999): \enquote{Are sports seedings good
+  predictors?: an evaluation,} \emph{International Journal of Forecasting}, 15,
+  83--91.
 
 \bibitem[{Breiter and Carlin(1997)}]{breiter1997}
 Breiter, D.~J. and B.~P. Carlin (1997): \enquote{How to play office pools if
@@ -23,6 +28,11 @@ Cattelan, M., C.~Varin, and D.~Firth (2013): \enquote{Dynamic bradley--terry
   modelling of sports tournaments,} \emph{Journal of the Royal Statistical
   Society: Series C (Applied Statistics)}, 62, 135--150.
 
+\bibitem[{Caudill(2003)}]{caudill2003predicting}
+Caudill, S.~B. (2003): \enquote{Predicting discrete outcomes with the maximum
+  score estimator: The case of the ncaa men’s basketball tournament,}
+  \emph{International Journal of Forecasting}, 19, 313--317.
+
 \bibitem[{Glickman and Stern(1998)}]{glickman1998}
 Glickman, M.~E. and H.~S. Stern (1998): \enquote{A state-space model for
   national football league scores,} \emph{Journal of the American Statistical
@@ -37,15 +47,36 @@ Harville, D.~A. and M.~H. Smith (1994): \enquote{The home-court advantage: how
 House, L., S.~Leman, and C.~Han (2010): \enquote{Bayesian visual analytics
   (bava),} \emph{FODAVA Technical Report2010}.
 
+\bibitem[{James(1983)}]{james}
+James, B. (1983): \emph{Baseball Abstract}, New York: Ballantine.
+
 \bibitem[{Kvam and Sokol(2006)}]{Kvam2006}
 Kvam, P. and J.~S. Sokol (2006): \enquote{A logistic regression/markov chain
   model for ncaa basketball,} \emph{Naval research Logistics (NrL)}, 53,
   788--803.
 
+\bibitem[{Miller(2007)}]{miller2007}
+Miller, S.~J. (2007): \enquote{A derivation of the pythagorean won-loss formula
+  in baseball,} \emph{Chance}, 20, 40--48.
+
 \bibitem[{Niemi et~al.(2008)Niemi, Carlin, and Alexander}]{niemi2008}
 Niemi, J.~B., B.~P. Carlin, and J.~M. Alexander (2008): \enquote{Contrarian
   strategies for ncaa tournament pools: A cure for march madness?}
   \emph{Chance}, 21, 35--42.
+
+\bibitem[{Pomeroy(2012)}]{kenpom.com}
+Pomeroy, K. (2012): \enquote{Ratings glossary,}
+  \url{http://kenpom.com/blog/index.php/weblog/entry/ratings_glossary},
+  accessed June 18, 2014.
+
+\bibitem[{Pomeroy(2013)}]{kenpom.com2}
+Pomeroy, K. (2013): \enquote{Pomeroy ratings version 2.0,}
+  \url{http://kenpom.com/blog/index.php/weblog/entry/pomeroy_ratings_version_2.0
+  }, accessed June 18, 2014.
+
+\bibitem[{Sagarin(2014)}]{sagarin}
+Sagarin, J. (2014): \enquote{Ratings glossary,}
+  \url{http://www.usatoday.com/sports/ncaab/sagarin/}, accessed June 18, 2014.
 
 \bibitem[{Schutt and O'Neil(2013)}]{schutt2013doing}
 Schutt, R. and C.~O'Neil (2013): \emph{Doing Data Science: Straight Talk from
@@ -57,9 +88,23 @@ Schwertman, N.~C., K.~L. Schenk, and B.~C. Holbrook (1996): \enquote{More
   probability models for the ncaa regional basketball tournaments,} \emph{The
   American Statistician}, 50, 34--38.
 
+\bibitem[{Smith and Schwertman(1999)}]{smith1999can}
+Smith, T. and N.~C. Schwertman (1999): \enquote{Can the ncaa basketball
+  tournament seeding be used to predict margin of victory?} \emph{The american
+  statistician}, 53, 94--98.
+
 \bibitem[{{\v{S}}trumbelj and Vra{\v{c}}ar(2012)}]{vstrumbelj2012}
 {\v{S}}trumbelj, E. and P.~Vra{\v{c}}ar (2012): \enquote{Simulating a
   basketball match with a homogeneous markov model and forecasting the
   outcome,} \emph{International Journal of Forecasting}, 28, 532--542.
+
+\bibitem[{West(2006)}]{west2006simple}
+West, B.~T. (2006): \enquote{A simple and flexible rating method for predicting
+  success in the ncaa basketball tournament,} \emph{Journal of Quantitative
+  Analysis in Sports}, 2, 3.
+
+\bibitem[{Wright(2012)}]{wright2012statistical}
+Wright, C. (2012): \enquote{Statistical predictors of march madness: An
+  examination of the ncaa men’s’ basketball championship,} .
 
 \end{thebibliography}

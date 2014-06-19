@@ -1,4 +1,4 @@
-\begin{thebibliography}{22}
+\begin{thebibliography}{24}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -47,6 +47,11 @@ Harville, D.~A. and M.~H. Smith (1994): \enquote{The home-court advantage: how
 House, L., S.~Leman, and C.~Han (2010): \enquote{Bayesian visual analytics
   (bava),} \emph{FODAVA Technical Report2010}.
 
+\bibitem[{Hu et~al.(2013)Hu, Bradel, Maiti, House, and North}]{hu2013}
+Hu, X., L.~Bradel, D.~Maiti, L.~House, and C.~North (2013): \enquote{Semantics
+  of directly manipulating spatializations,} \emph{Visualization and Computer
+  Graphics, IEEE Transactions on}, 19, 2052--2059.
+
 \bibitem[{James(1983)}]{james}
 James, B. (1983): \emph{Baseball Abstract}, New York: Ballantine.
 
@@ -71,8 +76,8 @@ Pomeroy, K. (2012): \enquote{Ratings glossary,}
 
 \bibitem[{Pomeroy(2013)}]{kenpom.com2}
 Pomeroy, K. (2013): \enquote{Pomeroy ratings version 2.0,}
-  \url{http://kenpom.com/blog/index.php/weblog/entry/pomeroy_ratings_version_2.0
-  }, accessed June 18, 2014.
+  \url{http://kenpom.com/blog/index.php/weblog/entry/pomeroy_ratings_version_2.0},
+  accessed June 18, 2014.
 
 \bibitem[{Sagarin(2014)}]{sagarin}
 Sagarin, J. (2014): \enquote{Ratings glossary,}
@@ -87,6 +92,12 @@ Schutt, R. and C.~O'Neil (2013): \emph{Doing Data Science: Straight Talk from
 Schwertman, N.~C., K.~L. Schenk, and B.~C. Holbrook (1996): \enquote{More
   probability models for the ncaa regional basketball tournaments,} \emph{The
   American Statistician}, 50, 34--38.
+
+\bibitem[{Silver(2014)}]{silver}
+Silver, N. (2014): \enquote{Building a bracket is hard this year, but we'll
+  help you play the odds,}
+  \url{http://fivethirtyeight.com/features/nate-silvers-ncaa-basketball-predictions/},
+  accessed June 18, 2014.
 
 \bibitem[{Smith and Schwertman(1999)}]{smith1999can}
 Smith, T. and N.~C. Schwertman (1999): \enquote{Can the ncaa basketball

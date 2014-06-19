@@ -23,7 +23,7 @@ Another well known ratings system is Jeff Sagarin's computer ranking system, kno
 \subsubsection{Pomeroy}
 The Pomeroy rankings are issued by Ken Pomeroy and largely driven by the Pythagorean Expectation, a formula developed by Bill James for baseball prediction (\cite{james}).  A theoretical derivation of the Pythagorean Expectation using a Weibull distribution \cite{miller2007}. The Pythogorean expectation is
 \begin{eqnarray}
-E[P(Win)] = \frac{\text{points scored}^c}{\text{points scored}^c + \text{points allowed}^c},
+E[Pr(Win)] = \frac{\text{points scored}^c}{\text{points scored}^c + \text{points allowed}^c},
 \end{eqnarray}
 where points scored and points allowed are season totals and $c$ is a constant, Pomeroy uses 10.25.  Rather than actual points scored Pomeroy uses adjusted and defensive efficiencies as inputs to the Pythogorean expectation, which gives an average error of 8.25 points based on backtesting.  On a related note, on his website \cite{kenpom.com2} states:
 \begin{quote}

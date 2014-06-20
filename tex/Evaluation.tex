@@ -20,7 +20,7 @@ To demonstrate the efficacy of our method, we first fit Equation~\ref{eq:RS} usi
 \begin{figure}[h!]
 \centering
 \includegraphics[width=.7\textwidth]{results_2014.pdf}
-\caption{Log loss for no matchup effect = red, log loss for optimized $\rho$ = blue}
+\caption{Solid Line: Log loss for $\rho$, dashed vertical line: $\rho=.2$ value selected by historical calibration}
 \label{fig:result}
 \end{figure} 
 The selected $\rho$ value results in a reduction in loss. A modest improvement is also seen in classification error from (0.365 to 0.350) although this is only a single game difference. The matchup effect, particularly with smaller $\rho$ values, will have a lesser effect on classification error than that of the loss functions like the log loss. This is because it will only shift the expected point differential a fairly small margin, so the only games in which classification error would change are those that are nearly dead heat games to begin with.
@@ -50,4 +50,31 @@ To illustrate the matchup effects, consider Table~\ref{tab:change} which contain
 \end{tabular}
 \label{tab:change}
 \end{table}
-The key takeaway from this table is the loss for the predictions under each methodology. On this particular subset of games, the matchup effects model performs considerably better than the typical model under the log loss (.446 to .520). As the other games see minimal matchup effects, the results are essentially the same.  Specifically from the table, Dayton, in particular had a series of games against Syracuse and Stanford that were more favorable than a relative strength model using Sagarin would suggest.
+The key takeaway from this table is the loss for the predictions under each methodology. On this particular subset of games, the matchup effects model performs considerably better than the typical model under the log loss (.446 to .520). As the other games see minimal matchup effects, the results are essentially the same.  To further illustrate how the nearest neighbor match effects functions consider the Dayton and Stanford game.  Coincidentally this is the only game which the actual predicted winner changes, while many saw sizable shifts in predictive probabilities which factor into the loss function used in the Kaggle competition.  For each team, Table \ref{tab:DayStan} displays the neighbors, that is opponents that they faced most similar to the current matchup, along with the expected differential, realized result, and residual in those games. 
+\begin{table}[h!]
+\caption{Dayton - Stanford Neigbors \& Residuals}
+\small
+\centering
+\begin{tabular}{|c|cccc |}
+   \hline
+   \hline
+ team & neighbor &  Point Diff& Exp. Point Diff & Residual \\
+  \hline
+Dayton & California & 18 & -0.9 & 18.9\\
+Dayton & Gonzaga & 5 & -12.4 & 17.4\\
+Dayton & George Mason& 17 & 3.4 & 13.6\\
+Dayton &  Georgia Tech& 10 & -5.3 & 15.3\\
+Dayton & George Washington& 10 & 0.4 & 9.6\\
+\hline
+Stanford & California&-7 & 4.1&-11.1 \\
+Stanford & California &11 &-2.3 &13.3 \\
+Stanford & Oregon&2 &-8.9 &10.9 \\
+Stanford & Pittsburgh&-21 &-5.3 &-15.7 \\
+Stanford & Cal Poly&17 &13.8 &3.2 \\
+Stanford & Utah&1 &4.9 &-3.9 \\
+   \hline
+   \hline
+\end{tabular}
+\label{tab:DayStan}
+\end{table}
+To avoid confusion one of Stanford's five neighbors was the University of California at Berkely, who they faced twice.  The difference in expected point differential is driven largely by the fact the first game was at Stanford while the second was at Berkely. From this table we see that Dayton performed exceptionally well against teams our model considered to be similar to Stanford, in fact they were about 15 points better on average.  As $\rho$ was calibrated to be 0.2, this resulted in our line shifting more than 3 points for this game.

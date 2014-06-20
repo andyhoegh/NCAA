@@ -16,14 +16,14 @@ Y_{ijk} = X_{ij}\beta + \epsilon_{ijk}.
 \label{eq:RS_Linear}
 \end{eqnarray}
 \subsection{Calibrating Probabilities}
-Given a posterior predictive distribution for point spread, it is a straightforward transformation to recover win probability. Consider Figure \ref{fig:winprob} which displays the distribution of point differential and corresponding win probability for a team favored to win by 5 points.
+Given a posterior predictive distribution for point spread between teams $i$ and $j$, $Y_{ijk},$ it is a straightforward transformation to recover win probability. Consider Figure \ref{fig:winprob} which displays the distribution of point differential and corresponding win probability for a team favored to win by 5 points (e.g. $E[Y_{ijk}]=5$).
 \begin{figure}[h!]
 \centering
-\includegraphics[width=.7\textwidth]{WinProb.pdf}
+\includegraphics[width=.9\textwidth]{WinProb.pdf}
 \caption{Calculating win probability from point differential}
 \label{fig:winprob}
 \end{figure} 
-While the actual variance of the posterior predictive distribution will vary, the distribution displayed in Figure \ref{fig:winprob} is $Normal(-5,8^2).$
+While the actual variance of the posterior predictive distribution will vary, the distribution displayed in Figure \ref{fig:winprob} is $Normal(5,11^2).$
 
 \subsection{Popular Methods}  This section provides a review of several existing methods for tournament prediction.
 \subsubsection{Rating Based Methods} 

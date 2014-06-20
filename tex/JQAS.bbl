@@ -1,13 +1,13 @@
-\begin{thebibliography}{26}
+\begin{thebibliography}{30}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 
-\bibitem[{Boulier and Stekler(1999)}]{boulier1999sports}
-Boulier, B.~L. and H.~O. Stekler (1999): \enquote{Are sports seedings good
-  predictors?: an evaluation,} \emph{International Journal of Forecasting}, 15,
-  83--91.
+\bibitem[{Boulier and Stekler(2003)}]{boulier2003predicting}
+Boulier, B.~L. and H.~O. Stekler (2003): \enquote{Predicting the outcomes of
+  national football league games,} \emph{International Journal of Forecasting},
+  19, 257--270.
 
 \bibitem[{Breiter and Carlin(1997)}]{breiter1997}
 Breiter, D.~J. and B.~P. Carlin (1997): \enquote{How to play office pools if
@@ -32,6 +32,10 @@ Cattelan, M., C.~Varin, and D.~Firth (2013): \enquote{Dynamic bradley--terry
 Caudill, S.~B. (2003): \enquote{Predicting discrete outcomes with the maximum
   score estimator: The case of the ncaa men’s basketball tournament,}
   \emph{International Journal of Forecasting}, 19, 313--317.
+
+\bibitem[{Enright(1977)}]{enright1977march}
+Enright, J. (1977): \emph{March Madness: The Story of High School Basketball in
+  Illinois}, Illinois High School Association.
 
 \bibitem[{Gelman(2014)}]{gelman}
 Gelman, A. (2014): \enquote{Basketball stats: Don't model the probability of
@@ -66,6 +70,11 @@ Kvam, P. and J.~S. Sokol (2006): \enquote{A logistic regression/markov chain
   model for ncaa basketball,} \emph{Naval research Logistics (NrL)}, 53,
   788--803.
 
+\bibitem[{Manski and Lerman(1977)}]{manski1977estimation}
+Manski, C.~F. and S.~R. Lerman (1977): \enquote{The estimation of choice
+  probabilities from choice based samples,} \emph{Econometrica: Journal of the
+  Econometric Society}, 1977--1988.
+
 \bibitem[{Matthews and Lopez(2014)}]{kaggle}
 Matthews, G. and M.~Lopez (2014): \enquote{Q\&a with gregory matthews and
   michael lopez, 1st place in march ml mania,}
@@ -75,6 +84,10 @@ Matthews, G. and M.~Lopez (2014): \enquote{Q\&a with gregory matthews and
 \bibitem[{Miller(2007)}]{miller2007}
 Miller, S.~J. (2007): \enquote{A derivation of the pythagorean won-loss formula
   in baseball,} \emph{Chance}, 20, 40--48.
+
+\bibitem[{NCAA(2014)}]{NCAA2014}
+NCAA (2014): \enquote{The tournament,}
+  \urlprefix\url{http://fs.ncaa.org/Docs/stats/m_final4/2014/3Tournament.pdf}.
 
 \bibitem[{Niemi et~al.(2008)Niemi, Carlin, and Alexander}]{niemi2008}
 Niemi, J.~B., B.~P. Carlin, and J.~M. Alexander (2008): \enquote{Contrarian
@@ -120,6 +133,10 @@ Smith, T. and N.~C. Schwertman (1999): \enquote{Can the ncaa basketball
 {\v{S}}trumbelj, E. and P.~Vra{\v{c}}ar (2012): \enquote{Simulating a
   basketball match with a homogeneous markov model and forecasting the
   outcome,} \emph{International Journal of Forecasting}, 28, 532--542.
+
+\bibitem[{Swallen(2014)}]{Kantar2014}
+Swallen, J. (2014): \enquote{The most lucrative post-season in sports,}
+  \urlprefix\url{http://us.kantar.com/tech/tv/ncaa-march-madness-advertising/}.
 
 \bibitem[{West(2006)}]{west2006simple}
 West, B.~T. (2006): \enquote{A simple and flexible rating method for predicting

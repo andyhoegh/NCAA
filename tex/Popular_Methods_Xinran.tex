@@ -5,17 +5,19 @@
 \usepackage{amssymb}
 \begin{document}
 \section{Popular Methods}
-March Madness prediction draws the attention of sport analysts and medias: notably, Nate Silver, Ken Pomeroy and the ESPN. In this section, we will score these three models according to Kaggle's loss function. Also since Nate Silver and Ken Pomeroy only published probabilities of each team advancing to a certain round, our first comparison is based on first round games (round of 64) only. 
+March Madness prediction draws the attention of sport analysts and medias: notably, Nate Silver, Ken Pomeroy and the ESPN. In this section, we will compare these three models against Kaggle entries and examine the ``luck'' factor of Kaggle competition.
+
+Because Silver and Pomeroy published probabilities of each team advancing, our first comparison focused on first round games (round of 64). 
   
-We first notice that all three models concurred in win-loss predictions for all games  except one (Gonzaga vs OKST, 8 vs 9 in West). All three models have a similar pattern based on the predictions' deviation from 0.5. While most predictions suggest a easy win (prediction close to 1) or a close game (prediction close to 0.5), predictions around 0.75 are relatively rare. This is may because the first around game are relatively easy prediction.
+We first notice that all three models concurred in win-loss predictions except one (Gonzaga vs OKST, 8 vs 9 in West). All three models have a similar pattern based on the predictions' deviation from 0.5. While most predictions either suggest a easy win (prediction close to 1) or a close game (prediction close to 0.5), predictions around 0.75 are relatively rare in all three models.
 
-Silver's predictions also adapted a more aggressive style than the other two. His predictions, on average, have the highest 0.2818  deviation from 50-50 prediction, Pomeroy averages the lowest, 0.2388. But this difference seems to be independent of the result through, for the first around, Pomeroy has the best score of 0.4632, Silver scored 0.4664 and 0.4709 for ESPN. 
+In addition, Silver's predictions adapted a more aggressive style than the other two. His predictions, on average, have the highest deviation from 50-50 prediction and Pomeroy averages the lowest. But the differences in style seems to be irrelevant to their scores. For the first around games, Pomeroy has the best score of 0.4632, followed by Silver 0.4664 and ESPN 0.4709. These scores ranked 38th, 45th and 64th respectively, among 433 Kaggle entries. 
 
-We have also examined the luck factor with popular models. After flipping the results of five overtime games, we noticed a completely reverse of the rankings of scores with the ESPN model ranks first (0.4631) and Pomeroy ranks third (0.5027), Silver remains second (0.5025).
+We also computed a full-scale team-to-team prediction based on marginal advancement probabilities and found the average score and ranking of all three have dropped markedly from first round: ESPN (0.5795, 88th), Silver(0.5988, 123rd) and Pomeroy (0.6278, 174th). 
 
-The scores look competitive but they are based on the easiest prediction in the tournament. To obtain a fuller comparison, we compute team-to-team prediction based marginal advancement probabilities and  the overall scores are ESPN (0.5795), Silver(0.5988) and Pomeroy (0.6278). The overall scores are substantially lower than the first round's which is a common observation for most Kaggle entries.    
+Another interesting finding of our comparison is the ``luck'' factor. What if a close game finished differently? To that end, we flipped five overtime games in the first round and noticed a completely reverse of the ranking: ESPN(0.4631, 11th), Silver(0.5025,117th) and Pomeroy (0.5027,120th). This phenomenon is also observed in other Kaggle entries as well. A Kendall's Tau of 0.7169 is measured between the rankings before and after flipping. 
 
-To sum up, popular models exhibit similarities in many aspect which can be useful for future Kaggle competitors. But result-wise, none have shown advantages over the majority of Kaggle entries. 
+To sum up, popular models exhibit similarities in many aspects but none has shown clear advantages over the majority of Kaggle entries. 
  
 
 \end{document}

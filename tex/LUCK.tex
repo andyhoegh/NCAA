@@ -2,15 +2,16 @@
 \section{Luck}
 \lucasc{@Ian, this is something from the forum on the kaggle comp, it is answering a question about scoring predictions. }
 \ianc{What's this guy talking about?}
-\noindent It's not about the prize, it's the element of luck involved that makes it 50\%.\\
+\noindent It's not about the prize, it's the element of luck involved...\\
 \noindent  William Cukierski, Kaggle Competition Admin \\
 
-Previously, we have detailed popular methods for prediction and outlined our new methodology that accounts for specific match ups. In this component of this paper, we address the high degree of chance present in NCAA tournaments and consequently prediction for NCAA tournaments.  Specifically, we address sensitivity of a Kaggle style leader board. It's natural to think 2nd place almost won, but how close was 20th place to winning? 
+Previously, we detailed popular methods for prediction and outlined our new methodology that accounts for specific match ups. In this section of this paper, we address the high degree of chance present in NCAA tournaments and consequently prediction for NCAA tournaments.  Specifically, we address sensitivity of a Kaggle style leader board. While it is natural to think 2nd place almost won, we aim to answer the question how close was 20th place to winning? 
 
 % some verbiage in here... 
 
-To study the effect of luck we take the idea that the 2nd place team almost won and we attempt to quantify `almost.' To that end, we examine alternate realities where a losing team in an overtime game is treated instead as a winning team. We focus only on overtime games because it seems most reasonable to think of the losing team as having won in those cases. Recall that the loss function used for scoring of the kaggle competition is
+To study the effect of luck we take the idea that the 2nd place team almost won and we attempt to quantify `almost.' To this end, we examine alternate realities where a losing team in an overtime game is treated instead as a winning team. We focus only on overtime games because it seems most reasonable to think of the losing team as having won in those cases. Recall that the loss function used for scoring of the Kaggle competition is
 
+\lucasc{Maybe we can omit this equation if it is defined in an earlier section and just number that version and refer to that equation number here?} 
 \begin{equation}
 -\sum_{i=1}^n\frac{y_ilog(p_i)+ (1-y_i)log(1-p_i)}{n},
 \end{equation}
@@ -27,7 +28,7 @@ where $y_i$ is a binary variable taking value 1 when the team wins and 0 otherwi
 \begin{equation}\label{eqn:third_score_function}
 -log(1-|y_i-p_i|)
 \end{equation} 
-Here, for brevity, we only write the part of the loss function multiplied by the $(1-y_i)$ term. Moreover, in Function \ref{eqn:third_score_function}, $y_i \in \{0,.5,1\}$, where now the $0.5$ is the realized value when teams go into overtime. Figure \ref{fig:scoring_functions} is a plot of the different score functions for values $0\leq p_i \leq 1$.  
+Here, for brevity, we only write the part of the loss function multiplied by the $(1-y_i)$ term. Moreover, in Function \ref{eqn:third_score_function}, $y_i \in \{0,.5,1\}$, where now the $0.5$ is the realized value when teams go into overtime, the other equations use only $y_i \in \{0,1\}$. Figure \ref{fig:scoring_functions} is a plot of the different score functions for values $0\leq p_i \leq 1$.  
 
 \ianc{It's not clear how these functions correspond to the lines in the plot below. We're also not sure that it's necessary to consider so many marginally different loss functions.}
 
@@ -38,7 +39,7 @@ Here, for brevity, we only write the part of the loss function multiplied by the
 \label{fig:scoring_functions}
 \end{figure}
 
-It is clear from looking at Figure \ref{fig:scoring_functions} that the different scoring functions treat the contestant's confidence differently. Both the first and the second score function are symmetric about 0.5 which is aesthetically pleasing and a useful attribute for handling tied or overtime games in a slightly different manner than games with a clear victor. Moreover, the first score function penalizes much more for confident predictions than the second. 
+It is clear from looking at Figure \ref{fig:scoring_functions} that the different scoring functions treat the contestant's confidence differently. Both Equations \ref{eqn:first_score_function} and \ref{eqn:second_score_function} are symmetric about 0.5, which is aesthetically pleasing and a useful attribute for handling tied or overtime games in a slightly different manner than games with a clear victor. Moreover, Equation \ref{eqn:first_score_function} penalizes much more for confident predictions than Equation \ref{eqn:second_score_function}. 
 
 One might wonder, given the plethora of choices one might use to rank contestants, how much is a result of a specific scoring function and how much much change of  we moved from one scoring function to another? To examine this, we made a plot of the contestant predictions scored under the various loss functions described above. The results of this plot are shown in Figure \ref{fig:score_rank_plot}. 
 
@@ -53,4 +54,4 @@ One might wonder, given the plethora of choices one might use to rank contestant
 
 \lucasc{@ ian, will do I'll pick the teams with the largest difference in scores across the loss functions. }
 
-While much has been made in contest forums and in books \cite{schutt2013doing} about leakage and how leakage is often exploited to win competitions, it is somewhat refreshing to see that other choices like the scoring function play little, if any, into the ultimate results of a competition. Leakage is defined by Schutt as an accidental inclusion of `future' data into the training set. This might be the result of competition admins errors, or a misunderstanding of the data generating process. While luck ultimately plays a role in the basketball games themselves and the results of prediction tournaments, some players are able to consistently outperform. While this section has depicted alternate outcomes that could have occurred, an actual alternate outcome will not arise until next year when the tournament occurs.  These consistent outperformers are lucky, but lucky in the sense they are endowed with particular gifts that the rest of us mortals only dream of and practice in hopes of achieving some semblance of success.  
+Leakage is defined by \cite{schutt2013doing} as an accidental inclusion of `future' data into the training set. \cite{schutt2013doing} state that in earlier days of online comptitions they were able to consistently win competitions by systematically exploiting leakage. While much has been made in contest forums and in books  about leakage and how leakage is often exploited to win competitions, it is somewhat refreshing to see that other choices like the scoring function play little, if any, into the ultimate results of a competition. This might be the result of competition administrators' errors, or a misunderstanding of the data generating process. While luck ultimately plays a role in the basketball games themselves and the results of prediction tournaments, some players are able to consistently outperform. While this section has depicted alternate outcomes that could have occurred, an actual alternate outcome will not arise until next year when the tournament occurs.  These consistent outperformers are lucky, but lucky in the sense they are endowed with particular gifts that the rest of us mortals only dream of and practice in hopes of achieving some semblance of success.  

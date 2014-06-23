@@ -6,7 +6,8 @@ l2<- - log(1-abs(.5-x))
 l3<- - log(1-abs(1-x))
 l4<- - log(1-abs(0-x))
 l5<- -log(1-x)
-
+# l6<- abs(.5-x)*log(abs(.5-x)) # don't use this one, 
+#plot the function versus p to see why
 
 pdf(file='loss_function_plot.pdf')
 plot(x,l1,type='l', xlab='p', ylab='score')

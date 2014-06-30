@@ -1,0 +1,153 @@
+\begin{thebibliography}{30}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem[{Boulier and Stekler(2003)}]{boulier2003predicting}
+Boulier, B.~L. and H.~O. Stekler (2003): \enquote{Predicting the outcomes of
+  national football league games,} \emph{International Journal of Forecasting},
+  19, 257--270.
+
+\bibitem[{Breiter and Carlin(1997)}]{breiter1997}
+Breiter, D.~J. and B.~P. Carlin (1997): \enquote{How to play office pools if
+  you must,} \emph{Chance}, 10, 5--11.
+
+\bibitem[{Brown and Sokol(2010)}]{mark2010}
+Brown, M. and J.~Sokol (2010): \enquote{An improved {LRMC} method for {NCAA}
+  basketball prediction,} \emph{Journal of Quantitative Analysis in Sports}, 6,
+  1--23.
+
+\bibitem[{Carlin(1996)}]{carlin1996}
+Carlin, B.~P. (1996): \enquote{Improved {NCAA} basketball tournament modeling
+  via point spread and team strength information,} \emph{The American
+  Statistician}, 50, 39--43.
+
+\bibitem[{Caudill(2003)}]{caudill2003predicting}
+Caudill, S.~B. (2003): \enquote{Predicting discrete outcomes with the maximum
+  score estimator: The case of the {NCAA} men's basketball tournament,}
+  \emph{International Journal of Forecasting}, 19, 313--317.
+
+\bibitem[{Enright(1977)}]{enright1977march}
+Enright, J. (1977): \emph{March Madness: The Story of High School Basketball in
+  {I}llinois}, Illinois High School Association.
+
+\bibitem[{Ezekowitz(2014)}]{ezekowitz2013}
+Ezekowitz, J. (2014): \enquote{Survival of the fittest: Predicting the 2013
+  {NCAA} tournament,}
+  \url{http://harvardsportsanalysis.wordpress.com/2013/03/19/survival-of-the-fittest-predicting-the-2013-ncaa-tournament/},
+  accessed June 18, 2014.
+
+\bibitem[{Gelman(2014)}]{gelman}
+Gelman, A. (2014): \enquote{Basketball stats: Don't model the probability of
+  win, model the expected score differential,}
+  \url{http://andrewgelman.com/2014/02/25/basketball-stats-dont-model-probability-win-model-expected-score-differential/},
+  accessed June 18, 2014.
+
+\bibitem[{Glickman and Stern(1998)}]{glickman1998}
+Glickman, M.~E. and H.~S. Stern (1998): \enquote{A state-space model for
+  national football league scores,} \emph{Journal of the American Statistical
+  Association}, 93, 25--35.
+
+\bibitem[{Harville and Smith(1994)}]{harville1994}
+Harville, D.~A. and M.~H. Smith (1994): \enquote{The home-court advantage: How
+  large is it, and does it vary from team to team?} \emph{The American
+  Statistician}, 48, 22--28.
+
+\bibitem[{House et~al.(2010)House, Leman, and Han}]{house2010}
+House, L., S.~Leman, and C.~Han (2010): \enquote{Bayesian visual analytics
+  (bava),} \emph{FODAVA Technical Report2010}.
+
+\bibitem[{Hu et~al.(2013)Hu, Bradel, Maiti, House, and North}]{hu2013}
+Hu, X., L.~Bradel, D.~Maiti, L.~House, and C.~North (2013): \enquote{Semantics
+  of directly manipulating spatializations,} \emph{Visualization and Computer
+  Graphics, IEEE Transactions on}, 19, 2052--2059.
+
+\bibitem[{James(1983)}]{james}
+James, B. (1983): \emph{Baseball Abstract}, New York: Ballantine.
+
+\bibitem[{Kvam and Sokol(2006)}]{Kvam2006}
+Kvam, P. and J.~S. Sokol (2006): \enquote{A logistic regression/{M}arkov chain
+  model for {NCAA} basketball,} \emph{Naval Research Logistics}, 53, 788--803.
+
+\bibitem[{Manski and Lerman(1977)}]{manski1977estimation}
+Manski, C.~F. and S.~R. Lerman (1977): \enquote{The estimation of choice
+  probabilities from choice based samples,} \emph{Econometrica: Journal of the
+  Econometric Society}, 1977--1988.
+
+\bibitem[{Matthews and Lopez(2014)}]{kaggle}
+Matthews, G. and M.~Lopez (2014): \enquote{Q\&{A} with {G}regory {M}atthews and
+  {M}ichael {L}opez, 1st place in {M}arch {ML} mania,}
+  \url{http://blog.kaggle.com/2014/04/21/qa-with-gregory-and-michael-1st-place-in-march-ml-mania/},
+  accessed June 18, 2014.
+
+\bibitem[{Miller(2007)}]{miller2007}
+Miller, S.~J. (2007): \enquote{A derivation of the {P}ythagorean won-loss
+  formula in baseball,} \emph{Chance}, 20, 40--48.
+
+\bibitem[{Niemi et~al.(2008)Niemi, Carlin, and Alexander}]{niemi2008}
+Niemi, J.~B., B.~P. Carlin, and J.~M. Alexander (2008): \enquote{Contrarian
+  strategies for {NCAA} tournament pools: A cure for {M}arch madness?}
+  \emph{Chance}, 21, 35--42.
+
+\bibitem[{Pomeroy(2012)}]{kenpom.com}
+Pomeroy, K. (2012): \enquote{Ratings glossary,}
+  \url{http://kenpom.com/blog/index.php/weblog/entry/ratings_glossary},
+  accessed June 18, 2014.
+
+\bibitem[{Pomeroy(2013)}]{kenpom.com2}
+Pomeroy, K. (2013): \enquote{Pomeroy ratings version 2.0,}
+  \url{http://kenpom.com/blog/index.php/weblog/entry/pomeroy_ratings_version_2.0},
+  accessed June 18, 2014.
+
+\bibitem[{Rosenthal(2013)}]{rosenthal}
+Rosenthal, J. (2013): \enquote{The {R}osenthal fit: A statistical ranking of
+  {NCAA} men's basketball teams,}
+  \url{http://andrewgelman.com/2014/02/25/basketball-stats-dont-model-probability-win-model-expected-score-differential/},
+  accessed June 18, 2014.
+
+\bibitem[{Sagarin(2014)}]{sagarin}
+Sagarin, J. (2014): \enquote{Ratings glossary,}
+  \url{http://www.usatoday.com/sports/ncaab/sagarin/}, accessed June 18, 2014.
+
+\bibitem[{Schutt and O'Neil(2013)}]{schutt2013doing}
+Schutt, R. and C.~O'Neil (2013): \emph{Doing Data Science: Straight Talk from
+  the Frontline}, " O'Reilly Media, Inc.".
+
+\bibitem[{Schwertman et~al.(1996)Schwertman, Schenk, and
+  Holbrook}]{schwertman1996}
+Schwertman, N.~C., K.~L. Schenk, and B.~C. Holbrook (1996): \enquote{More
+  probability models for the {NCAA} regional basketball tournaments,} \emph{The
+  American Statistician}, 50, 34--38.
+
+\bibitem[{Silver(2014)}]{silver}
+Silver, N. (2014): \enquote{Building a bracket is hard this year, but we'll
+  help you play the odds,}
+  \url{http://fivethirtyeight.com/features/nate-silvers-ncaa-basketball-predictions/},
+  accessed June 18, 2014.
+
+\bibitem[{Smith and Schwertman(1999)}]{smith1999can}
+Smith, T. and N.~C. Schwertman (1999): \enquote{Can the {NCAA} basketball
+  tournament seeding be used to predict margin of victory?} \emph{The American
+  Statistician}, 53, 94--98.
+
+\bibitem[{{\v{S}}trumbelj and Vra{\v{c}}ar(2012)}]{vstrumbelj2012}
+{\v{S}}trumbelj, E. and P.~Vra{\v{c}}ar (2012): \enquote{Simulating a
+  basketball match with a homogeneous {M}arkov model and forecasting the
+  outcome,} \emph{International Journal of Forecasting}, 28, 532--542.
+
+\bibitem[{Swallen(2014)}]{Kantar2014}
+Swallen, J. (2014): \enquote{The most lucrative post-season in sports,}
+  \url{http://us.kantar.com/tech/tv/ncaa-march-madness-advertising}, accessed
+  June 23, 2014.
+
+\bibitem[{West(2006)}]{west2006simple}
+West, B.~T. (2006): \enquote{A simple and flexible rating method for predicting
+  success in the {NCAA} basketball tournament,} \emph{Journal of Quantitative
+  Analysis in Sports}, 2, 3.
+
+\bibitem[{Wright(2012)}]{wright2012statistical}
+Wright, C. (2012): \enquote{Statistical predictors of {M}arch madness: An
+  examination of the {NCAA} men's' basketball championship,} .
+
+\end{thebibliography}

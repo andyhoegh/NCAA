@@ -1,0 +1,90 @@
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')#
+n<-length(list.files()) #434 teams #
+head(leaderboard)#
+names(leaderboard)#
+str(leaderboard)#
+### temp dataframe with the preds submissions and various scores#
+leaderboard[370:434,]<-NA#
+names(leaderboard)[1]<-'userid'#
+csv_names<-list.files()#
+for(i in 1:n){#
+leaderboard$userid[i]<-strsplit(csv_names[i],'_')[[1]][2]#
+}
+plot(x,l1,type='l', xlab='p', ylab='score')#
+lines(x,l2,lty=1)#
+lines(x,l3,lty=2)#
+lines(x,l4,lty=3)#
+lines(x,l5,lty=4)
+x<-seq(0,1,by=0.01)#
+l1<- -log(1-2*abs(.5-x))#
+l2<- - log(1-abs(.5-x))#
+l3<- - log(1-abs(1-x))#
+l4<- - log(1-abs(0-x))#
+l5<- -log(1-x)
+plot(x,l1,type='l', xlab='p', ylab='score')#
+lines(x,l2,lty=1)#
+lines(x,l3,lty=2)#
+lines(x,l4,lty=3)#
+lines(x,l5,lty=4)
+plot(x,l1,type='l', xlab='p', ylab='score')#
+lines(x,l2,lty=2)#
+lines(x,l3,lty=3)#
+lines(x,l4,lty=4)#
+lines(x,l5,lty=5) #
+legend(.5,3.5,c('','','','',''), lty=c(1,1), lwd=c(2.5,2.5),col=c("black","green",'red','blue','purple'))
+legend(.5,3.5,c('','','','',''), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
+plot(x,l1,type='l', xlab='p', ylab='score')#
+lines(x,l2,lty=2)#
+lines(x,l3,lty=3)#
+lines(x,l4,lty=4)#
+lines(x,l5,lty=5) #
+legend(.5,3.5,c('','','','',''), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
+gc()
+x<-seq(0,1,by=0.01)#
+l1<- -log(1-2*abs(.5-x))#
+l2<- - log(1-abs(.5-x))#
+l3<- - log(1-abs(1-x))#
+l4<- - log(1-abs(0-x))
+plot(x,l1,type='l', xlab='p', ylab='score')#
+lines(x,l2,lty=2)#
+lines(x,l3,lty=3)#
+lines(x,l4,lty=4)#
+#lines(x,l5,lty=5) #
+legend(.5,3.5,c('(6)','(7)','(8a)','(8b)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
+l6<- abs(.5-x)*log(abs(.5-x)) # don't use this one,
+lines(x,l6,lty=5)
+l6<- -abs(.5-x)*log(abs(.5-x)) # don't use this one,
+lines(x,l6,lty=5)
+lines(x,l6,lty=5)
+plot(x,l1,type='l', xlab='p', ylab='score')
+lines(x,l2,lty=2)
+lines(x,l3,lty=3)
+lines(x,l4,lty=4)
+lines(x,l6,lty=5)
+legend(.5,3.5,c('(6)','(7)','(8a)','(8b)','(alt)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
+getwd()
+setwd('/Users/rlucas7/NCAA/figures')
+x<-seq(0,1,by=0.01)#
+l1<- -log(1-2*abs(.5-x))#
+l2<- - log(1-abs(.5-x))#
+l3<- - log(1-abs(1-x))#
+l4<- - log(1-abs(0-x))#
+# l5<- -log(1-x) # this equals, l4, the case of eqn (8) with y_i==0#
+ l6<- -abs(.5-x)*log(abs(.5-x)) # don't use this one,
+pdf(file='loss_function_plot_bw.pdf')#
+plot(x,l1,type='l', xlab='p', ylab='score')#
+lines(x,l2,lty=2)#
+lines(x,l3,lty=3)#
+lines(x,l4,lty=4)#
+#lines(x,l6,lty=5) #
+legend(.5,3.5,c('(6)','(7)','(8a)','(8b)','(alt)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))#
+dev.off()
+pdf(file='loss_function_plot_bw.pdf')#
+plot(x,l1,type='l', xlab='p', ylab='score')#
+lines(x,l2,lty=2)#
+lines(x,l3,lty=3)#
+lines(x,l4,lty=4)#
+#lines(x,l6,lty=5) #
+#legend(.5,3.5,c('(6)','(7)','(8a)','(8b)','(alt)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))#
+legend(.5,3.5,c('(6)','(7)','(8a)','(8b)'), lty=c(1,2,3,4), lwd=c(2.5,2.5))#
+dev.off()

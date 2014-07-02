@@ -1,6 +1,4 @@
 
-
-
 \section{Luck}
 \noindent It's not about the prize, it's the element of luck involved...\\
 \noindent  William Cukierski, Kaggle Competition Admin \\
@@ -56,12 +54,20 @@ Given that the choice of loss function can change the contestants' positions on 
   \hline
 Loss comparison & $\tau$ & p-value \\ 
   \hline
-Equation \ref{eqn:kaggle_score} vs. Equation \ref{eqn:third_score_function} & 0.05 & 0.09 \\ 
+Equation \ref{eqn:kaggle_score} vs. Equation \ref{eqn:third_score_function} &0.0715 & 0.026002 \\ 
    \hline
 \end{tabular}
 \label{tab:kendall_tau_table}
 \caption{Kendall's $\tau$ calculation, correlation of Kaggle contestant rankings under Equation  \ref{eqn:kaggle_score} and Equation \ref{eqn:third_score_function}.}
 \end{table}
+
+Interestingly none of the top three contestants were the same under the two loss functions, neither are the worst three competitors. A scatter plot of the ranks of the two scored loss functions is shown in figure \ref{fig:ranks}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=.7\textwidth]{ranks.pdf}
+\caption{A plot of the ranks of contestants predictions for the two loss functions.}\label{fig:ranks}
+\end{figure}
 
 
 

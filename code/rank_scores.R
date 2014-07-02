@@ -1,31 +1,35 @@
 setwd('/Users/rlucas7/Dropbox/NCAA/preds')
 n<-length(list.files()) #434 teams 
-
+dim(leaderboard)
 
 head(leaderboard)
 names(leaderboard)
 str(leaderboard)
 ### temp dataframe with the preds submissions and various scores
-leaderboard[370:434,]<-NA
+leaderboard[370:435,]<-NA
 names(leaderboard)[1]<-'userid'
 csv_names<-list.files()
 for(i in 1:n){
 leaderboard$userid[i]<-strsplit(csv_names[i],'_')[[1]][2]
 }
 
-score_ranks<-data.frame(leaderboard$userid, leaderboard$Score0, leaderboard$Score0,leaderboard$Score0,leaderboard$Score0,leaderboard$Score0)
+score_ranks<-data.frame(leaderboard$userid, leaderboard$userid, leaderboard$userid,leaderboard$userid,leaderboard$userid,leaderboard$userid)
 names(score_ranks)[3]<-'score0'
 names(score_ranks)[4]<-'score1'
 names(score_ranks)[5]<-'score2'
 names(score_ranks)[6]<-'score3'
 
 ### get only the games that happened
+ties<-read.csv('/Users/rlucas7/NCAA/data/tourn_2014_results.csv')
+head(ties)
+tail(ties)
+ties<-ties[1:63,]
+
 soln<-read.csv('/Users/rlucas7/NCAA/data/solution.csv')
 logic<-soln$pred != -1
 truth<-soln[logic,]
+truth$pred<-ties$pred
 
-ties<-read.csv('/Users/rlucas7/NCAA/data/tourn_2014_results.csv')
-head(ties)
 ### scoring functions ============================== 
 scoring<-function(some1=truth, some2=pred){
 	l<-length(some1)
@@ -39,37 +43,37 @@ scoring_alt1<-function(some1=truth, some2=pred){
 	l<-length(some1)
 	scores<-matrix(NA, nrow=l, ncol=1)
 	for(i in 1:l){
-		scores[i]<-some1[i]*log(2*abs(some2[i])) + (1-some1[i])*log(1-2*abs(.5-some2[i]) )
+		scores[i]<-some1[i]*log(1-abs(some1[i]-some2[i])) + (1-some1[i])*log(1-abs(some1[i]-some2[i]) )
 	}
 	return(sum(-scores)/l)
 }
-scoring_alt2<-function(some1=truth, some2=pred){
-	l<-length(some1)
-	scores<-matrix(NA, nrow=l, ncol=1)
-	for(i in 1:l){
-		scores[i]<-some1[i]*log(abs(some2[i])) + (1-some1[i])*log(1-abs(.5-some2[i]) )
-	}
-	return(sum(-scores)/l)
-}
-scoring_alt3<-function(some1=truth, some2=pred, some3=ties){
-	l<-length(some1)
-	scores<-matrix(NA, nrow=l, ncol=1)
-	for(i in 1:l){
-		if(some3[i]==0){
-			scores[i]<-some1[i]*log(some2[i]) + (1-some1[i])*log(1-some2[i])
-		}else{
-			if(some2[i]==0.5){scores[i]<-0}else{scores[i]<-abs(.5-some1[i])*log(abs(.5-some2[i]) ) }
-			}
-	}
-	return(-sum(scores)/l)
-}
+# scoring_alt2<-function(some1=truth, some2=pred){
+	# l<-length(some1)
+	# scores<-matrix(NA, nrow=l, ncol=1)
+	# for(i in 1:l){
+		# scores[i]<-some1[i]*log(abs(some2[i])) + (1-some1[i])*log(1-abs(.5-some2[i]) )
+	# }
+	# return(sum(-scores)/l)
+# }
+# scoring_alt3<-function(some1=truth, some2=pred, some3=ties){
+	# l<-length(some1)
+	# scores<-matrix(NA, nrow=l, ncol=1)
+	# for(i in 1:l){
+		# if(some3[i]==0){
+			# scores[i]<-some1[i]*log(some2[i]) + (1-some1[i])*log(1-some2[i])
+		# }else{
+			# if(some2[i]==0.5){scores[i]<-0}else{scores[i]<-abs(.5-some1[i])*log(abs(.5-some2[i]) ) }
+			# }
+	# }
+	# return(-sum(scores)/l)
+# }
 
 
 ### end scoring functions ==============================
 
 ### waiting for an email from Will C. about matching teamids with userids. Need a table. 
 
-
+n<-length(csv_names)
 setwd('/Users/rlucas7/Dropbox/NCAA/preds')
 for(i in 1:n){
 pred<-read.csv(file=csv_names[[i]])
@@ -79,10 +83,9 @@ m<-dim(pred)[1]
 pred[pred[,2] <=10^(-15),2]<-10^(-13)
 pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)
 score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])
-score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth[,2]),some2=pred[,2])
-score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])
-score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)
-
+#score_ranks$score1[i]<-	scoring_alt1(some1=truth$pred,some2=pred$pred)
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)
 }
 
 for(i in 372:n){
@@ -98,21 +101,21 @@ for(i in 372:n){
 #score_ranks$score0[366]<-0
 setwd('/Users/rlucas7/NCAA/figures/')
 pdf(file='prelim_rank_plot_col.pdf')
-plot(1:433,score_ranks$score0[1:433],ylim=c(-2.8,0.2),xlab='contestant', ylab='score')
+plot(1:433,score_ranks$score0[1:433],xlab='contestant', ylab='score')
 points(1:433,score_ranks$score1[1:433], col='red')
-points(1:433,score_ranks$score2[1:433],col='blue')
-points(1:433,score_ranks$score3[1:433],col='green', pch=2)
+#points(1:433,score_ranks$score2[1:433],col='blue')
+#points(1:433,score_ranks$score3[1:433],col='green', pch=2)
 dev.off()
 
 
 
 setwd('/Users/rlucas7/NCAA/figures/')
 pdf(file='prelim_rank_plot1_bw.pdf')
-plot(1:433,-score_ranks$score0[1:433],pch=1,ylim=c(-0.1,2.8),xlab='contestant', ylab='score')
-points(1:433,-score_ranks$score1[1:433],pch=4)
+plot(1:433,score_ranks$score0[1:433],pch=1,xlab='contestant', ylab='score')
+points(1:433,score_ranks$score1[1:433],pch=4)
 #points(1:433,-score_ranks$score2[1:433],pch=3)
 #points(1:433,-score_ranks$score3[1:433],pch=4)
-legend(250,2.5,c('Equation (7)',"Equation (8)") ,pch=c(1,4)) 
+legend(200,12,c('Original Loss',"Proposed") ,pch=c(1,4)) 
 dev.off()
 
 pdf(file='prelim_rank_plot2_bw.pdf')
@@ -210,6 +213,7 @@ k03<-Kendall(score_ranks$rank0,score_ranks$rank3)
 k12<-Kendall(score_ranks$rank1,score_ranks$rank2)
 k13<-Kendall(score_ranks$rank1,score_ranks$rank3)
 k23<-Kendall(score_ranks$rank2,score_ranks$rank3)
+k01
 str(k01)
 install.packages('xtable')
 library(xtable)
@@ -218,59 +222,64 @@ names(kendall_tau)<-c('tau','p-value')
 xtable(kendall_tau)
 
  match(1,score_ranks$rank0)
-#[1] 294
+#[1] 293
  match(2,score_ranks$rank0)
-#[1] 158
+#[1] 123
  match(3,score_ranks$rank0)
-#[1] 137
+#[1] 107
  
  match(1,score_ranks$rank1)
-#[1] 2
+#[1] 295
  match(2,score_ranks$rank1)
-#[1] 245
+#[1] 126
  match(3,score_ranks$rank1)
-#[1] 234
+#[1] 109
  
- match(1,score_ranks$rank2)
-#[1] 14
- match(2,score_ranks$rank2)
-#[1] 74
- match(3,score_ranks$rank2)
-#[1] 63
+ # match(1,score_ranks$rank2)
+# #[1] 14
+ # match(2,score_ranks$rank2)
+# #[1] 74
+ # match(3,score_ranks$rank2)
+# #[1] 63
  
- match(1,score_ranks$rank3)
-#[1] 196
- match(2,score_ranks$rank3)
-#[1] 145
- match(3,score_ranks$rank3)
-#[1] 134
+ # match(1,score_ranks$rank3)
+# #[1] 196
+ # match(2,score_ranks$rank3)
+# #[1] 145
+ # match(3,score_ranks$rank3)
+# #[1] 134
 
 ### last 3 too 
 
  match(433,score_ranks$rank0)
-#[1] 191
+#[1] 164
  match(432,score_ranks$rank0)
-#[1] 288
+#[1] 287
  match(431,score_ranks$rank0)
-#[1] 82
+#[1] 69
  
  match(433,score_ranks$rank1)
-#[1] 384
+#[1] 157
  match(432,score_ranks$rank1)
-#[1] 335
+#[1] 293
  match(431,score_ranks$rank1)
-#[1] 218
- 
- match(433,score_ranks$rank2)
 #[1] 73
- match(432,score_ranks$rank2)
-#[1] 340
- match(431,score_ranks$rank2)
-#[1] 223
+getwd()
+ pdf(file='ranks.pdf')
+plot(score_ranks$rank0, score_ranks$rank1,xlab='Original Loss', ylab='Proposed Loss')
+dev.off()
+
  
- match(433,score_ranks$rank3)
-#[1] 254
- match(432,score_ranks$rank3)
-#[1] 274
- match(431,score_ranks$rank3)
-#[1] 48
+ # match(433,score_ranks$rank2)
+# #[1] 73
+ # match(432,score_ranks$rank2)
+# #[1] 340
+ # match(431,score_ranks$rank2)
+# #[1] 223
+ 
+ # match(433,score_ranks$rank3)
+# #[1] 254
+ # match(432,score_ranks$rank3)
+# #[1] 274
+ # match(431,score_ranks$rank3)
+# #[1] 48

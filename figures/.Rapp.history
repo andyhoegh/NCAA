@@ -1,90 +1,450 @@
-setwd('/Users/rlucas7/Dropbox/NCAA/preds')#
-n<-length(list.files()) #434 teams #
-head(leaderboard)#
-names(leaderboard)#
-str(leaderboard)#
-### temp dataframe with the preds submissions and various scores#
-leaderboard[370:434,]<-NA#
-names(leaderboard)[1]<-'userid'#
-csv_names<-list.files()#
+pred
+truth
+pred
+scoring<-function(some1=truth, some2=pred){#
+	n<-dim(some1)[1]#
+	scores<-matrix(NA, nrow=n, ncol=1)#
+	for(i in 1:n){#
+		scores[i]<-some1[i,2]*log(some2[i,2]) + (1-some1[i,2])*log(1-some2[i,2])#
+	}#
+	return(sum(scores)/n)#
+}
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')
+n<-length(list.files()) #434 teams
+head(leaderboard)
+setwd('/Users/rlucas7/NCAA/data/')
+list.files()
+tut<-read.csv(file='QueryResults.csv')
+leaderboard<-read.csv(file='march-machine-learning-mania_public_leaderboard.csv')
+head(tut)
+head(leaderboard)
+names(leaderboard)
+str(leaderboard)
+names(leaderboard)[1]<-'userid'
+list.files()
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')
+list.files()
+list.files()
+csv_names<-list.files()
 for(i in 1:n){#
 leaderboard$userid[i]<-strsplit(csv_names[i],'_')[[1]][2]#
 }
-plot(x,l1,type='l', xlab='p', ylab='score')#
-lines(x,l2,lty=1)#
-lines(x,l3,lty=2)#
-lines(x,l4,lty=3)#
-lines(x,l5,lty=4)
-x<-seq(0,1,by=0.01)#
-l1<- -log(1-2*abs(.5-x))#
-l2<- - log(1-abs(.5-x))#
-l3<- - log(1-abs(1-x))#
-l4<- - log(1-abs(0-x))#
-l5<- -log(1-x)
-plot(x,l1,type='l', xlab='p', ylab='score')#
-lines(x,l2,lty=1)#
-lines(x,l3,lty=2)#
-lines(x,l4,lty=3)#
-lines(x,l5,lty=4)
-plot(x,l1,type='l', xlab='p', ylab='score')#
-lines(x,l2,lty=2)#
-lines(x,l3,lty=3)#
-lines(x,l4,lty=4)#
-lines(x,l5,lty=5) #
-legend(.5,3.5,c('','','','',''), lty=c(1,1), lwd=c(2.5,2.5),col=c("black","green",'red','blue','purple'))
-legend(.5,3.5,c('','','','',''), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
-plot(x,l1,type='l', xlab='p', ylab='score')#
-lines(x,l2,lty=2)#
-lines(x,l3,lty=3)#
-lines(x,l4,lty=4)#
-lines(x,l5,lty=5) #
-legend(.5,3.5,c('','','','',''), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
-gc()
-x<-seq(0,1,by=0.01)#
-l1<- -log(1-2*abs(.5-x))#
-l2<- - log(1-abs(.5-x))#
-l3<- - log(1-abs(1-x))#
-l4<- - log(1-abs(0-x))
-plot(x,l1,type='l', xlab='p', ylab='score')#
-lines(x,l2,lty=2)#
-lines(x,l3,lty=3)#
-lines(x,l4,lty=4)#
-#lines(x,l5,lty=5) #
-legend(.5,3.5,c('(6)','(7)','(8a)','(8b)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
-l6<- abs(.5-x)*log(abs(.5-x)) # don't use this one,
-lines(x,l6,lty=5)
-l6<- -abs(.5-x)*log(abs(.5-x)) # don't use this one,
-lines(x,l6,lty=5)
-lines(x,l6,lty=5)
-plot(x,l1,type='l', xlab='p', ylab='score')
-lines(x,l2,lty=2)
-lines(x,l3,lty=3)
-lines(x,l4,lty=4)
-lines(x,l6,lty=5)
-legend(.5,3.5,c('(6)','(7)','(8a)','(8b)','(alt)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))
-getwd()
-setwd('/Users/rlucas7/NCAA/figures')
-x<-seq(0,1,by=0.01)#
-l1<- -log(1-2*abs(.5-x))#
-l2<- - log(1-abs(.5-x))#
-l3<- - log(1-abs(1-x))#
-l4<- - log(1-abs(0-x))#
-# l5<- -log(1-x) # this equals, l4, the case of eqn (8) with y_i==0#
- l6<- -abs(.5-x)*log(abs(.5-x)) # don't use this one,
-pdf(file='loss_function_plot_bw.pdf')#
-plot(x,l1,type='l', xlab='p', ylab='score')#
-lines(x,l2,lty=2)#
-lines(x,l3,lty=3)#
-lines(x,l4,lty=4)#
-#lines(x,l6,lty=5) #
-legend(.5,3.5,c('(6)','(7)','(8a)','(8b)','(alt)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))#
+leaderboard<-read.csv(file='march-machine-learning-mania_public_leaderboard.csv')
+setwd('/Users/rlucas7/NCAA/data/')
+leaderboard<-read.csv(file='march-machine-learning-mania_public_leaderboard.csv')
+dim(leaderboard)
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')
+leaderboard[370:434,]<-NA
+names(leaderboard)[1]<-'userid'
+csv_names<-list.files()
+for(i in 1:n){#
+leaderboard$userid[i]<-strsplit(csv_names[i],'_')[[1]][2]#
+}
+leaderboard[370:435,]<-NA
+names(leaderboard)[1]<-'userid'
+csv_names<-list.files()
+for(i in 1:n){#
+leaderboard$userid[i]<-strsplit(csv_names[i],'_')[[1]][2]#
+}
+score_ranks<-data.frame(leaderboard$userid, leaderboard$Score0, leaderboard$Score0,leaderboard$Score0,leaderboard$Score0,leaderboard$Score0)
+score_ranks<-data.frame(leaderboard$userid, leaderboard$userid, leaderboard$userid,leaderboard$userid,leaderboard$userid,leaderboard$userid)
+names(score_ranks)[3]<-'score0'
+names(score_ranks)[4]<-'score1'
+names(score_ranks)[5]<-'score2'
+names(score_ranks)[6]<-'score3'
+soln<-read.csv('/Users/rlucas7/NCAA/data/solution.csv')
+logic<-soln$pred != -1
+truth<-soln[logic,]
+ties<-read.csv('/Users/rlucas7/NCAA/data/tourn_2014_results.csv')
+head(ties)
+scoring<-function(some1=truth, some2=pred){#
+	l<-length(some1)#
+	scores<-matrix(NA, nrow=l, ncol=1)#
+	for(i in 1:l){#
+		scores[i]<-some1[i]*log(some2[i]) + (1-some1[i])*log(1-some2[i])#
+	}#
+	return(sum(-scores)/l)#
+}
+scoring_alt1<-function(some1=truth, some2=pred){#
+	l<-length(some1)#
+	scores<-matrix(NA, nrow=l, ncol=1)#
+	for(i in 1:l){#
+		scores[i]<-some1[i]*log(1-abs(some1[i]-some2[i])) + (1-some1[i])*log(1-abs(some1[i]-some2[i]) )#
+	}#
+	return(sum(-scores)/l)#
+}
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+warnings()
+length(csv_names)
+i
+n<-length(csv_names)
+n
+truth[,2]
+pred[,2]
+soln<-read.csv('/Users/rlucas7/NCAA/data/solution.csv')
+logic<-soln$pred != -1
+truth<-soln[logic,]
+head(ties)
+soln
+ties<-read.csv('/Users/rlucas7/NCAA/data/tourn_2014_results.csv')
+head(ties)
+logic<-soln$pred != -1
+truth<-soln[logic,]
+truth
+truth<-ties[logic,]
+truth
+dim(ties)
+dim(logic)
+length(logic)
+soln<-read.csv('/Users/rlucas7/NCAA/data/solution.csv')
+logic<-soln$pred != -1
+truth<-soln[logic,]
+truth
+truth$pred
+ties
+ties<-read.csv('/Users/rlucas7/NCAA/data/tourn_2014_results.csv')
+head(ties)
+dim(ties)
+truth$pred<-ties$pred
+tail(ties)
+ties<-ties[1:63,]
+truth$pred<-ties$pred
+truth$pred
+n<-length(csv_names)#
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')#
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+#score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+warnings()
+str(truth)
+str(truth[,2])
+str(pred)
+n<-length(csv_names)#
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')#
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+#score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+i
+csv_names[i]
+warnings()
+n<-length(csv_names)#
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')#
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+#score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+i
+csv_names[i]
+n<-length(csv_names)#
+setwd('/Users/rlucas7/Dropbox/NCAA/preds')#
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+#score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+i
+csv_names[i]
+warnings()
+score_ranks$score1
+str(score_ranks$score1)
+str(score_ranks)
+score_ranks$score1<-as.numeric(score_ranks$score1)
+score_ranks$score0<-as.numeric(score_ranks$score1)
+str(score_ranks$score1)
+score_ranks$score1
+score_ranks$score0
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+#score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+scores[i]
+traceback()
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+#score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+traceback()
+str(truth$pred)
+str(pred$pred)
+pred$pred
+logic
+i
+i<-212
+pred<-read.csv(file=csv_names[[i]])
+pred<-pred[logic,]
+m<-dim(pred)[1]
+pred[pred[,2] <=10^(-15),2]<-10^(-13)
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)
+i
+i<-i+1
+pred<-read.csv(file=csv_names[[i]])
+pred
+pred<-pred[logic,]
+m<-dim(pred)[1]
+pred[pred[,2] <=10^(-15),2]<-10^(-13)
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)
+logic
+pred
+pred[logic,]
+dim(pred)
+pred<-read.csv(file=csv_names[[i]])
+pred
+pred[logic,]
+pred<-pred[logic,]
+pred
+pred[pred[,2] <=10^(-15),2]<-10^(-13)
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)
+pred
+i
+score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth$pred),some2=pred$pred)
+score_ranks$score1[i]<-	scoring_alt1(some1=truth$pred,some2=pred$pred)
+traceback()
+truth$pred
+pred$pred
+pred<-read.csv(file=csv_names[[i]])
+pred<-pred[logic,]
+pred
+str(pred)
+pred[,2] <=10^(-15)
+pred[,2] >= 1-10^(-15)
+pred[pred[,2] <=10^(-15),2]<-10^(-13)
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)
+pred
+scoring_alt1(some1=truth$pred,some2=pred$pred)
+length(truth$pred)
+length(pred$pred)
+pred$pred)
+pred$pred
+pred<-read.csv(file=csv_names[[i]])
+pred<-pred[logic,]
+m<-dim(pred)[1]
+pred[pred[,2] <=10^(-15),2]<-10^(-13)
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)
+m
+m<-dim(pred)[1]
+m
+pred
+pred$pred
+csv_names[[i]]
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+#score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+score_ranks$score1[i]<-	scoring_alt1(some1=truth$pred,some2=pred$pred)#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+score_ranks$score1
+for(i in 1:n){#
+pred<-read.csv(file=csv_names[[i]])#
+pred<-pred[logic,]#
+m<-dim(pred)[1]#
+#
+pred[pred[,2] <=10^(-15),2]<-10^(-13)#
+pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)#
+score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score1[i]<-	scoring_alt1(some1=truth$pred,some2=pred$pred)#
+#score_ranks$score2[i]<-	scoring_alt2(some1=as.numeric(truth[,2]),some2=pred[,2])#
+#score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)#
+}
+score_ranks$score0
+plot(1:433,score_ranks$score0[1:433],ylim=c(-2.8,0.2),xlab='contestant', ylab='score')
+score_ranks$score0
+score_ranks$score0[1:433]
+plot(1:433,score_ranks$score0[1:433],xlab='contestant', ylab='score')
+points(1:433,score_ranks$score1[1:433], col='red')
+plot(1:433,-score_ranks$score0[1:433],pch=1,ylim=c(-0.1,2.8),xlab='contestant', ylab='score')
+plot(1:433,-score_ranks$score0[1:433],pch=1,xlab='contestant', ylab='score')
+plot(1:433,score_ranks$score0[1:433],pch=1,xlab='contestant', ylab='score')
+points(1:433,score_ranks$score1[1:433],pch=4)
+legend(250,2.5,c('Equation (7)',"Equation (8)") ,pch=c(1,4))
+legend(200,10,c('Equation (7)',"Equation (8)") ,pch=c(1,4))
+legend(200,12,c('Equation (7)',"Equation (8)") ,pch=c(1,4))
+plot(1:433,score_ranks$score0[1:433],pch=1,xlab='contestant', ylab='score')
+points(1:433,score_ranks$score1[1:433],pch=4)
+legend(200,12,c('Equation (7)',"Equation (8)") ,pch=c(1,4))
+legend(200,12,c('Original Loss',"Proposed") ,pch=c(1,4))
+plot(1:433,score_ranks$score0[1:433],pch=1,xlab='contestant', ylab='score')
+points(1:433,score_ranks$score1[1:433],pch=4)
+legend(200,12,c('Original Loss',"Proposed") ,pch=c(1,4))
+plot(1:433,score_ranks$score0[1:433],pch=1,xlab='contestant', ylab='score')
+points(1:433,score_ranks$score1[1:433],pch=4)
+legend(200,12,c('Original Loss',"Proposed") ,pch=c(1,4))
+setwd('/Users/rlucas7/NCAA/figures/')#
+pdf(file='prelim_rank_plot1_bw.pdf')#
+plot(1:433,score_ranks$score0[1:433],pch=1,xlab='contestant', ylab='score')#
+points(1:433,score_ranks$score1[1:433],pch=4)#
+#points(1:433,-score_ranks$score2[1:433],pch=3)#
+#points(1:433,-score_ranks$score3[1:433],pch=4)#
+legend(200,12,c('Original Loss',"Proposed") ,pch=c(1,4)) #
 dev.off()
-pdf(file='loss_function_plot_bw.pdf')#
-plot(x,l1,type='l', xlab='p', ylab='score')#
-lines(x,l2,lty=2)#
-lines(x,l3,lty=3)#
-lines(x,l4,lty=4)#
-#lines(x,l6,lty=5) #
-#legend(.5,3.5,c('(6)','(7)','(8a)','(8b)','(alt)'), lty=c(1,2,3,4,5), lwd=c(2.5,2.5))#
-legend(.5,3.5,c('(6)','(7)','(8a)','(8b)'), lty=c(1,2,3,4), lwd=c(2.5,2.5))#
+score_ranks
+score_ranks$rank0<-order(score_ranks$score0)
+score_ranks$rank1<-order(score_ranks$score1)
+str(score_ranks)
+install.packages('Kendall')
+library(Kendall)
+library(Kendall)
+k01<-Kendall(score_ranks$rank0,score_ranks$rank1)
+str(k01)
+k01
+head(score_ranks$rank0)
+head(score_ranks$rank1)
+tail(score_ranks$rank1)
+tail(score_ranks$rank0)
+?head
+head(score_ranks$rank0, n=10)
+head(score_ranks$rank1, n=10)
+head(score_ranks$rank1, n=20)
+head(score_ranks$rank0, n=20)
+match(1,score_ranks$rank0)
+match(1,score_ranks$rank1)
+match(1,score_ranks$rank0)#
+#[1] 294#
+ match(2,score_ranks$rank0)#
+#[1] 158#
+ match(3,score_ranks$rank0)#
+#[1] 137#
+ match(1,score_ranks$rank1)#
+#[1] 2#
+ match(2,score_ranks$rank1)#
+#[1] 245#
+ match(3,score_ranks$rank1)
+match(433,score_ranks$rank0)#
+#[1] #
+ match(432,score_ranks$rank0)#
+#[1] #
+ match(431,score_ranks$rank0)#
+#[1] #
+ match(433,score_ranks$rank1)#
+#[1] #
+ match(432,score_ranks$rank1)#
+#[1] #
+ match(431,score_ranks$rank1)#
+#[1]
+match(433,score_ranks$rank0)#
+#[1] #
+ match(432,score_ranks$rank0)#
+#[1] #
+ match(431,score_ranks$rank0)#
+#[1] #
+ match(433,score_ranks$rank1)#
+#[1] #
+ match(432,score_ranks$rank1)#
+#[1] #
+ match(431,score_ranks$rank1)#
+#[1]
+csv_names[[293]]
+csv_names[[295]]
+csv_names[[123]]
+csv_names[[126]]
+csv_names[[107]]
+csv_names[[109]]
+score_ranks$rank1[164]
+match(1,score_ranks$rank0)#
+#[1] 293#
+ match(2,score_ranks$rank0)#
+#[1] 123#
+ match(3,score_ranks$rank0)#
+#[1] 107#
+ match(1,score_ranks$rank1)#
+#[1] 295#
+ match(2,score_ranks$rank1)#
+#[1] 126#
+ match(3,score_ranks$rank1)#
+#[1] 109
+match(1,score_ranks$rank0)#
+#[1] 293#
+ match(2,score_ranks$rank0)#
+#[1] 123#
+ match(3,score_ranks$rank0)#
+#[1] 107#
+ match(1,score_ranks$rank1)#
+#[1] 295#
+ match(2,score_ranks$rank1)#
+#[1] 126#
+ match(3,score_ranks$rank1)#
+#[1] 109
+match(1,score_ranks$rank0)#
+#[1] 293#
+ match(2,score_ranks$rank0)#
+#[1] 123#
+ match(3,score_ranks$rank0)#
+#[1] 107
+score_ranks$rank1[293]
+score_ranks$rank1[29123]
+score_ranks$rank1[123]
+score_ranks$rank1[107]
+plot(score_ranks$rank0, score_ranks$rank1)
+plot(score_ranks$rank0, score_ranks$rank1,xlab='Original Loss', ylab='Proposed Loss')
+getwd()
+pdf(file='ranks.pdf')
+plot(score_ranks$rank0, score_ranks$rank1,xlab='Original Loss', ylab='Proposed Loss')
 dev.off()

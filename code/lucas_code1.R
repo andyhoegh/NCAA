@@ -3,7 +3,7 @@
 getwd()
 setwd("/Users/rlucas7/NCAA")
 
-soln<-read.csv('solution.csv')
+soln<-read.csv('/Users/rlucas7/Dropbox/NCAA/dat/solution.csv')
 pred1<-read.csv("/Users/rlucas7/Dropbox/NCAA/preds/308_165938_638241_4.zip.csv")
 
 head(pred1)

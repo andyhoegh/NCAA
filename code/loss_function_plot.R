@@ -6,7 +6,7 @@ x<-seq(0,1,by=0.01)
 #l2<- - log(1-abs(.5-x))
 l3<- - log(1-abs(1-x))
 l4<- - log(1-abs(0-x))
-l5<- -log(1-abs(0.5-x))
+l5<- -log(1-2*abs(0.5-x))
 # l5<- -log(1-x) # this equals, l4, the case of eqn (8) with y_i==0
 # l6<- -abs(.5-x)*log(abs(.5-x)) # don't use this one, 
 #plot the function versus p to see why
@@ -29,7 +29,7 @@ plot(x,l3,type='l', xlab='p', ylab='score',ylim=c(0,5))
 #lines(x,l4,col='red')
 lines(x,l4,lty=2)
 lines(x,l5,lty=3) 
-legend(.5,3.5,c('Part 1','Part 2','Addition Proposed'), lty=c(1,2,3), lwd=c(2.5,2.5))
+legend(.5,3.5,c('Part 1','Part 2',expression(tau == 1/2)), lty=c(1,2,3), lwd=c(2.5,2.5))
 dev.off()
 
 

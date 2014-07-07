@@ -18,12 +18,18 @@ names(score_ranks)[3]<-'score0'
 names(score_ranks)[4]<-'score1'
 names(score_ranks)[5]<-'score2'
 names(score_ranks)[6]<-'score3'
+str(score_ranks)
+score_ranks$score0<-as.numeric(score_ranks$score0)
+score_ranks$score1<-as.numeric(score_ranks$score0)
+score_ranks$score2<-as.numeric(score_ranks$score0)
+score_ranks$score3<-as.numeric(score_ranks$score0)
 
 ### get only the games that happened
 ties<-read.csv('/Users/rlucas7/NCAA/data/tourn_2014_results.csv')
 head(ties)
 tail(ties)
 ties<-ties[1:63,]
+dim(ties)
 
 soln<-read.csv('/Users/rlucas7/NCAA/data/solution.csv')
 logic<-soln$pred != -1
@@ -39,11 +45,17 @@ scoring<-function(some1=truth, some2=pred){
 	}
 	return(sum(-scores)/l)
 }
-scoring_alt1<-function(some1=truth, some2=pred){
+scoring_alt1<-function(some1=truth, some2=pred, tau=1){
 	l<-length(some1)
 	scores<-matrix(NA, nrow=l, ncol=1)
 	for(i in 1:l){
-		scores[i]<-some1[i]*log(1-abs(some1[i]-some2[i])) + (1-some1[i])*log(1-abs(some1[i]-some2[i]) )
+		#scores[i]<-some1[i]*log(1-abs( some1[i]-some2[i] ) ) + (1-some1[i])*log(1-abs( some1[i]-some2[i] ) )
+		if(some1[i] == 1 | some1[i] == 0){
+scores[i]<-some1[i]*log(some2[i]) + (1-some1[i])*log(1 - some2[i]) 
+		}else{
+			print(some1[i])
+			scores[i]<- log( 1 - abs( ( some1[i] - some2[i] )/tau ) )
+		}
 	}
 	return(sum(-scores)/l)
 }
@@ -88,14 +100,16 @@ score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])
 #score_ranks$score3[i]<-	scoring_alt3(some1=as.numeric(truth[,2]),some2=pred[,2],some3=ties$OT)
 }
 
-for(i in 372:n){
+for(i in 1:371){
 	pred<-read.csv(file=csv_names[[i]])
 	pred<-pred[logic,]
 	m<-dim(pred)[1]
 	pred[pred[,2] <=10^(-15),2]<-10^(-13)
 	pred[pred[,2] >= 1-10^(-15),2]<-1-10^(-13)
 	score_ranks$score0[i]<-	scoring(some1=as.numeric(truth[,2]),some2=pred[,2])
-
+	score_ranks$score1[i]<-	scoring_alt1(some1=as.numeric(truth[,2]),some2=pred[,2],tau=1)
+	score_ranks$score2[i]<-	scoring_alt1(some1=as.numeric(truth[,2]),some2=pred[,2],tau=0.5)
+	#score_ranks$score3[i]<-	scoring_alt1(some1=as.numeric(truth[,2]),some2=pred[,2],tau=0.1)
 }
 
 #score_ranks$score0[366]<-0
@@ -203,7 +217,7 @@ score_ranks$rank2<-order(score_ranks$score2)
 score_ranks$rank3<-order(score_ranks$score3)
 str(score_ranks)
 
-install.packages('Kendall')
+#install.packages('Kendall')
 library(Kendall)
 choose(4,2) # 6 different ways to compare these rankings...
 
@@ -214,6 +228,8 @@ k12<-Kendall(score_ranks$rank1,score_ranks$rank2)
 k13<-Kendall(score_ranks$rank1,score_ranks$rank3)
 k23<-Kendall(score_ranks$rank2,score_ranks$rank3)
 k01
+k02
+k12
 str(k01)
 install.packages('xtable')
 library(xtable)
@@ -234,6 +250,14 @@ xtable(kendall_tau)
 #[1] 126
  match(3,score_ranks$rank1)
 #[1] 109
+
+
+ match(1,score_ranks$rank2)
+#[1]  267
+ match(2,score_ranks$rank2)
+#[1] 107
+ match(3,score_ranks$rank2)
+# [1] 82
  
  # match(1,score_ranks$rank2)
 # #[1] 14
@@ -264,9 +288,21 @@ xtable(kendall_tau)
 #[1] 293
  match(431,score_ranks$rank1)
 #[1] 73
+
+ match(433,score_ranks$rank2)
+#[1] 134
+ match(432,score_ranks$rank2)
+#[1] 286
+ match(431,score_ranks$rank2)
+#[1] 97
+
 getwd()
- pdf(file='ranks.pdf')
-plot(score_ranks$rank0, score_ranks$rank1,xlab='Original Loss', ylab='Proposed Loss')
+ pdf(file='ranks_w_tau.pdf')
+plot(score_ranks$rank0, score_ranks$rank2,xlab='Original Loss', ylab='Proposed Loss')
+dev.off()
+
+pdf(file='ranks_tau_1vs_half.pdf')
+plot(score_ranks$rank1, score_ranks$rank2,xlab='Proposed Loss Tau = 1', ylab='Proposed Loss Tau = 0.5')
 dev.off()
 
  

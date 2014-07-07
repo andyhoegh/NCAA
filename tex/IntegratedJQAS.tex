@@ -385,9 +385,11 @@ where $y_i$ is a binary variable taking value 1 when the team wins and 0 otherwi
 %\end{equation} 
 
 \begin{equation}\label{eqn:third_score_function}
-  -\sum_{i=1}^n\frac{(1-y_i)log(1-|y_i-p_i|) +y_ilog(1-|y_i-p_i|)}{n},
+  -\sum_{i=1}^n\frac{\delta_{y_i=0}log(1-p_i|) + \delta_{y_i=1}log(p_i|) \delta_{y_i=0.5}log(1-|(y_i-p_i)/\tau|)}{n},
 \end{equation} 
-where in Function \ref{eqn:third_score_function}, $y_i \in \{0,0.5,1\}$ for games where the team won, went into overtime, and loss respectively. The logic behind this function was that we felt overtime games were too close and should not be penalized as heavily as tournament games with a clear victory. Moreover, the proposed loss function uses the curious facts that $-log(1-|1-p_i|) = - log(1-p_i)$ and $log(1- | 0 - p_i | ) = - log(p_i)$ for $0 \leq p_i \leq 1$. Moreover, when $y_i=0.5$, symmetry allows us to combine the two equations to collect a single log which imposes less penalties for predictions farther away from $0.5$ while also penalizing $0.5$ none in this case. Our thinking was, if the game was close and you predict a close game you shouldn't be penalized. Figure \ref{fig:scoring_functions} is a plot of the three parts of the loss function for values $0\leq p_i \leq 1$. The third part of the loss function closes resembles an absolute value loss function for tie games. Note that nothing is special about the fact that overtime games are used. This function could be employed with equal success to compare games where the ending score of the two teams is within some threshold by properly defining the $y_i$ outcomes in the data.   
+where in Function \ref{eqn:third_score_function}, $y_i \in \{0,0.5,1\}$ for games where the team won, went into overtime, and loss respectively. The logic behind this function is that overtime games are too close and should not be penalized as heavily as tournament games with a clear victory.
+ %Moreover, the proposed loss function uses the curious facts that $-log(1-|1-p_i|) = - log(1-p_i)$ and $log(1- | 0 - p_i | ) = - log(p_i)$ for $0 \leq p_i \leq 1$. Moreover, when $y_i=0.5$, symmetry allows us to combine the two equations to collect a single log which imposes less penalties for predictions farther away from $0.5$ while also penalizing $0.5$ none in this case. 
+ Our thinking was, if the game was close and you predict a close game you shouldn't be penalized. Figure \ref{fig:scoring_functions} is a plot of the three parts of the loss function for values $0\leq p_i \leq 1$. The third part of the loss function closes resembles an absolute value loss function for tie games. Note that nothing is special about the fact that overtime games are used. This function could be employed with equal success to compare games where the ending score of the two teams is within some threshold by properly defining the $y_i$ outcomes in the data.   
 
 \begin{figure}[H]
 \centering
@@ -415,7 +417,7 @@ Given that the choice of loss function can change the contestants' positions on 
   \hline
 Loss comparison & $\tau$ & p-value \\ 
   \hline
-Equation \ref{eqn:kaggle_score} vs. Equation \ref{eqn:third_score_function} &0.0715 & 0.026002 \\ 
+Equation \ref{eqn:kaggle_score} vs. Equation \ref{eqn:third_score_function} &0.0621 & 0.053223 \\ 
    \hline
 \end{tabular}
 \label{tab:kendall_tau_table}

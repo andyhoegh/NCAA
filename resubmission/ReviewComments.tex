@@ -1,0 +1,139 @@
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+\usepackage{graphicx,amsmath} % support the \includegraphics command and options
+\usepackage{color}
+
+\newcommand{\andyc}[1]{[{\color{red}\sc Andy comment: {\tt #1}}]}
+
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+\textwidth=6in
+\textheight=8.75in
+\topmargin=-.5in
+\footskip=0.5in
+
+\title{Reviewer Comments JQAS}
+         
+\begin{document}
+\maketitle
+
+%\section*{Response Letter}
+%A revised version of our manuscript "..." has been resubmitted for publication in the JQAS special issue on \emph{March Madness}.\\
+%\\
+
+\section*{Editor Comments}
+{\bf Comment: } \emph{The paper has the potential to be a nice addition to the special JQAS issue on game prediction in the NCAA mens' basketball tournament, but needs work before being accepted for publication. As you will see from the reviewers' comments, both raised questions about the clarity of the methods description. See the specific issues raised in the referee reports below and attached. In addition to the reviewers' comments, my feeling is that the manuscript needs to be restructured in a major was so that the kaggle competition in only mentioned as the motivation for the work and that the paper is written as a more traditional research journal manuscript that covers the development and evaluation of your modeling approach. Please also emphasize in the introduction the motivation of your work (nearest-neighbor matchup effects). It may be helpful to know that the special JQAS issue will include a short introductory piece that discusses the kaggle competition and some basic results, so providing this extra detail in your manuscript is unnecessary and duplicates the separate introductory piece. To be more specific, you should limit the mention of kaggle in Section 1 to the motivation for the development of your work. Section 1.1 should remove mention of kaggle, and the details about March Madness can then be blended into Section 1.2. Section 5 should be rewritten so that the evaluation of your models is not compared to the kaggle leaderboard. Comparing to some of the existing methods (ESPN, Pomeroy, and Silver) are all fine. The discussion of luck in the results is interesting (as also noted by both reviewers), but I would prefer the aspect of the work be removed or minimized because the manuscript is already long, and the ``luck'' material is kaggle-focused and peripheral to the main contribution of your manuscript. Finally Sections 2.2 and 2.3 should be reduced, and moved towards the beginning of the results section where you compare your method to these existing methods.}\\
+{\bf Response: (as letter to editor)} ...
+
+\section*{Reviewer 1 Comments}
+{\bf Overview:} \emph{The authors provide a review of methods that have been used to rank or evaluate team strength and/or predictive match ups. They also provide a brief introduction to a method they developed as participants of the Kaggle competition. Finally they provide some discussion and insight into how much luck plays a role in selecting winning teams in a March Madness bracket.}\\
+\\
+\subsection*{General Comments}
+{\bf General Comment 1:} \emph{The paper starts out as a review paper and then proposes a methodology that is outperformed in the Kaggle competition and then investigates luck's influence on the competition. It seems that including the three pieces as a whole resulted in the detriment of the individual parts.}\\
+{\bf Response 1:} Based on encouragement from the editor as well as comments from both reviewers, we are focusing strictly on the methodological component of the paper. This results is a major reorganization of the paper, allowing us to highlight the novelty of our matchup effects framework.\\
+\\
+{\bf General Comment 2:} \emph{I believe the idea of creating a neighborhood and borrowing strength among neighbors as a means to increase accuracy in predicting game outcomes has merit. That said, other methodologies outperformed the proposed method so publishing based on their methodology would seem tenuous.}\\
+{\bf Response 2:} Admittedly there are other methods that performed better in the Kaggle competition; however, it is important to consider that this is a single instance of a small dataset. This is not to say that our method would win the competition next year, but as with a traditional bracket competition chance certainly plays a large part in the outcome. Nevertheless, while we are interested in superior predictive performance, we are also considering a scientific question -- the identification and estimation of matchup effects. In this regard our modeling contains an element of novelty and furthermore represents an improvement, albeit an incremental one, in prediction over a well known existing benchmark method, the Sagarin Ratings.\\
+\\
+{\bf General Comment 3:} \emph{The discussion regarding the role that luck plays in filling out brackets is in and of itself interesting. However, to clearly assess luck's role and compare methods' dependence on it, more details form other methodologies are necessary. Particularly from the winning method and other compelling ``popular'' methods.}\\
+{\bf Response 3:} In some sense, the luck section was an attempt at a sensitivity analysis. By considering other plausible outcomes, we could demonstrate the volatility of the outcomes in the Kaggle contest. Nevertheless, at the suggestion of the editor the luck section has been removed and we have chosen to focus on matchup effects methodology.\\
+\\
+{\bf General Comment 4:} \emph{I didn't find the exposition clear. I've read Section 3 a number of times and it is still not clear to me what covariates were used, or how they were used, what priors were used (I am assuming a Bayesian approach was adopted as there was mention of a posterior distribution of point spreads though no mention of how it is obtained), nor computation strategies. Details necessary to employ their methodology are, in my opinion, lacking.}\\
+{\bf Response 4:} Section 3 has been restructured and additional details are now included. {\bf expand with particulars}\\
+\\
+{\bf General Comment 5:} \emph{My suggestion is to reject with major revisions. Since the methodology didn't produce compelling results it would require major modifications and so it might be worth focusing entirely on the luck angle. The remainder of the document is a detailed review, organized on a section by section basis.}\\
+{\bf Response 5:} For this submission, we are focusing on the methodological development of the Nearest-Neighbor Matchup Effects. After clearer exposition, we believe the results are compelling. Granted our entry did not finish in the money in the Kaggle competition. However, we address the concept of matchup effects from a novel viewpoint and by conditioning on a well known measure of team strength we provide an (incremental) improvement in predictive ability. This result also emphasizes that given team strength, specific matchup tendencies are often overblown in the media.\\ {\bf wordsmith this...}\\
+\subsection*{Specific Comments}
+\subsubsection*{Section 1.1: March Madness and Kaggle}
+{\bf Comment:} \emph{The kaggle competition isn't clear to me. Is it true that one has to predict outcomes for all possible ${68 \choose 2}$ matchups? Clearly equation (1) can only be applied to those matchups that actually occur. So are the remaining predictions ignored?\\}
+{\bf Response:} As predictions for the entire tournament are required before the tournament commences (\'a la an NCAA bracket) ${68 \choose 2}$ predictions are required. As suggested only the occurring matchups are evaluated and the others are ignored.  \\
+
+\subsubsection*{Section 2: Data}
+{\bf Comment 1:} \emph{Are the covariates (both influential factors and common ranking methods) described in this Section used in your modeling? If not, which variables are included? Providing a list of all covariates considered in your model would be helpful.\\}
+{\bf Response:} This section was an attempt at a review of methods useful in predicting NCAA basketball games. We have reduced this section considerably and clearly outlined the components of our model. While the NNME framework is general and quite flexible, it is demonstrated using the Sagarin ratings as the base model. Furthermore, Appendix A contains a description of the variables used to calculate team similarities and select neighbors.\\
+\\
+{\bf Comment 2:} \emph{Did you attempt to answer ``what data are high quality predictors of tournament outcomes?'' in your exploratory analysis?\\}
+{\bf Response:} This particular statement and much surrounding text was part of the submitted manuscript focused on a review of popular methods for predicting NCAA basketball games. For the resubmission, this section has been reduced considerably and the attention is shifted to describing our methodology.\\
+\\
+{\bf Comment 3:} \emph{Home court advantage needs to estimated for each team correct? How is this done?\\}
+{\bf Response:} Home court effects certainly could be estimated for each team; however, the common approach is fit an average home court effect. Given that the NCAA tournament is exclusively held on neutral courts, an average home court effect seems reasonable.\\
+
+\subsubsection*{Section 3: Methods and Matchup Effects}
+{\bf Comment:} \emph{Would it be possible to clarify what is meant by ``marginal estimates''? Is this in reference to some probability model? Does taking into account specific tendencies in a given matchup produce a ``conditional estimate''? If so, in what sense?\\}
+{\bf Response:} The intent was to denote that the estimates are marginal in that the matchup effects were not considered. In restructuring the paper this particular sentence was removed as certain words, such as marginal, have specific mathematical meaning and can be confusing when used out of context.\\
+
+\subsubsection*{Section 3.1: Data Treatment}
+{\bf Comment:} \emph{Your preliminary data analysis indicating that point spreads are superior to win/loss is not surprising. Using win/loss provides much less information.\\}
+{\bf Response:} Yes, it is certainly nothing groundbreaking, but we found it an interesting observation.\\
+
+\subsubsection*{Section 3.2: Additive Relative Strength Models}
+{\bf Comment 1:} \emph{I am assuming that $Y_{(i,j)k}$ denotes the difference in season ending average point spread between the two teams. Is this correct? If so does it make sense to use this as the response? It seems fairly plausible that an inferior team has a larger average point spread.\\}
+{\bf Response:} Actually, $Y_{(i,j)k}$ represents the point differential for a single game -- the $k_{th}$ game between team $i$ and team $j$. Clarifying details are provided in Section 3.1. Additionally, extra emphasis is placed on clearly stating models statements and identifying model parameters.\\
+\\
+{\bf Comment 2:} \emph{In equation (4) what is the range of k? Does k=1,...,2278 for all possible matchups or is k=1,...,67 number of games played in the tournament?\\}
+{\bf Response:} The index $k$ is nested within the matchups between teams $i$ and $j$. So if teams meet three times during the season $k = \{1,2,3\}$ for that specific $i,j$. I think the bigger questions is concerned with the data used in Equation (4). This consists of all regular season matchups, to estimate the functions, then predictions are made for the 2278 possible NCAA tournament matchups.\\
+\\
+{\bf Comment 3:} \emph{I am not sure what covariates make up the p vector $D_{(i,j)}$.\\}
+{\bf Response:} In general, the vector $D_{(i,j)}$ is designed to capture differences in team characteristics - particularly team rankings and ratings. Specifically in our demonstration in Equation 4, the vector $D_{(i,j)}$ is actually a  single component, the difference in the Sagarin ratings between teams $i$ and $j$.  \\
+\\
+{\bf Comment 4:} \emph{Is your interpretation of the random effects $\eta_i$ and $\eta_j$ correct? The team random intercepts should give an indication of team's strength relative to the average at a specific value of $D_{(i,j)}$. From my perspective, taking the differences between team random intercepts doesn't seem to provide the interpretation that you are assigning. Can you explain this further?\\}
+{\bf Response:} This notation was intentionally broad to encapsulate multiple models that we developed; however, for demonstrative purposes we have chosen to focus on a model without random effects. While random effects could certainly be included, the interpretation would not be as clean as the previous submission states (as suggested by Referee 1). They would denote an `adjustment' to the team strength metric for each team.\\
+\\
+{\bf Comment 5:} \emph{In this section you give little detail regarding the error, indicating that more information is provided in Section 3.3.3. However, there is no discussion in that section regarding the power exponential family.\\}
+{\bf Response:} Other parametric families for the error terms could be used in place of Gaussian; however, the Gaussian fits the data quite well. Again, we are being more exact in our specification in this submission and focus on the Gaussian distribution for the error terms.\\
+
+\subsubsection*{Section 3.2: Calibrating Probabilities}
+{\bf Comment:} \emph{From Figure 1 it appears that you are using a standard deviation of 30 in converting point-spreads to probabilities. Is this correct? If so, why?\\}
+{\bf Response:} This section has been moved earlier in the paper, but the figure is nearly the same as the original. The underlying distribution is $Normal(5,10^2).$ The mean term, 5, represents the point spread and 10 is the estimated standard deviation of point spread. \\
+
+\subsubsection*{Section 3.3.1: Choosing Neighbors}
+{\bf Comment 1:} \emph{It isn't clear (in my opinion) what is done here. Did you used K-nearest neighbors or BaVA? If it is K-nearest neighbors, its performance declines as the dimension increases and it seems you are dealing with at least dimension 10. Might it be better to identify a few covariates that seem really influential in clustering teams and focus on them?\\}
+{\bf Response:} We use K-nearest neighbors to identify a set of similar teams. The BaVA method calculates similarity between teams by creating weights for variable based on user input. Due to time constraints we did not use BaVA techniques, but rather used equal weighting for variables used in the cluster. \\
+{\bf Look at a subset of variables for clustering??}\\
+\\
+{\bf Comment 2:} \emph{Would it be possible to make $\rho$ matchup dependent? Seems like it should vary depending on matchup.\\}
+{\bf Response:} In theory, $\rho$ could be matchup dependent as in some sense we are computing an average of $\rho.$ One feature that does allow a modification in the introduced matchup effect are $\mathcal{N}_j(i)$ and $\mathcal{N}_i(j).$ When these terms are near zero the teams perform near the estimated team strength level on the subset of opponents and the matchup effect is minimal is. However if $\mathcal{N}_j(i)$ and $\mathcal{N}_i(j)$ are large or more specifically if the difference between $\mathcal{N}_j(i)$ and $\mathcal{N}_i(j)$ is large then the matchup effect is greater.\\
+
+\subsubsection*{Section 3.3.3: Model Tuning}
+{\bf Comment 1:} \emph{Can you expound on the ``historical cross-validation procedure'' employed to select $\rho$?\\}
+{\bf Response:} More details have been added to Section 3.3.1, but in short we compute the optimal value of $\rho$ across the previous seven years and use this for the current year.\\
+\\
+{\bf Comment 2:} \emph{I expected more discussion on $\epsilon_{(i,j)k}$.\\}
+{\bf Response:} {\bf additional discussion of $\epsilon_{(i,j)k}$ is now contained in Section 3.}\\
+
+\section*{Reviewer 2 Comments}
+{\bf Comment:} \emph{This paper deals with two issues: the incorporation of matchup effects in predicting NCAA tournament game results; and an analysis of the kaggle competition, especially the amount of luck involved and a way to improve its scoring of overtime games with that in mind.\\
+\\
+To be honest, it seems to me that these are two separate papers squeezed into one, with the only real link being that they're both about the NCAA tournament. I'm going to comment on them separately as if they will be published separately, but the comments remain the same if you and the editors decide to keep them together.\\}
+{\bf Response:} Based on feedback from the editor, we are submitting the manuscript for the matchup effects methodology.\\
+\\
+\subsection*{Predictive Model Comments}
+{\bf Comments:}  \emph{The clustering approach for matchup effects seems quite interesting. I have not seen anything like it done before (matchup effects are normally a hand-wavy thing) and the quantification of the matchup effects was especially interesting. Listening to sports media one would expect that matchup effects are much more important than the model suggests (though they're not insignificant), and the quantification of matchup effects is something I definitely think should be published}. \\
+{\bf Response:} Before conducting the analysis, we did expect the matchup effects to be more important. However, after conditioning on team strength the the matchup effect is fairly weak - but as suggested, not insignificant. Media perception likely identifies team characteristics that compose overall strength. So while, for instance, a team's rebounding may pose matchup problems the large share of the matchup difficulty results from that fact that the team is quite good. \\
+\\
+{\bf Comment 1a:}  \emph{There aren't enough methodological details for a reader to reproduce these results. For example (p.10) there's not a full list of all the factors considered in the clustering, just ``... and many more''. Even if the list is too long to appear in the body of the paper, it should be included in an appendix. More generally, please make sure that sufficient details are reported all throughout the methodological section so that readers can reproduce the results.} \\
+{\bf Response:} Specifically, the clustering components have been added to the appendix. Additional details are included enabling reproducibility of our methodology. \\
+\\
+{\bf Comment 1b:}  \emph{It's not clear (p. 11, line -2) how Figure 2 shows just that including the matchup effect reduces incurred losses} \\
+{\bf Response:} When $\rho=0$ the model reduces to the original additive relative strength model - without matchup effects. Hence, with $\rho > 0$ and $\rho < ~.65$ the loss is less. Description added to Section 4.\\
+\\
+{\bf Comment 1c:}  \emph{The caption in Figure 1 is general, but the figure is specific.} \\
+{\bf Response:} The caption is now specific, matching the example in Figure 1. Additional coverage is also provided in the text of Section 2.1.1\\
+\\
+{\bf Comment 1d:}  \emph{How much variation is there in the optimal value of $\rho$ from year to year (p.11) ?} \\
+{\bf Response:} {\bf need to look at this}\\
+\\
+\subsection*{Kaggle/Luck Analysis Comments}
+{\bf Comment 2a:}  \emph{I agree very much with the conclusion on p.3 at the end of Section 1. When comparing the predictive quality of the top models, it takes many years to collect enough data to try to show statistical significance.} \\
+{\bf Response:} Again this section has largely been removed, but we may resurrect it in the future for a new submission.\\
+\\
+{\bf Comment 2b:}  \emph{The observation that there's a lot of luck in the NCAA tournament is well-known (p.13, Section 5); that's why there's so much interest in the first couple of rounds especially.} \\
+{\bf Response:} Agreed, especially if the 22$^{nd}$ seeded team can end up winning the tournament. A joy to watch, but extremely difficult to predict.\\
+\\
+{\bf Comment 2c:}  \emph{The writing, especially in the sections more related to kaggle, is a bit loose.} \\
+{\bf Response:} Much of the Kaggle content has been removed. Furthermore, considerable effort is spent cleaning up the content of the entire paper.\\
+\\
+{\bf Comment 3 (Typos):}  \emph{a. the James and Lewis citations seem jumbled in Section 1. \\ b. The name of LRMC is different in the text (p.3. ``Logistic Regression Monte Carlo'') and in the references (p.22, ``Logistic Regression Markov Chain)} \\
+{\bf Response:} We mixed up two common meanings for the abbreviation MC; it has now been remedied.\\
+\\
+
+\end{document}

@@ -56,8 +56,8 @@ Recently, sports predictions have benefited from the surge of predictive analyti
 \section*{To Do:}
 \begin{itemize}
 \item Describe variables used in Clustering component in the appendix
-\item Better explanation of the math components in Section 3 including $\epsilon$.
-\item Include Bayesian machinery and prior specification.
+\item Clarify Section 4
+\item Rewrite Section 5
 \end{itemize}
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -79,12 +79,12 @@ Along these parametric lines, many have invoked simple linear frameworks which i
 \cite{rosenthal} considered multiple constrained regression models and invoked a Monte Carlo search algorithm for predicting game outcomes. While the overall structure slightly extends upon simple linear approaches, one of Rosenthal's key contributions, which improved predictions, were the data they used in their model. This included: regular season win percentage, final three game win percentages, offensive and defensive efficiency ratings, strength of schedule, and out-of-conference win rates. These measures go well beyond simple team strength metrics. A similar method, which has gotten a lot of attention in recent years due to its accuracy is the Logistic Regression / Markov Chain (LRMC) method, proposed by \cite{Kvam2006}. While this method does not consistently outperform others in the regular season, it has shown a high degree of accuracy in the NCAA tournament.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Transitivity in Prediction}
-When listening to sports media, comments of the following type are common: ``Team $i$ is a bad matchup for team $j$ due to their (height, rebounding, 3-point shooting, ect...''). There are two ways to consider this statement: (i) the overall team strength of team $i$ will be problematic for team $j$ or (ii) conditional on team strength, team $i$ has certain tendencies that will pose difficulties for team $j$. The methods detailed in Section 1.1 are able to handle the first case. These methods impose a transitive property on predictions; this notion of transitivity states that, if $P_{A,B}$ denotes the probability that team $A$ beats team $B$, then: 
+When listening to sports media, comments of the following type are common: ``Team $i$ is a bad matchup for team $j$ due to their (height, rebounding, 3-point shooting, ect...''). We consider the implication of this statement to be that conditional on team strength, team $i$ has certain tendencies that will pose difficulties for team $j$. Unfortunately many of the methods detailed in Section 1.1 are based on overall team strength and able to handle specific matchups. These methods impose a transitive property on predictions; this notion of transitivity states that, if $P_{A,B}$ denotes the probability that team $A$ beats team $B$, then: 
 \begin{eqnarray}
 P_{A,B} > 0.5 \quad \& \quad P_{B,C} > 0.5 \rightarrow P_{A,C} > 0.5.
 \label{eq:trans}
 \end{eqnarray}
-In other words if team A is expected to beat team B and team B is expected to beat team C, then team A is also expected to beat team C. The key point is that models with this property strictly rely on estimates of team strength and do not account for specific tendencies of a given matchup. Clearly models of this type are unable to handle the second scenario in the above statement. To accommodate this, we develop the Nearest-Neighbor Matchup Effects (NNME), which provide a flexible method to capture specific tendencies of teams and make predictions that are not restricted to transitivity. This framework, in spirit, can be attached to any modeling approach and will allow statements of the form
+In other words if team A is expected to beat team B and team B is expected to beat team C, then team A is also expected to beat team C. The key point is that models with this property strictly rely on estimates of team strength and do not account for specific tendencies of a given matchup. Clearly models of this type are unable to handle matchups specific tendencies. To accommodate this, we develop the Nearest-Neighbor Matchup Effects (NNME), which provide a flexible method to capture specific tendencies of teams and make predictions that are not restricted to transitivity. This framework, in spirit, can be attached to any modeling approach and will allow statements of the form
 \begin{eqnarray*}
 P_{A,B} > 0.5 \quad \& \quad P_{B,C} > 0.5 \quad \& \quad P_{A,C} < 0.5.
 \label{eq:trans}
@@ -93,7 +93,7 @@ The remainder of the article follows as: Section 2 discusses relevant data, Sect
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data}
-The key ingredient for any analytic approach is quality data. The adage `\emph{garbage in $=$ garbage out}' is only exacerbated with large quantities of data. Many influential factors exist for predicting college basketball games, and NCAA tournament games in particular. A common approach uses game level data that has been aggregated to reflect team characteristics such as winning percentage, average point differential, and home court advantage which is consistently shown to be worth about 4 points, on average \citep{harville1994}. The goal with this type of model is to construct a latent measure of team strength. An alternative approach is to use one or more of the preexisting rating systems. With the large number of people working in this area; Ken Massey \citep{kenmassey.com} providing nearly 70 different systems, it is no surprise that the best of these rankings work quite well. For instance, basing predictions on such rankings alone, we found that 70-75\% of all games could be correctly classified, depending on year. While incorporating more factors only improves this figure by a few percent, these factors can be useful in correctly calibrating the point differential for each game. The latter being greatly influential in subsequently calibrating the winning probability, for each game.
+The key ingredient for any analytic approach is quality data. The adage `\emph{garbage in $=$ garbage out}' is only exacerbated with large quantities of data. While many influential factors exist for predicting college basketball games, and NCAA tournament games in particular, a common approach uses game level data that has been aggregated to reflect team characteristics. These characteristics include winning percentage, average point differential, and home court advantage which is consistently shown to be worth about 4 points, on average \citep{harville1994}. The goal with this type of model is to construct a latent measure of team strength from which teams can be compared. An alternative approach to computing team strength from a set of team characteristics is to use one or more of the preexisting rating systems. With the large number of people working in this area; Ken Massey \citep{kenmassey.com} providing nearly 70 different systems, it is no surprise that the best of these rankings work quite well. For instance, basing predictions on such rankings alone, we found that 70-75\% of all games could be correctly classified, depending on year. While incorporating more factors only improves this figure by a few percent, these factors can be useful in correctly calibrating the point differential for each game. The latter being greatly influential in subsequently calibrating the winning probability, for each game.
 While some of the algorithms are proprietary, we provide an brief overview of the main ranking systems.
 
 Currently, the NCAA selection committee selects 36 teams (at large bids) in addition to 32 conference champions (automatic bids) and places these 68 teams into competing brackets. The seeding system, which rates teams one through sixteen in each region - not including the teams in the play in game - is well known. A lesser known rating is the so called `S-curve' which gives an ordinal ranking of each team in the field. This ranking is decided on by a 10 person committee, and is not generated by a systematic model based approach. On the contrary, 
@@ -146,13 +146,13 @@ These seeds and rankings contain implicit or explicit means for tournament predi
 
 \subsection{Data Treatment}
 A necessary consideration when modeling game outcomes is whether the outcome of a game is binary (win/loss) or continuous (point differential). Point spread provides a means for measuring the relative strength of one team. Although, as any basketball fan can attest, the final score is often not indicative of the closeness of the game. This can go either way as fouling in the final minutes leads to inflated point differentials; conversely, teams with a big lead a team will clear the bench and put in the reserves which usually decreases the differential. Nevertheless, point spreads are informative about the relative strength of one team compared to another. In practice, given a distribution (posterior in our case) of point spreads, we can compute and calibrate winning probabilities. Preliminary data analysis suggested that modeling binary outcomes were inferior to modeling the point spread. 
-\subsubsection{Computing Probabilities}
-When modeling point differential, calibrating point differentials $y_{(i,j)}$ to probabilities $Pr(y_{(i,j)}>0)=p_{(i,j)}$ is a fundamental requirement. Given a Bayesian viewpoint, we compute the overlap of the posterior predictive distribution of the point spread with 0. Mathematically this expressed as $\int_0^\infty p(y^*_{(i,j)})dy^*_{(i,j)}$. See Figure \ref{fig:winprob}, for an illustration where  $p(y^*_{(i,j)}) \sim N(5,10^2)$ which equates to a game winning probability: $p_{(i,j)}=0.69$.
+
+When modeling point differential, calibrating point differentials $y_{(i,j)}$ to probabilities $Pr(y_{(i,j)}>0)=p_{(i,j)}$ is a fundamental requirement. Given a Bayesian viewpoint, we compute the overlap of the posterior predictive distribution of the point spread with 0. Mathematically this expressed as $\int_0^\infty p(y_{(i,j)})dy_{(i,j)}$. See Figure \ref{fig:winprob}, for an illustration where  $p(y_{(i,j)}) \sim N(5,10^2)$ which equates to a game winning probability: $p_{(i,j)}=0.69$.
 We again note that while binary outcome models offer these probabilities automatically, the point spread models are able to account for more information. 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=.7\textwidth]{WinProb2.pdf}
-\caption{Calculating win probability $(p_{(i,j)}),$ where $p(y^*_{(i,j)}) \sim N(5,10^2)$.}
+\caption{Calculating win probability $(p_{(i,j)}),$ where $p(y_{(i,j)}) \sim N(5,10^2)$.}
 \label{fig:winprob}
 \end{figure} 
 
@@ -162,44 +162,58 @@ Before describing our nearest-neighbor matchup effects framework we first detail
 \subsection{Additive Relative Strength Models}
 We first detail a general class of models for predicting point spread, which includes many of the simple to sophisticated regression techniques presented in Section \ref{methods_review}. These models can be written in a general form as:
 \begin{eqnarray}
-Y_{(i,j)k} = g_1(D_{(i,j)}) + g_2(X_{(i)}) + g_3(X_{(j)}) +  \epsilon_{(i,j)k},
+Y_{(i,j)} = g_1(D_{(i,j)}) + g_2(X_{(i)}) + g_3(X_{(j)}) +  \epsilon_{(i,j)},
 \label{eq:RS}
 \end{eqnarray}
-where $Y_{(i,j)k}$ denotes the point spread (team $i$ - team $j$), for matchup $k$, and $\epsilon_{(i,j)k}$ represents the model error. The model covariates include team specific covariates $(X_{(i)}$, $X_{(j)})$ as well as differences between team covariates ($D_{(i,j)}$). Where for example $D_{(i,j)}$ might be the difference in Sagarin ratings for team $i$ and team $j$. The functions $g_i$ represent any possible function modeling the dependency between covariates and point spread, which forms a Generalized Additive Modeling (GAM) framework \citep{GAMs}. Equation \ref{eq:RS} only accounts for additive effects. These additive effects, based on measures of team strength, aren't always sufficient for capturing key characteristics of matchups. In order to account for these characteristics, we search for a subclass of opponents in which strengths/weakness are similar, and build a local network which shares information across like neighbors.  
+where $Y_{(i,j)}$ denotes the point spread (team $i$ - team $j$), and $\epsilon_{(i,j)}\sim N(0,\sigma^2)$ represents the model error. The model covariates include team specific covariates $(X_{(i)}$, $X_{(j)})$ as well as differences between team covariates ($D_{(i,j)}$). Where for example $D_{(i,j)}$ might be the difference in Sagarin ratings for team $i$ and team $j$. The functions $g_i$ represent any possible function modeling the dependency between covariates and point spread, which forms a Generalized Additive Modeling (GAM) framework \citep{GAMs}. Equation \ref{eq:RS} only accounts for additive effects. These additive effects, based on measures of team strength, aren't always sufficient for capturing key characteristics of matchups. In order to account for these characteristics, we search for a subclass of opponents in which strengths/weakness are similar, and build a local network which shares information across like neighbors.  
 
-While we explored various functions $g_i$ for the additive relative strength component of our model, we settled on a relatively the simple linear structure:
+While we explored various functions $g_i$ for the additive relative strength component of our model, we settled on a relatively simple linear structure:
 \begin{eqnarray}
-Y_{(i,j)k} =  \beta_{home} + D_{(i,j)}\beta_D +  \epsilon_{(i,j)k},
+Y_{(i,j)} =  \beta_{home} + D_{(i,j)}\beta_D +  \epsilon_{(i,j)},
 \label{eq:RS2}
 \end{eqnarray}
-where $\beta_{home}$ is a term for home court advantage, $D_{(i,j)}=\{(Sagarin_{i,1} - Sagarin_{j,1})\}$ is the difference in Sagarin ratings between team $i$ and team $j$, and $\epsilon_{(i,j)k} \sim N(0,\sigma^2).$ This model is fit via a Bayesian framework by placing vague conjugate priors on $\beta_{home}, \beta_D,$ and $ \sigma^2$. While this model is relatively simple it has produced good results historically \cite{carlin1996} and provides interpretable framework for evaluating the efficacy of incorporating matchup effects. As NCAA tournament games are played in neutral settings this model will reduce to a case where $\beta_{home}$ is excluded.
+where $\beta_{home}$ is a term for home court advantage, $D_{(i,j)}=\{(Sagarin_{i,1} - Sagarin_{j,1})\}$ is the difference in Sagarin ratings between team $i$ and team $j$, and $\epsilon_{(i,j)} \sim N(0,\sigma^2).$ This model is fit via a Bayesian framework by placing vague conjugate priors on $\beta_{home}\propto 1, \beta_D \propto 1,$ and $ \sigma^2 \propto \frac{1}{\sigma^2}$. While this model is relatively simple it has produced good results historically \citep{carlin1996} and provides interpretable framework for evaluating the efficacy of incorporating matchup effects. As NCAA tournament games are played in neutral settings this model will reduce to a case where $\beta_{home}$ is excluded.
 
 \subsection{Identifying Neighbors}
 The second component of computing matchup effects consists of identifying similar opponents to current foe. Consider a matchup between team $i$ and team $j$, we borrow strength by identifying past opponents with similar characteristics to the current foe for both teams $i$ and $j$. The idea is to identify how the performance changes against that subset of opponents which are similar to the current opponent. This subsection focuses on methods for identifying similarities between teams and selecting neighbors.
 
-Neighbors are selected in an unsupervised framework using a large set of team level data from which $K$-nearest neighbors are calculated. In particular we use a selection of variables aggregated by Ken Pomeroy \citep{kenpom.com} for the nearest neighbor calculation pertaining to: \emph{team height, tempo, scoring characteristics, rebounding,  assist rate, shooting percentage, and defensive characteristics}. A complete list of variables and an overview of their meaning is provided in Appendix A. Typically this procedure is done analytically after standardizing the variables, however, user input can also be elicited. For instance, suppose that a user decided Mercer was similar to Wake Forest and Clemson, due to their size and playing style. In this case current and ongoing work in Bayesian Visual Analytics (BaVA) framework detailed in \cite{house2010}  and \cite{hu2013} provides a principled routine for visualizing teams and taking user input of similarities to create a method for computing similarities between teams. Specifically, BaVA is a way to weight clustering variables to reflect user preferences.
+Neighbors are selected in an unsupervised framework using a large set of team level data. In particular we use a selection of variables aggregated by Ken Pomeroy \citep{kenpom.com} for similarity calculations pertaining to: \emph{team height, tempo, scoring characteristics, rebounding,  assist rate, shooting percentage, and defensive characteristics}. A complete list of variables and an overview of their meaning is provided in Appendix A. Typically this procedure is done analytically after standardizing the variables, however, user input can also be elicited. For instance, suppose that a user decided Mercer was similar to Wake Forest and Clemson, due to their size and playing style. In this case current and ongoing work in Bayesian Visual Analytics (BaVA) framework detailed in \cite{house2010}  and \cite{hu2013} provides a principled routine for visualizing teams and taking user input of similarities to create a method for computing similarities between teams. Specifically, BaVA is a way to weight clustering variables to reflect user preferences.
+
+Given the computed similarities, or differences, between team $j$ and all of team $i$'s past opponents, we select the k teams most similar to team $j$. This selection of teams are the $K$-nearest neighbors for team $i$ representing past opponents most similar to the current opponent. Note we are not explicitly using $K$ nearest neighbors algorithm for prediction, but rather we are using these teams to borrow strength (from similar teams) in a similar fashion.
+
 \subsection{Matchup Adjustment}
-The final element of the matchup effects is to apply the matchup adjustment. The idea of the matchup adjustment is to quantify how much a team over/under-performed relative to the expected team strength for a subset of teams similar to the current opponent. For instance, if team $i$ was two points better than expected against teams similar to $j$, then it would be reasonable to assume that team $i$ would perform better against team $j$ as well.  Assume the model from Equation \ref{eq:RS2}, then the predictive distribution for a matchup between team $i$ and team $j$ now becomes
-\begin{eqnarray}
-Y_{(i,j)}|X_{(i,j)} &=& \beta_{home} +  D_{(i,j)}\beta + \phi_{(i,j)} +  \epsilon_{(i,j)k} \label{eq:ME}
-\\
-\nonumber
+The final element of the matchup effects is to apply the matchup adjustment. The idea of the matchup adjustment is to quantify how much a team over/under-performed relative to the expected team strength for a subset of teams similar to the current opponent. For instance, if team $i$ was two points better than expected given team strength against teams similar to $j$, then it would be reasonable to assume that team $i$ would perform better than expected against team $j$ as well. Computing the matchup adjustment is a three step procedure: 1) fit a relative strength model, 2) compute the average of the residuals against the identified set of neighbors, and 3) augment the relative strength model with an additive adjustment corresponding to the performance against similar teams.
+
+Given a distribution of predicted point spreads for a matchup between team $i$ and team $k$, let $\mu_{(i,k)} = E[y_{(i,k)}|X_{(i,j)}]$. That is $\mu_{(i,k)}$ is the expected point differential, whereas $y_{(i,k)}$ is the realized point differential between teams. Then define:
+\begin{eqnarray*}
+\mathcal{N}_j(i) = \sum_{k=1}^K y_{(i,k)} - \mu_{(i,k)}
+\end{eqnarray*}
+where $k = 1,...,K$ are the identified neighbors of team $j$. The term $\mathcal{N}_j(i)$ represents the average of the residuals against the set of neighbors, in other words this can be thought of as the difference in expected performance after adjusting for team strength. Given $\mathcal{N}_j(i)$ and $\mathcal{N}_i(j)$,
+\begin{eqnarray*}
 \phi_{(i,j)} &=& \rho(\mathcal{N}_i(j) -\mathcal{N}_j(i)),
+\end{eqnarray*}
+where $\rho$ is a tuning parameter $\in [0,1]$ that controls the amount of information passed from the neighbors. Finally, $\phi_{(i,j)}$ is used to shift the distribution of point spreads between teams $i$ and $j$. Using the model from Equation \ref{eq:RS2}, then the predictive distribution for a matchup between team $i$ and team $j$ now becomes
+\begin{eqnarray}
+Y_{(i,j)}|X_{(i,j)} &=& \beta_{home} +  D_{(i,j)}\beta + \phi_{(i,j)} +  \epsilon_{(i,j)k} \label{eq:ME}.
 \end{eqnarray}
-where $\mathcal{N}_j(i) = \sum_j Y_{(i,j),k} - E[Y_{(i,j),k}|X_{(i,j)}],$ is the average residual for the team $i's$ past opponents most similar to team $j$, and $\rho$ is a tuning parameter $\in [0,1]$ that controls the amount of information passed from similar neighbors. \andyc{streamline this notation} The same idea applies to the more general models such as Equation \ref{eq:RS}, or any other nonlinear approach, which may enhance the predictiveness of the method. Looking at Equation \ref{eq:ME} we see the result of the matchup effect is a mean shift in the point spread, which results in an updated probability calculation.
+The same idea applies to the more general models such as Equation \ref{eq:RS}, or any other nonlinear approach, which may enhance the predictiveness of the method. Looking at Equation \ref{eq:ME} we see the result of the matchup effect is a mean shift in the point spread, which results in an updated probability calculation.
 
 \subsubsection{Model tuning\label{sec:tuning}}
-The matchup effects, in essence, help minimize residual errors in predicting point spreads. In spirit, this analysis could be conducted jointly; however, in order to expedite some of the computations, we run the model in sequence. That is, we first fit Equation \ref{eq:RS2}, and then incorporate these matchup effects. The amount of error controlled by this adjustment is calibrated by tuning $\rho$. 
-The interpretation of the extreme points is rather intuitive: setting $\rho = 0$ Equation \ref{eq:ME} reverts to Equation \ref{eq:RS2}, and setting $\rho = 1$ retains the entire residual. To select $\rho$ in practice, we use a cross-validation procedure, specifically we compute an optimal value of $\rho$ across seven years of historical data and use that value for predictions for this year's tournament. Similarly, the number of neighbors ($k$) in the analysis is simultaneously selected under cross-validation.
+The matchup effects, in essence, help minimize residual errors in predicting point spreads. In spirit, this analysis could be conducted jointly; however, in order to expedite some of the computations, we run the model in sequence. That is, we first fit Equation \ref{eq:RS2}, and then incorporate matchup effects. The amount of error controlled by this adjustment is calibrated by tuning $\rho$. 
+The interpretation at the extreme points of $\rho$ is intuitive: setting $\rho = 0$ Equation \ref{eq:ME} reverts to Equation \ref{eq:RS2}, and setting $\rho = 1$ applies the entire value of $\mathcal{N}_i(j) -\mathcal{N}_j(i)$. To select $\rho$ in practice, we use a cross-validation procedure, specifically we compute an optimal value of $\rho$ across seven years of historical data and use that value for predictions for this year's tournament. Similarly, the number of neighbors ($k$) in the analysis is simultaneously selected under cross-validation. We found values of $\rho$ near 0.2 to work quite well. Shrinking the matchup effect with $\rho <1$ still borrows strength in estimation from similar teams, but guards against overfitting.
 
 
 \section{Demonstration}
+\andyc{continue here}
 To demonstrate the efficacy of the NNME we provide a comparison of the standard Sagarin model (Equation \ref{eq:RS2}) with a model using matchup effects (Equation \ref{eq:ME}). For notational sake, we denote these models as $M_{rs}$ and $M_{me}$, respectively. Evaluation is conducted in the same manner as the Kaggle competition, where participants are required to enumerate game winning probabilities (probability of team A beating team B, for all $68 \choose 2$ pairs). Based on these predicted game wining probabilities, the log loss function is used:
 \begin{equation}\label{eq:kaggle_score}
 L(y,p)=-\sum_{i=1}^n\frac{y_ilog(p_i)+ (1-y_i)log(1-p_i)}{n},
 \end{equation}
 where $p_i\in[0,1]$ and $y_i\in\{0,1\}$ denote the predicted probability for game $i$, and the games outcome, respectively.
+\subsection{Data Fitting}
+include data used in model.
 
+\subsection{Results}
 Applying the NNME model results in an improvement over the standard model specified using Equation \ref{eq:RS2}. Table \ref{tab:results} shows the final loss and overall ranking in the Kaggle competition for each method (to give a meaning to the loss function differentials).
 \begin{table}[h!]
 \caption{Overall loss and Kaggle Ranking for comparison models.\label{tab:results}}
@@ -221,7 +235,7 @@ Furthermore, Figure \ref{fig:result} shows how the Kaggle loss function varies a
 \caption{Kaggle log-loss as a function of $\rho$. The vertical lines represent $\rho$ selected based on 7 years of historical data (dashed), and the optimal $\rho$ for the 2014 season (solid).}
 \label{fig:result}
 \end{figure} 
-
+\subsection{Further Exploration}
 We further explore the enhancement that our matchup effects model improves over the relative strength model.  Figure \ref{fig:result} illustrates that the incurred losses are reduced with the inclusion of the matchup effect as loss is lower at $\rho=0.2$ than $\rho=0$. From our experience while these differences are relatively small, they can have a large impact on the overall results of the competition. Table \ref{tab:change} shows the ten games which saw the largest shift in expected point spread. Table \ref{tab:change} displays these expected point spreads ($Team_1 - Team_2$), winning probabilities and realized losses for both models ($M_{rs}/M_{me}$), and actual point spread. 
 \begin{table}[h!]
 \caption{10 games which showed the largest changes in point spreads for model $M_{rs}$ vs. $M_{me}$. Table entries display quantities for $M_{rs}/M_{me}$.\label{tab:change}}
@@ -276,10 +290,13 @@ Stanford & Utah&1 &4.9 &-3.9 \\
 To avoid confusion, we note that Stanford played California twice, one being a home and the other being an away game.  Table \ref{tab:DayStan} illustrates that Dayton performed well against teams similar to Stanford. In fact, they were about 15 points better on average. This ultimately resulted in a point spread that was shifted 3 points for this game, which in turn was more accurate.
 
 \section{Conclusions and Discussion}
+Often these media statements about matchups are reinforced with hindsight, for instance after the conclusion of the 2014 tournament... 
 With the NNME framework we build a flexible class of models that allow both team strength and matchup specific tendencies to inform probabilistic predictions. In particular we developed a general framework that couples a model predicting a point spread with a clustering procedure that borrow strength from games similar to a current matchup. This results in a model capable of issuing predictions that are not required to be transitive and that capture specific matchup characteristics. Not surprisingly the relative strength portion of the model dominates, but the matchup effects are not insignificant. While there are undoubtably more principled ways to carry out such predictions, we found this to be effective.
 
 This framework is incredibly flexible, given the freedom to construct more sophisticated additive relative strength models. Our focus with this article was to demonstrate the potential using a simple, but widely regarded model as the building block for computing matchup effects.
 
+
+Comprehensive approach for fitting matchup effects... team by team basis.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix}

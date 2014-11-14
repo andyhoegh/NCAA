@@ -29,7 +29,7 @@
   \originalmaketitle
   \begin{abstract} 
 \noindent
-Recently, sports predictions have benefited from the surge of predictive analytics competitions by creating venues in which game predictions are subject to data-driven inferences, and not human biases. This article details methods developed for the \emph{March Machine Learning Mania} competition for the 2014 NCAA tournament, hosted on Kaggle, which requires pairwise winning probabilities for each potential matchup. Most common predictive models are based on measures of overall team strength and unable to capture specific tendencies of a matchup. Hence, we introduce our novel nearest-neighbor matchup effects framework which presents a flexible way to account for team characteristics above and beyond team strength that may influence game outcomes.
+Recently, sports predictions have benefited from the surge of predictive analytics competitions by creating venues in which game predictions are subject to data-driven inferences, and not human biases. This article details methods developed for the \emph{March Machine Learning Mania} competition for the 2014 NCAA tournament, hosted on Kaggle, which requires pairwise winning probabilities for each potential matchup. Most common predictive models are based on measures of overall team strength and unable to capture specific tendencies of a matchup. Hence, we introduce our novel nearest-neighbor matchup effects framework which presents a flexible way to account for team characteristics above and beyond team strength that may influence game outcomes. In particular we develop a general framework that couples a model predicting a point spread with a clustering procedure that borrow strength from games similar to a current matchup. This results in a model capable of issuing predictions that control for team strength and that capture specific matchup characteristics.
 \end{abstract}
 
 \noindent%
@@ -49,17 +49,6 @@ Recently, sports predictions have benefited from the surge of predictive analyti
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Story of the paper:}
-  We seek to build a flexible class of models that allow both team strength and matchup specific tendencies to inform probabilistic predictions. In particular we develop a general framework that couples a model predicting a point spread with a clustering procedure that borrow strength from games similar to a current matchup. This results in a model capable of issuing predictions that are not required to be transitive and that capture specific matchup characteristics. Not surprisingly the relative strength portion of the model dominates, but the matchup effects are not insignificant.
-\section*{To Do:}
-\begin{itemize}
-\item Describe variables used in Clustering component in the appendix
-\item Clarify Section 4
-\item Rewrite Section 5
-\end{itemize}
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -212,7 +201,7 @@ where $p_i\in[0,1]$ is the probability team $i$ wins and $y_i=1$ if team $i$ win
 
 Data is obtained that includes regular season and NCAA tournament games form the present year (2014) as well as the preceding seven years. All regular season games featuring Division 1 teams are used to fit a relative strength model for each year with the Sagarin rankings as predictors as shown in Equation \ref{eq:ME}. Then NCAA tournament games are used to calibrate the tuning parameter $\rho$. For any given year the optimal will vary, these ranged from 0 to 0.70. However, for predictions we select the value of $\rho$ that minimizes the loss across the seven preceding years of data that are used for calibration.
  \subsection{Results}
-Applying the $M_{me}$ model results in an improvement over the $M_{rs}$. Table \ref{tab:results} shows the final loss and overall ranking in the Kaggle competition for each method (to give a meaning to the loss function differentials).
+Applying the $M_{me}$ model results in an improvement over the $M_{rs}$. Table \ref{tab:results} shows the final loss and overall ranking in the Kaggle competition for each method (to provide context for the differential in the loss between the two methods).
 \begin{table}[h!]
 \caption{Overall loss and Kaggle Ranking for comparison models.\label{tab:results}}
 \centering
@@ -230,12 +219,13 @@ Furthermore, Figure \ref{fig:result} shows how the Kaggle loss function varies a
 \begin{figure}[h!]
 \centering
 \includegraphics[width=.8\textwidth]{Predictions.pdf}
-\caption{Kaggle loss as a function of $\rho$ for 2014 NCAA tournament. The {\bf X} denotes $M_{RS}$ where $\rho = 0$ and the black dot denotes the $\rho$ selected based on 7 years of historical data.}
+\caption{Kaggle loss as a function of $\rho$ for 2014 NCAA tournament. The {\bf X} denotes $M_{RS}$ where $\rho = 0$ and the black dot denotes $M_{ME}$ with the $\rho$ selected based on 7 years of historical data.}
 \label{fig:result}
 \end{figure} 
-\subsection{Further Exploration}
-\andyc{continue from here}
-We further explore the enhancement that our matchup effects model improves over the relative strength model.  Figure \ref{fig:result} illustrates that the incurred losses are reduced with the inclusion of the matchup effect as loss is lower at $\rho=0.2$ than $\rho=0$. From our experience while these differences are relatively small, they can have a large impact on the overall results of the competition. Table \ref{tab:change} shows the ten games which saw the largest shift in expected point spread. Table \ref{tab:change} displays these expected point spreads ($Team_1 - Team_2$), winning probabilities and realized losses for both models ($M_{rs}/M_{me}$), and actual point spread. 
+
+It is important to note that implementing NNME will not drastically alter the results from a relative strength model. In fact most of the predictions between the two models will be extremely similar. This occurs when neither opponent sets up as a particularly favorable or unfavorable matchup. However, for cases where an advantage or disadvantage is identified we can see the expected point spread shift up to three or four points. Collectively, shifting the point spread and in turn adjusting calibrated probabilities for a select group of games can result in a meaningful difference in predictions. 
+
+We further explore the enhancement that our matchup effects model improves over the relative strength model, by examining games with the largest matchup effects. Table \ref{tab:change} shows the ten games which saw the largest shift in expected point spread. Table \ref{tab:change} displays these expected point spreads ($Team_1 - Team_2$), winning probabilities and realized losses for both models ($M_{rs}/M_{me}$), and actual point spread. 
 \begin{table}[h!]
 \caption{10 games which showed the largest changes in point spreads for model $M_{rs}$ vs. $M_{me}$. Table entries display quantities for $M_{rs}/M_{me}$.\label{tab:change}}
 \scriptsize
@@ -250,7 +240,7 @@ We further explore the enhancement that our matchup effects model improves over 
  Dayton & Stanford & -2.16/0.94 & 0.42/0.53 & 0.86/0.63& 10 \\ 
  Dayton & Syracuse & -6.34/-4.05 & 0.28/0.36 & 1.27/1.03& 2\\ 
  Kentucky & Michigan & -3.71/-2.08 & 0.37/0.42 & 1.00/0.86 & 3\\ 
- UMass & Tennessee &-3.05/-4.83 & 0.39/0.33 & 0.490.40 & -19\\ 
+ UMass & Tennessee &-3.05/-4.83 & 0.39/0.33 & 0.49/0.40 & -19\\ 
  Memphis & Virginia & -6.34/-8.91 & 0.280.21 & 0.33/0.23 & -18\\ 
  Michigan & Tennessee & 5.37/3.49 & 0.69/0.62 & 0.37/0.47 & 2\\ 
  Michigan & Texas & 8.05/5.85 & 0.77/0.70 & 0.26/0.35 & 14\\ 
@@ -259,7 +249,9 @@ We further explore the enhancement that our matchup effects model improves over 
    \hline
 \end{tabular}
 \end{table}
-While every game adjustment does not result in a better prediction,  we note that on this particular subset of games, the overall losses decreased from 0.520 to 0.446. To further illustrate NNME functionality consider the Dayton/Stanford game.  Coincidentally this is the only game which the actual predicted winner changes. For each team, Table \ref{tab:DayStan} displays the neighbors, opponents that they faced most similar to the current matchup, along with the expected differential, realized result, and residual in those games. 
+While every game adjustment does not result in a better prediction,  we note that on this particular subset of games, the overall losses decreased from 0.520 to 0.446. 
+
+To further illustrate NNME functionality consider the Dayton/Stanford game.  Coincidentally this is the only game which the actual predicted winner changes. For each team, Table \ref{tab:DayStan} displays the neighbors, opponents that they faced most similar to the current matchup, along with the expected differential, realized result, and residual in those games. 
 \begin{table}[h!]
 \caption{Dayton - Stanford Neighbors \& Residuals}
 \small
@@ -286,18 +278,12 @@ Stanford & Utah&1 &4.9 &-3.9 \\
 \end{tabular}
 \label{tab:DayStan}
 \end{table}
-To avoid confusion, we note that Stanford played California twice, one being a home and the other being an away game.  Table \ref{tab:DayStan} illustrates that Dayton performed well against teams similar to Stanford. In fact, they were about 15 points better on average. This ultimately resulted in a point spread that was shifted 3 points for this game, which in turn was more accurate.
+To avoid confusion, we note that Stanford played California twice, one being a home and the other being an away game.  Table \ref{tab:DayStan} illustrates that Dayton performed well against teams similar to Stanford. In fact, they were about 15 points better on average. On the other hand, Stanford performed close to their expected level given team strength. Hence, the expected point spread shifted over three points in Dayton's favor. As Dayton ended up defeating Stanford by 10 points, the updated prediction using matchup effects proved to be more accurate.
 
 \section{Conclusions and Discussion}
-Often these media statements about matchups are reinforced with hindsight, for instance after the conclusion of the 2014 tournament... This exercise is dubious statistically akin to seeking causality from a sequence of $n=1$ experiments.
+With the NNME framework we detailed a flexible class of models that allow both team strength and matchup specific tendencies to inform probabilistic predictions. The motivating source for our model was to develop an analytical way to adjust winning probabilities based on specific tendencies of matchups that are often discussed by media types. Often these media statements about matchups are reinforced with hindsight, for instance identify characteristics of winning teams after the conclusion of the 2014 tournament. This exercise is dubious statistically akin to seeking causality from a sequence of $n=1$ experiments. To address this we developed a general framework that couples a model predicting a point spread with a clustering procedure that borrow strength from games similar to a current matchup. This results in a model capable of issuing predictions that are not required to be transitive and that capture specific matchup characteristics. Nevertheless, while relative strength components are the dominating force in the models, the matchup effects are not insignificant. 
 
-
-With the NNME framework we build a flexible class of models that allow both team strength and matchup specific tendencies to inform probabilistic predictions. In particular we developed a general framework that couples a model predicting a point spread with a clustering procedure that borrow strength from games similar to a current matchup. This results in a model capable of issuing predictions that are not required to be transitive and that capture specific matchup characteristics. We fully expect the relative strength components to be the dominating force in the models, but the matchup effects are not insignificant. The flexible framework can handle more sophisticated relative strength models and apply matchup effect adjustments to them as well. While there are undoubtably more principled ways to carry out such predictions, we found this to be effective.
-
-This framework is incredibly flexible, given the freedom to construct more sophisticated additive relative strength models. Our focus with this article was to demonstrate the potential using a simple, but widely regarded model as the building block for computing matchup effects.
-
-
-Comprehensive approach for fitting matchup effects... team by team basis.
+This framework is incredibly flexible, given the freedom to construct more sophisticated additive relative strength models. Our focus with this article was to demonstrate the potential using a simple, but widely regarded model as the building block for computing matchup effects. The flexible framework can handle more sophisticated relative strength models and apply matchup effect adjustments to them as well. While there are undoubtably more principled ways to carry out such predictions, we found this to be effective. Furthermore, there would be potential improvements to our proposed framework, including a more comprehensive approach for fitting matchup effects that could vary on a team by team basis.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

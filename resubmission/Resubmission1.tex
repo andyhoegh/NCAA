@@ -51,6 +51,11 @@ Recently, sports predictions have benefited from the surge of predictive analyti
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{TODO:}
+\begin{itemize}
+\item update clustering variables in appendix
+\item discuss computation??
+\end{itemize}
 
 \section{Introduction}
 Since the advent of the NCAA basketball tournament, each March, millions of people take to predicting the outcome of the tournament, informally known as March Madness. There are numerous ways one might go about making such predictions. Typical strategies include using tournament seeds, listening to so-called experts, commentators or analysts, following ones intuitions or biases, or using a more data-driven analytical approach. 
@@ -148,7 +153,7 @@ We again note that while binary outcome models offer these probabilities automat
 \section{Modeling\label{sec:NNME}}
 Before describing our nearest-neighbor matchup effects framework we first detail a general class of models deemed additive relative strength models. These models are a class of models to predict point spreads of matchups. The drawback is that these models are not able to capture specific characteristics of a matchup, rather relying on estimates of overall team strength. Despite being transitive (and unable to handle matchup tendencies) the class of models will be a building block for computing matchup effects. Furthermore, this allows us to easily discuss the marginal improvements achieved via incorporating matchup effects. NNME is a three step process: (i) fit an additive relative strength model, (ii) identify neighbors, by finding similarities between the current opponent and past opponents for each team, and (iii) calibrate the matchup adjustment. Additive relative strength models are a relatively straight-forward approach on their own; however, accounting for matchup effects through our proposed nearest-neighbors approach adds a layer of novelty, and ultimately enhance our predictions. In some sense team strength is computed and averaged across a complete set of opponents. We seek a homogenous subset of opponents similar to the current matchup to assess the performance against that group. This section provides a general overview of the framework, while the following section contains an explicit demonstration to justify the efficacy of the concept.
 
-\subsection{Additive Relative Strength Models}
+\subsection{Additive Relative Strength Models \label{sec:AS}}
 We first detail a general class of models for predicting point spread, which includes many of the simple to sophisticated regression techniques presented in Section \ref{methods_review}. These models can be written in a general form as:
 \begin{eqnarray}
 Y_{(i,j)} = g_1(D_{(i,j)}) + g_2(X_{(i)}) + g_3(X_{(j)}) +  \epsilon_{(i,j)},
@@ -199,7 +204,7 @@ L(y,p)=-\sum_{i=1}^n\frac{y_ilog(p_i)+ (1-y_i)log(1-p_i)}{n},
 \end{equation}
 where $p_i\in[0,1]$ is the probability team $i$ wins and $y_i=1$ if team $i$ wins and $y_i = 0$ if team $i$ loses.
 
-Data is obtained that includes regular season and NCAA tournament games form the present year (2014) as well as the preceding seven years. All regular season games featuring Division 1 teams are used to fit a relative strength model for each year with the Sagarin rankings as predictors as shown in Equation \ref{eq:ME}. Then NCAA tournament games are used to calibrate the tuning parameter $\rho$. For any given year the optimal will vary, these ranged from 0 to 0.70. However, for predictions we select the value of $\rho$ that minimizes the loss across the seven preceding years of data that are used for calibration.
+Data is obtained that includes regular season and NCAA tournament games form the present year (2014) as well as the preceding seven years. All regular season games featuring Division 1 teams are used to fit a relative strength model for each year with the Sagarin rankings as predictors as shown in Equation \ref{eq:ME}. Given the conjugate priors specified in Section \ref{sec:AS}, the relative strength model is fit using a Gibbs sampler. Then NCAA tournament games are used to calibrate the tuning parameter $\rho$. For any given year the optimal will vary, these ranged from 0 to 0.70. However, for predictions we select the value of $\rho$ that minimizes the loss across the seven preceding years of data that are used for calibration.
  \subsection{Results}
 Applying the $M_{me}$ model results in an improvement over the $M_{rs}$. Table \ref{tab:results} shows the final loss and overall ranking in the Kaggle competition for each method (to provide context for the differential in the loss between the two methods).
 \begin{table}[h!]

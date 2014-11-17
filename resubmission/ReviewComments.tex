@@ -22,7 +22,18 @@
 
 \section*{Editor Comments}
 {\bf Comment: } \emph{The paper has the potential to be a nice addition to the special JQAS issue on game prediction in the NCAA mens' basketball tournament, but needs work before being accepted for publication. As you will see from the reviewers' comments, both raised questions about the clarity of the methods description. See the specific issues raised in the referee reports below and attached. In addition to the reviewers' comments, my feeling is that the manuscript needs to be restructured in a major was so that the kaggle competition in only mentioned as the motivation for the work and that the paper is written as a more traditional research journal manuscript that covers the development and evaluation of your modeling approach. Please also emphasize in the introduction the motivation of your work (nearest-neighbor matchup effects). It may be helpful to know that the special JQAS issue will include a short introductory piece that discusses the kaggle competition and some basic results, so providing this extra detail in your manuscript is unnecessary and duplicates the separate introductory piece. To be more specific, you should limit the mention of kaggle in Section 1 to the motivation for the development of your work. Section 1.1 should remove mention of kaggle, and the details about March Madness can then be blended into Section 1.2. Section 5 should be rewritten so that the evaluation of your models is not compared to the kaggle leaderboard. Comparing to some of the existing methods (ESPN, Pomeroy, and Silver) are all fine. The discussion of luck in the results is interesting (as also noted by both reviewers), but I would prefer the aspect of the work be removed or minimized because the manuscript is already long, and the ``luck'' material is kaggle-focused and peripheral to the main contribution of your manuscript. Finally Sections 2.2 and 2.3 should be reduced, and moved towards the beginning of the results section where you compare your method to these existing methods.}\\
-{\bf Response: (as letter to editor)} ...
+\\
+Dear Professor Glickman:\\
+\\ % eg Hello.
+A revised version of our manuscript "Nearest-Neighbor Matchup Effects: Accounting for Team Matchups for Predicting March Madness" has been resubmitted for publication in the Journal of Quantitative Analysis in Sports special issue on game prediction in the NCAA mens' basketball tournament.\\
+\\
+Comments and suggestions by the editor and both reviewers were helpful in overhauling our manuscript. Our initial submission was an amalgamation of two or potentially three papers: a review paper on NCAA basketball prediction, an overview of the Kaggle competition with a sensitivity analysis for overtime games, and finally an introduction of our novel methodology to incorporate matchup effects into prediction models. Understandably so, this resulted in a hard to follow manuscript. For the resubmission we focused exclusively on our matchup effects model and developed a traditional research paper. With this rewrite considerable attention is placed on motivation of methods that capture matchup tendencies and clarity in the mathematical notation. These improvements result in a substantially improved manuscript for your consideration for publication in JQAS. \\
+\\
+An attached document includes point-by-point responses to comments by each reviewer.  
+\\
+
+Regards, % eg Regards,
+\newpage
 
 \section*{Reviewer 1 Comments}
 {\bf Overview:} \emph{The authors provide a review of methods that have been used to rank or evaluate team strength and/or predictive match ups. They also provide a brief introduction to a method they developed as participants of the Kaggle competition. Finally they provide some discussion and insight into how much luck plays a role in selecting winning teams in a March Madness bracket.}\\
@@ -98,7 +109,7 @@
 \\
 {\bf Comment 2:} \emph{I expected more discussion on $\epsilon_{(i,j)k}$.\\}
 {\bf Response:}  Again this has been streamlined from the previous submission and additional discussion of $\epsilon_{(i,j)}$ is now contained in Section 3.1.\\
-
+\newpage
 \section*{Reviewer 2 Comments}
 {\bf Comment:} \emph{This paper deals with two issues: the incorporation of matchup effects in predicting NCAA tournament game results; and an analysis of the kaggle competition, especially the amount of luck involved and a way to improve its scoring of overtime games with that in mind.\\
 \\

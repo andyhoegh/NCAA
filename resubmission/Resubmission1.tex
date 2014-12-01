@@ -79,12 +79,12 @@ Along these parametric lines, many have invoked simple linear frameworks utilizi
 On Thursday, May 20, 2014, before the start of the 2014 NCAA tournament, Andy Enfield -- head coach of USC Men's Basketball, and former head coach of the 2013 Florida Gulf Coast team that had the deepest run in the history of the NCAA tournament by a 15 seed -- made an appearance on the ESPN radio program First Take. When asked about potential upsets, he responded as follows. 
 % Listen here: https://www.youtube.com/watch?v=pAERNPdUiC8#t=1966
 \begin{blockquote}
-\indent Well, it's hard to predict a particular team. You have to look at the higher seed and see, do they overwhelm the smaller school or the lower seed? Can they overwhelm someone with their athleticism or length or size or quickness or speed? Do they play a particular style of the pressure defense? And I think I look at the lower seed then and say, can they counter the higher seed's strengths? Do they shoot the three point shot well? Do they have athleticism at certain positions? Do they play a particular style that will give the higher seed trouble? 
-\indent And as I look at the tournament I see a team like Delaware with three great guards that average 57 points a game between them. You look at a team like Michigan State that can overwhelm a team with their athleticism and size. So I think that'll be an interesting first round matchup. You look at a team like Mercer who has a great point guard in Langston Hall and a 6'11" center who's an all-league player versus Duke's overwhelming athleticism and size on the wing, so there's some very interesting matchups, and I look forward to it.
+Well, it's hard to predict a particular team. You have to look at the higher seed and see, do they overwhelm the smaller school or the lower seed? Can they overwhelm someone with their athleticism or length or size or quickness or speed? Do they play a particular style of the pressure defense? And I think I look at the lower seed then and say, can they counter the higher seed's strengths? Do they shoot the three point shot well? Do they have athleticism at certain positions? Do they play a particular style that will give the higher seed trouble? 
+%\indent And as I look at the tournament I see a team like Delaware with three great guards that average 57 points a game between them. You look at a team like Michigan State that can overwhelm a team with their athleticism and size. So I think that'll be an interesting first round matchup. You look at a team like Mercer who has a great point guard in Langston Hall and a 6'11" center who's an all-league player versus Duke's overwhelming athleticism and size on the wing, so there's some very interesting matchups, and I look forward to it.
 \end{blockquote}
-\noindent Michigan State went on to overwhelm Delaware with a 93-78 win. No. 14 seed Mercer upset No. 3 seed Duke 78-71. Mercer shut down Duke's post game and in exchange granted them the ability to take outside shots, which Duke missed almost all game long.
-
-Coach Enfield's implication is that a team's performance depends on the kind of team it is playing -- what we dub the matchup effect. More formally, a matchup effect is any term in a predictive model that depends on the interaction between both teams. 
+%\noindent Michigan State went on to overwhelm Delaware with a 93-78 win. No. 14 seed Mercer upset No. 3 seed Duke 78-71. Mercer shut down Duke's post game and in exchange granted them the ability to take outside shots, which Duke missed almost all game long.
+%
+\noindent Coach Enfield's implication is that a team's performance depends on the kind of team it is playing -- what we dub the matchup effect. More formally, a matchup effect is any term in a predictive model that depends on the interaction between both teams. 
 
 Unfortunately many of the methods detailed in Section 1.1 are based on overall team strength and are therefure unable to handle specific matchups. These methods impose a relation known as the transitive property. This notion of transitivity states that if team A is expected to beat team B and team B is expected to beat team C, then team A is also expected to beat team C. Formally, if $P_{A>B}$ denotes the probability that team $A$ beats team $B$, then for any teams A, B, and C: 
 \begin{eqnarray*}
@@ -319,6 +319,7 @@ It is important to note that this framework is incredibly flexible with the abil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix}
+\footnotesize
 All of the variables used for identifying neighbors of teams are listed below with descriptions. For additional details, see \cite{kenpom.com}.\\
 \\
 \textbf{Effective Height:} The average height of the center and power forwards - adjusted for minutes played.  \\
@@ -344,7 +345,7 @@ All of the variables used for identifying neighbors of teams are listed below wi
 \textbf{Three Point Field Goal Contribution (Defense):} Percentage of points allowed on three point field goals.\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\normalsize
 
 \bibliographystyle{DeGruyter}
 \bibliography{refsJQAS}

@@ -25,64 +25,54 @@
 (b) Keep the start of Section 3.1 as is, but demonstrate the results of an non-parametric additive (non-linear) model. This would have major implications for the results in Section 4.\\
 My recommendation would be (a). This does not diminish the novelty of your approach, in my opinion.}\\
 \\
-{\bf Response:} blah blah \\
+{\bf Response:} We opted to follow recommendation (a). The initial intent was to keep the description as general as possible; however, given our use of a linear model the additive piece can be confusing.  \\
 \\
-{\bf Comment 2:} \emph{I found some instances of unnecessary text. Section 2.1 should be substantially reduced, and perhaps combined with the rest of Section 2 without being its own subsection. Specifically, the first paragraph of Section 2.1 takes too much text to explain the relatively intuitive notion that there is more information in point scores than in binary indicators of wins. The second paragraph similarly goes on too long, and the accompanying figure is unnecessary. Again it is a relatively straightforward idea that if you are modeling the distribution of point spreads, then the probability a team wins is the probability the point spread is greater than 0. Finally the first paragraph of Section 3 can be removed entirely.}
+{\bf Comment 2:} \emph{I found some instances of unnecessary text. Section 2.1 should be substantially reduced, and perhaps combined with the rest of Section 2 without being its own subsection. Specifically, the first paragraph of Section 2.1 takes too much text to explain the relatively intuitive notion that there is more information in point scores than in binary indicators of wins. The second paragraph similarly goes on too long, and the accompanying figure is unnecessary. Again it is a relatively straightforward idea that if you are modeling the distribution of point spreads, then the probability a team wins is the probability the point spread is greater than 0. Finally the first paragraph of Section 3 can be removed entirely.}\\
 \\
-{\bf Response:} blah blah \\
+{\bf Response:} Section 2.1 is removed, including the figure on computing probabilities from a point spread. A reduced single paragraph summary is slotted as the second paragraph in Section 2. The first paragraph of Section 3 is removed as well. \\
 \\
 {\bf Comment 3:} \emph{Some of the notation you define is a bit awkward, but I believe can be remedied easily. At the top of page 17 where you define the $K$ nearest neighbors of team $j$, I strongly recommend defining $\mathcal{N}_j$ to be the set of team indices that are among the $K$ nearest neighbors to team j. Then at the bottom of page 17, define the average residual to be 
 \begin{eqnarray*}
-R_j(i)=\frac{1}{K} \sum_{k \in \mathcal{N}_j}*y_{(i,k)} - \mu_{(i,k)}).
+R_j(i)=\frac{1}{K} \sum_{k \in \mathcal{N}_j}(y_{(i,k)} - \mu_{(i,k)}).
 \end{eqnarray*}
 The current expression you have at the bottom of page 17 is not correct notation. You would then need to make the small change in Equation (4) replacing $\mathcal{N}$ with $R$.\\ 
 Some minor notational issues are listed below.}\\
 \\
-{\bf Response:} blah blah \\
+{\bf Response:} Suggested changes have been made. The updated version is easier to follow and more intuitive. The other notational issues are addressed below. \\
 \\
 {\bf Comment 4:} \emph{It would be helpful to see in Section 4.1 a table that presented the 2014 NCAA tournament games with the largest values of $\phi_{(i,j)}$ (positive or negative), along with a brief accompanying discussion. This would highlight the impact of the main contribution to your modeling framework.}
 \\
-{\bf Response:} blah blah \\
+{\bf Response:} A table has been added that contains the largest values of $\phi$ as well as the $\mathcal{R}_i(j)$ values. This was a missing piece in the discussion of our model. \\
 \subsection*{Minor Comments}
 {\bf Comment 1:} \emph{Page 12, line 47: Add quotes to ``at large''.}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} corrected\\
 \\
 {\bf Comment 2:} \emph{Page 13, line 16: the exact methodology is unpublished. (it is know to Sagarin)}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} yes this is a major difference\\
 \\
 {\bf Comment 3:} \emph{Page 14, line 29: The point differentials are not ``continuous.'' Use a different term (e.g., quantitative).}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} continuous replaced with quantitative\\
 \\
 {\bf Comment 4:} \emph{Page 14, line 46. Assuming you keep this (probably should not), you need to define $p(y_{(i,j))}$.}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} section removed\\
 \\
 {\bf Comment 5:} \emph{Page 16, Equation (2): Here you define $Y_{(i,j)}$ to be the point spread and later you use lowercase $y_{(i,j)}$. This needs to be consistent.}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} The lowercase notation $y_{(i,j)}$ is removed. \\
 \\
 {\bf Comment 6:} \emph{Page 16, line 10: The sentence beginning with ``Where for'' is not a sentence.}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} This comment is combined with the previous sentence.\\
 \\
 {\bf Comment 7:} \emph{Page 16, Section 3.2: Do not use the term ``foe'' in place of ``opponent.''}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} ``foe'' replaced by ``opponent''\\
 \\
 {\bf Comment 8:} \emph{Page 18, Equation (5): Why is there a k in $\epsilon_{(i,j)k}$?}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} This is a relic of previous notation that has now been removed.\\
 \\
 {\bf Comment 9:} \emph{Page 19, line 15: Data were (not ``is'')}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} corrected\\
 \\
 {\bf Comment 10:} \emph{Page 19, Section 4.1: The references to Kaggle are not necessary. You can remove the second column of Table 2 and remove the references to Kaggle in the first paragraph and the material is just as clear}\\
-\\
-{\bf Response:} blah\\
+{\bf Response:} The Kaggle references were removed from this section. The former Table 2 is eliminated and the results are incorporated into the text.\\
 \\
 
 \newpage
@@ -92,28 +82,28 @@ Some minor notational issues are listed below.}\\
 \\
 \subsection*{Minor Comments}
 {\bf Comment 1:} \emph{Page 3. Section 1.2, Should be March instead of May.}\\
-{\bf Response:} blah blah.\\
+{\bf Response:} corrected\\
 \\
 {\bf Comment 2:} \emph{Page 3. 6 lines from bottom -- therefore.}\\
-{\bf Response:} blah blah.\\
+{\bf Response:} corrected\\
 \\
 {\bf Comment 3:} \emph{Page 8. one line below equation (3), Why subscript ``1''}\\
-{\bf Response:} blah blah.\\
+{\bf Response:} it is unnecessary and has been removed.\\
 \\
 {\bf Comment 4:} \emph{Page 8. last line section 2. While the games are supposed to be played on neutral sites, what often happens is that the games are played on close proximity to one of the teams.}\\
-{\bf Response:} blah blah.\\
+{\bf Response:} This is a good point and while Duke playing in Charlotte, NC, for instance, is technically a neutral site, a home court advantage of some sort likely does exist. However, this is not the same as Duke playing at Cameron Indoor Stadium. Estimating these `neutral' home court effects is something we talked about but ultimately did not attempt to estimate - at least for this last year's competition.\\
 \\
 {\bf Comment 5:} \emph{Page 11. 11 lines from the bottom mentions ``dashed line.'' My figure 2 does not have a dashed line.}\\
-{\bf Response:} blah blah.\\
+{\bf Response:} Good catch. The dashed line was the previous iteration. The text has been updated so that the black dot represents the optimal value of $\rho$ based on historical data.\\
 \\
 {\bf Comment 6:} \emph{Page 12. Table 3 Memphis - Virginia should read 0.28/0.21}\\
-{\bf Response:} blah blah.\\
+{\bf Response:} corrected\\
 \\
 {\bf Comment 7:} \emph{Appendix. How are turnovers counted. Are they included in steals? }\\
-{\bf Response:} blah blah.\\
+{\bf Response:} Some turnovers are considered steals, but, for instance, a pass thrown out of bounds is not a steal.\\
 \\
 {\bf Comment 8:} \emph{Appendix. Should there be (.5 \% field goal for 3 point + \% field goals made?}\\
-{\bf Response:} blah blah.\\
+{\bf Response:} parenthesis are added so that the equation reads $(.5 FGM_3 + FGM) /FGA$\\
  \newpage
 
 \section*{Reviewer 2 Comments}
@@ -121,37 +111,33 @@ Some minor notational issues are listed below.}\\
 \subsection*{Major Comments}
 {\bf Comment 1:} \emph{Overall, I think this is a much-improved version of the original paper, both in content and in writing.}\\
 \\
-{\bf Response:} blah blah\\
-\\
 {\bf Comment 2:} \emph{The only important missing piece I see here is that the significance of the improvement is not discussed. Is improvement (in Kaggle score, for example, or in any other metrics such as performance in games where the matchup component suggests adjusting the line by X or more points) statistically significant (or how do confidence intervals overlap, etc.)? The discussion of the role of chance was removed with the Kaggle piece, but a bit of it seems to be relevant to this question. [The same question applies to Response 2 to Reviewer 1, where an improvement over Sagarin is mentioned.]} \\
 \\
 {\bf Response:} blah blah\\
 \\
 {\bf Comment 3:} \emph{The abstract is out-of-date; the Kaggle piece hasn't been removed and it still promises a ``tempering'' of expectations due to the role of chance.}\\
 \\
-{\bf Response:} blah blah
+{\bf Response:} Thanks for catching this, we updated the abstract on our PDF version, but didn't upload the changes into the submission system.
 \subsection*{Minor Comments}
 {\bf Comment 1:} \emph{Since you mention transitivity in the motivation, how non-transitive do your predictions really get? (Is almost all of the difference just slightly different estimated margins of victory?)}\\
-\\
-{\bf Response:} blah blah\\
+{\bf Response:} There is only a single prediction for which the classification result changes, which is a related concept to transitivity as defined in the manuscript. However, a more general form of transitivity, which we opted not to put in the paper is:
+\begin{eqnarray*}
+\left \{P_{A>B} =d \quad \cap \quad P_{B>C} > 0.5 \right\} \implies P_{A>C} >d,
+\end{eqnarray*}
+ where $d$ is a constant between 0 and 1. Under this form all of our predictions (with non-zero $\phi$) would be non-transitive. Again the magnitude of the changes in probabilities tends to be relatively small.\\
 \\
 {\bf Comment 2:} \emph{ESPN's BPI is also a (very) good and widely-recognized ranking system.}\\
-\\
-{\bf Response:} blah blah\\
+{\bf Response:} We did look at BPI, but it was a relatively new ranking system, so we opted to stick with some of the classics. \\
 \\
 {\bf Comment 3:} \emph{You might want to mention other similarity-based predictive models in sports -- for example, PECOTA (for predicting a baseball player's yearly totals) uses a similar nearest neighbor analysis [and it's especially interesting because its author (Silver) then used similar methodology in his well-known election forecasts].}\\
-\\
-{\bf Response:} blah blah\\
+{\bf Response:} Good connection, PECOTA is mentioned and reference in Section 3.2\\
 \\
 {\bf Comment 4:} \emph{It might be interesting if you could show some clusters of similar teams, as well as what defines them.}\\
-\\
-{\bf Response:} blah blah\\
+{\bf Response:} We are considering working on this kind of visualization using some techniques from BAVA that allow user input to shape clusters. However, that will be a separate work. \\
 \\
 {\bf Comment 5:} \emph{Since you mention Sagarin, it might be interesting to include M Sagarin in Table 2.}\\
-\\
-{\bf Response:} blah blah\\
+{\bf Response:} $M_{RS}$ essentially is the Sagarin model, as a part of a Bayesian linear model which is converted to a probability.\\
 \\
 {\bf Comment 6:} \emph{It wasn't perfectly clear to me whether your results are based on just last year, or over a longer time span.}\\
-\\
-{\bf Response:} blah blah
+{\bf Response:} The model fitting (choosing $\rho$) uses historical data; however, the results presented are only for last year - the year of the Kaggle contest.
 \end{document}
